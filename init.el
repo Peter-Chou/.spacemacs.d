@@ -1,6 +1,6 @@
 ;; -*- mode: emacs-lisp -*-
 ;; set memory trash colletion threshold to 150mb to speed up the startup time
-;; (setq gc-cons-threshold 150000000)
+;; (setq gc-cons-threshold 120000000)
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -47,8 +47,8 @@ values."
      imenu-list
      ;; ipython-notebook
      ;; chrome
-     ;; ivy
-     helm
+     ivy
+     ;; helm
      ranger
      ;; (spacemacs-layouts :variables layouts-enable-autosave nil
      ;;                    layouts-autosave-delay 300)
@@ -175,8 +175,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized-light
                          dracula
+                         solarized-light
                          ;; subatomic256
                          ;; flatland
                          ;; misterioso
@@ -379,7 +379,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; utf-8-unix save file only has \n instead of (\r\n in windows)
-  ;; (set-buffer-file-coding-system 'utf-8-unix)
+  (set-buffer-file-coding-system 'utf-8-unix)
 
   )
 
