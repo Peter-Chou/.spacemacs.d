@@ -14,13 +14,17 @@ Finally, Lauch the emacs for the initial configuration, it will automatically do
 necessary packages and you are ready to go.
 ** TIPS
 In this configuration, The Emacs server will be run as a demon process when you launch Emacs.
+
 It can be super fast when using Emacs client to recall the closed Emacs or open a file with Emacs.
+
 Do not start Emacs launcher again once you've done that, It will open another Emacs and may has some
 onflictions with the existing server.
+
 You should put these two commands in your .bash_profile / .bashrc to use this tip at ease.
 #+BEGIN_SRC sh
 alias e="emacsclient -n"
 alias ec="emacsclient -n -c"
 #+end_src
-if you close your Emacs frame, you can recall the Emacs by typing `ec` in your terminal.
-and you can open a file (e.g. foo.py in your current directory) by typing `e foo.py` in your terminal.
+if you close your Emacs frame, you can recall the Emacs by typing ~ec~ in your terminal.
+
+you can open a file (e.g. foo.py in your current directory) by typing ~e foo.py~ in your terminal.
