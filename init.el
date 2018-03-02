@@ -422,7 +422,7 @@ you should place your code here."
   ;; set emcas runing as deamon,
   ;; and rebinding spc q q to frame-killer to keep deamon alive
   ;; still can kill emacs using spc q Q shortcuts
-  ;; (server-start)
+  (server-start)
   ;; binding spc q q to kill the frame and keep buffer alive
   (evil-leader/set-key "qq" 'spacemacs/frame-killer)
   ;; save buffer and kill the frame
