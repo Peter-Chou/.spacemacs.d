@@ -175,8 +175,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized-light
-                         dracula
+                         gruvbox-dark-medium
+                         gruvbox-light-soft
+                         ;; solarized-light
+                         ;; dracula
                          ;; subatomic256
                          ;; flatland
                          ;; misterioso
@@ -189,7 +191,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 24
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
@@ -361,6 +363,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
         '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
           ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+
+  ;; fix the loading theme problem when themes require dash & autothemer package be loaded.
+  ;; solution from https://github.com/syl20bnr/spacemacs/issues/8090
+  ;; +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  ;; get dash package
+  ;; wget https://raw.githubusercontent.com/magnars/dash.el/master/dash.el
+  ;; get autothemer.el
+  ;; wget https://raw.githubusercontent.com/sebastiansturm/autothemer/master/autothemer.el
+  (load-file "~/.spacemacs.d/dash.el")
+  (load-file "~/.spacemacs.d/autothemer.el")
   ;; set python-environment path to anaconda virtual environment folder
   ;; make sure the your_env_path/Scripts/ do have pythonw.exe (windows) python.exe (unix)
   ;; in cmd with sudo type the following command:(py27 is the folder holds my python2.7)
@@ -390,7 +402,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
+  ;; (spacemacs/load-theme 'gruvbox-light-soft)
   ;; Use Spacemacs as the $EDITOR for git commits
   ;; (global-git-commit-mode t)
   ;; show time on powerline
