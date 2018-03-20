@@ -178,8 +178,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         gruvbox-light-medium
                          gruvbox-dark-medium
-                         gruvbox-light-soft
                          ;; solarized-light
                          ;; dracula
                          ;; subatomic256
@@ -194,7 +194,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 20
+                               :size 15.0
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
