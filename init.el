@@ -389,7 +389,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode t)
   ;; eldoc and so on in your virtual environment
-  (setenv "WORKON_HOME" "C:/Anaconda3/envs")
+  ;; (setenv "WORKON_HOME" "C:/Anaconda3/envs")
   ;; speed up the start-up time
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
@@ -410,6 +410,7 @@ you should place your code here."
   ;; (global-git-commit-mode t)
   ;; show time on powerline
   ;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
+
   (setq display-time-24hr-format t)
   (setq display-time-format "%H:%M:%S")        ; add seconds
   (setq display-time-interval 1)               ; update every second
@@ -430,6 +431,12 @@ you should place your code here."
   ;; binding C-M-- to decrease font size, C-M-=to increase font size
   ;; and change the font size globally within default-text-scale-mode
   (default-text-scale-mode 1)
+
+  ;; try to make company completion quick.
+  ;; if still not good. use C-M-i to manually open the completion list
+  (setq company-dabbrev-downcase 0)
+  (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
+  ;; (setq company-idle-delay 0.1)
   ;; so you know where it is
   (beacon-mode 1)
   ;; enable anzu-mode in mode-line
