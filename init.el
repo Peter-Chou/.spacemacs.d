@@ -351,7 +351,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -582,10 +582,12 @@ you should place your code here."
 
   ;; set eol features under SPC-o-d key binding.
   (spacemacs/declare-prefix "od" "doc-end-of-line")
-  ;; set spc-o-h to hide the ^M
+  ;; set spc-o -d-h to hide the ^M
   (spacemacs/set-leader-keys "odh" 'hidden-dos-eol)
-  ;; set spc-o-d to delete the ^M
+  ;; set spc-o-d-d to delete the ^M
   (spacemacs/set-leader-keys "odd" 'remove-dos-eol)
+  ;; set spc-o-w to cleaning the whitespace
+  (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
