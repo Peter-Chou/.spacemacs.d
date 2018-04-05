@@ -194,7 +194,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 15.0
+                               :size 15.5
                                :weight normal
                                :width normal
                                :powerline-scale 1.2)
@@ -435,8 +435,9 @@ you should place your code here."
   ;; try to make company completion quick.
   ;; if still not good. use C-M-i to manually open the completion list
   (setq company-dabbrev-downcase 0)
+  ;; (setq company-idle-delay 0)
   (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
-  ;; (setq company-idle-delay 0.1)
+
   ;; so you know where it is
   (beacon-mode 1)
   ;; enable anzu-mode in mode-line
