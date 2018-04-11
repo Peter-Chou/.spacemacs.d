@@ -407,6 +407,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; make new frame fullscreen as default
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+  ;; toggle off the minor-mode on modeline as default
+  (spacemacs/toggle-mode-line-minor-modes-off)
   ;; Use Spacemacs as the $EDITOR for git commits
   ;; (global-git-commit-mode t)
   ;; show time on powerline
