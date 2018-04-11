@@ -178,8 +178,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         gruvbox-light-medium
                          gruvbox-dark-medium
+                         gruvbox-light-medium
                          ;; solarized-light
                          ;; dracula
                          ;; subatomic256
@@ -197,7 +197,7 @@ values."
                                :size 15.5
                                :weight normal
                                :width normal
-                               :powerline-scale 1.2)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -448,6 +448,7 @@ you should place your code here."
   (server-start)
   ;; binding spc q q to kill the frame and keep buffer alive
   (evil-leader/set-key "qq" 'spacemacs/frame-killer)
+  (evil-leader/set-key "qh" 'suspend-frame)
   ;; save buffer and kill the frame
   (defun spacemacs/save-buffer-and-kill-frame ()
     "kill the current buffer and the current frame"
