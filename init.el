@@ -406,6 +406,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; make new frame fullscreen as default
+  ;; use spc-T-F to manually turn off this feature.
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
   ;; toggle off the minor-mode on modeline as default
   (spacemacs/toggle-mode-line-minor-modes-off)
@@ -493,6 +494,8 @@ you should place your code here."
   (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
   ;; set fd to escape evil mode in 0.3
   (setq-default evil-escape-delay 0.3)
+  ;;set up fly-check to ignore the E501 error
+  (setq-default flycheck-flake8-maximum-line-length 160)
   ;; tunning the dired-mode
   ;; always take recursive action without further permission
   (setq dired-recursive-deletes 'always)
