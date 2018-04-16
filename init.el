@@ -178,8 +178,8 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         gruvbox-light-soft
                          gruvbox-dark-hard
-                         gruvbox-light-medium
                          ;; solarized-light
                          ;; dracula
                          ;; subatomic256
@@ -193,8 +193,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Inconsolata"
-                               :size 17.5
+   dotspacemacs-default-font '("CamingoCode"
+                               :size 16.5
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -461,19 +461,6 @@ you should place your code here."
     (spacemacs/frame-killer))
   ;; binding spc q w to save-buffer-and-kill-frame function
   (evil-leader/set-key "qw" 'spacemacs/save-buffer-and-kill-frame)
-
-  ;; add a function to show the buffer name without copy
-  (defun my-show-buffer-file-name ()
-    "Show the full path to the current file in the minibuffer."
-    (interactive)
-    (let ((file-name (buffer-file-name)))
-      (if file-name
-          (progn
-            (message file-name)
-            (kill-new file-name))
-        (error "Buffer not visiting a file"))))
-  ;; binding spc-o-f to my-show-buffer-file-name function
-  (spacemacs/set-leader-keys "of" 'my-show-buffer-file-name)
   ;; set new-tree icons
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   ;; active the function ',' in vim (repeat f,F,t,T in reverse)
