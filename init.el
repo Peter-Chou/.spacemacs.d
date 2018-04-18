@@ -404,7 +404,7 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
-you should place your code here." 
+you should place your code here."
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
@@ -592,35 +592,43 @@ you should place your code here."
   ;; set spc-o-w to cleaning the whitespace
   (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
 
-  ;; show indent level within 「⇥」 arrow ===> useful in python mode.
+  ;; show indent level within MIDDLE DOT 「·」 ===> useful in python mode.
   ;; from http://www.wilkesley.org/~ian/xah/emacs/whitespace-mode.html
   ;; just show tab mark with basic coloring
-  (setq whitespace-style (quote (spaces tabs newline tab-mark)))
+  ;;(setq whitespace-style (quote (spaces tabs newline tab-mark)))
   ;;show all marks with basic coloring
-  ;; (setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+  ;;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
   (setq whitespace-display-mappings
-  ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-  '(
-    (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-    (newline-mark 10 [9166 10]) ; 10 LINE FEED 9166 --	RETURN SYMBOL 「⏎」
-    (tab-mark 9 [8677 9] [92 9]) ; 9 TAB, 8677 RIGHTWARDS ARROW TO BAR 「⇥」
-    ))
-  ;; change indent space to tabs in whole buffer
-  (defun my-indentspace-to-tab ()
-  (interactive)
-  (save-excursion
-    (tabify (point-min) (point-max) nil)))
-  ;; change tabs to indent space in whole buffer
-  (defun my-tab-to-indentspace ()
-  (interactive)
-  (save-excursion
-    (untabify (point-min) (point-max) nil)))
+        ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+        '(
+          ;; (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+          ;; (newline-mark 10 [9166 10]) ; 10 LINE FEED 9166 --	RETURN SYMBOL 「⏎」
+          (tab-mark 9 [183 9] [92 9]) ; 9 TAB, 183 MIDDLE DOT 「·」
+          ))
+  ;; tabify indent space to tabs in this buffer, vice versa.
+  ;; tabify / untabify will effect whitespace/tabs in strings, keep this in mind.
+  (defun toggle-tabify-this-buffer ()
+    (interactive)
+    (progn
+      (setq-local space-indent-count (how-many "^    " (point-min) (point-max)))
+      (setq-local tab-indent-count (how-many "^\t" (point-min) (point-max)))
+      (if (> tab-indent-count space-indent-count)
+          (progn
+            (setq indent-tabs-mode nil)
+            (save-excursion
+              (untabify (point-min) (point-max) nil))
+            (message " * untabify this buffer --> now is SPACE-indent *"))
+        (progn
+          (setq indent-tabs-mode t)
+          (save-excursion
+            (tabify (point-min) (point-max) nil))
+          (message " * tabify this buffer --> now is TAB-indent *")))))
   ;; enable whitespace by default
   (spacemacs/toggle-whitespace-globally-on)
+  (setq-default whitespace-line-column 160)
   ;; set bindings under SPC-o-i maping
-  (spacemacs/declare-prefix "oi" "tab-space-switcher")
-  (spacemacs/set-leader-keys "oit" 'my-indentspace-to-tab)
-  (spacemacs/set-leader-keys "ois" 'my-tab-to-indentspace)
+  (spacemacs/declare-prefix "ot" "toggle")
+  (spacemacs/set-leader-keys "ott" 'toggle-tabify-this-buffer)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
