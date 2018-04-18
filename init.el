@@ -440,7 +440,10 @@ you should place your code here."
   (setq company-dabbrev-downcase 0)
   ;; (setq company-idle-delay 0)
   (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
-
+  ;; set c/c++ tab width to 4 whitespaces
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (setq-local tab-width 4)))
   ;; so you know where it is
   (beacon-mode 1)
   ;; enable anzu-mode in mode-line
@@ -523,14 +526,6 @@ you should place your code here."
   ;; fix the malfunction of c-e in better-defaults
   (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
-  ;; several settings on ein
-  ;; (setq ein:use-auto-complete t)
-  ;; binding ein:jupyter-server-start to space+o+j
-  ;; (spacemacs/set-leader-keys "oj" 'ein:jupyter-server-start)
-  ;; (setq ein:use-smartrep t)
-  ;; (setq ein:use-auto-complete-superpack t)
-  ;; (setq ein:complete-on-dot t)
-  ;; (setq ein:completion-backend 'ein:use-ac-backend)
 
   ;; if file exceed 500kb, it will be opened in fundamental-mode to speed up the loading
   (defun spacemacs/check-large-file ()
@@ -584,7 +579,7 @@ you should place your code here."
     (goto-char (point-min))
     (while (search-forward "\r" nil t) (replace-match "")))
   ;; set eol features under SPC-o-d key binding.
-  (spacemacs/declare-prefix "od" "doc-end-of-line")
+  (spacemacs/declare-prefix "od" "doc-EOF")
   ;; set spc-o -d-h to hide the ^M
   (spacemacs/set-leader-keys "odh" 'hidden-dos-eol)
   ;; set spc-o-d-d to delete the ^M
@@ -592,7 +587,7 @@ you should place your code here."
   ;; set spc-o-w to cleaning the whitespace
   (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
 
-  ;; show indent level within MIDDLE DOT 「·」 ===> useful in python mode.
+  ;; show indent level within bullet 「•」 ===> useful in python mode.
   ;; from http://www.wilkesley.org/~ian/xah/emacs/whitespace-mode.html
   ;; just show tab mark with basic coloring
   ;;(setq whitespace-style (quote (spaces tabs newline tab-mark)))
@@ -603,14 +598,14 @@ you should place your code here."
         '(
           ;; (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
           ;; (newline-mark 10 [9166 10]) ; 10 LINE FEED 9166 --	RETURN SYMBOL 「⏎」
-          (tab-mark 9 [183 9] [92 9]) ; 9 TAB, 183 MIDDLE DOT 「·」
+          (tab-mark 9 [8226 9] [92 9]) ; 9 TAB, 8226 bullet 「•」
           ))
   ;; tabify indent space to tabs in this buffer, vice versa.
   ;; tabify / untabify will effect whitespace/tabs in strings, keep this in mind.
-  (defun toggle-tabify-this-buffer ()
+  (defun my-tabify-this-buffer ()
     (interactive)
     (progn
-      (setq-local space-indent-count (how-many "^    " (point-min) (point-max)))
+      (setq-local space-indent-count (how-many "^  " (point-min) (point-max)))
       (setq-local tab-indent-count (how-many "^\t" (point-min) (point-max)))
       (if (> tab-indent-count space-indent-count)
           (progn
@@ -627,8 +622,8 @@ you should place your code here."
   (spacemacs/toggle-whitespace-globally-on)
   (setq-default whitespace-line-column 160)
   ;; set bindings under SPC-o-i maping
-  (spacemacs/declare-prefix "ot" "toggle")
-  (spacemacs/set-leader-keys "ott" 'toggle-tabify-this-buffer)
+  (spacemacs/declare-prefix "ot" "toggles")
+  (spacemacs/set-leader-keys "ott" 'my-tabify-this-buffer)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
