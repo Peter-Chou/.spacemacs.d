@@ -76,8 +76,8 @@ values."
               ibuffer-group-buffers-by 'projects)
      (org :variables
           org-want-todo-bindings t)
-     (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
+     ;; (colors :variables
+     ;;         colors-enable-nyan-cat-progress-bar (display-graphic-p))
      ;; spell-checking
 
      (syntax-checking :variables
