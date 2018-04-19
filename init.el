@@ -405,6 +405,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
@@ -624,6 +625,13 @@ you should place your code here."
   ;; set bindings under SPC-o-i maping
   (spacemacs/declare-prefix "ot" "toggles")
   (spacemacs/set-leader-keys "ott" 'my-tabify-this-buffer)
+  ;; activate cygwin-terminal from emacs
+  (defun cygwin-mintty-terminal ()
+    (interactive)
+    (progn
+      (shell-command "mintty &")
+      (delete-window)))
+  (spacemacs/set-leader-keys "otm" 'cygwin-mintty-terminal)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
