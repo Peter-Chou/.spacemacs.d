@@ -626,12 +626,12 @@ you should place your code here."
   (spacemacs/declare-prefix "ot" "toggles")
   (spacemacs/set-leader-keys "ott" 'my-tabify-this-buffer)
   ;; activate cygwin-terminal from emacs
-  (defun cygwin-mintty-terminal ()
+  (defun open-cygwin-mintty-terminal ()
     (interactive)
     (progn
-      (shell-command "mintty &")
+      (shell-command "mintty --window=max &")
       (delete-window)))
-  (spacemacs/set-leader-keys "otm" 'cygwin-mintty-terminal)
+  (spacemacs/set-leader-keys "oc" 'open-cygwin-mintty-terminal)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
