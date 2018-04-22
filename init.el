@@ -405,7 +405,15 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
+  ;; activate abbrev-mode in emacs-lisp-mode and text-mode
+  ;; (setq-default abbrev-mode t)
+  (dolist (hook '(emacs-lisp-mode-hook
+                  text-mode-hook))
+    (add-hook hook #'abbrev-mode))
+  (define-abbrev-table 'global-abbrev-table '(
+    ;; signature
+    ("9zm" "peterchou")
+    ))
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
