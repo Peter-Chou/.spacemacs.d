@@ -409,6 +409,8 @@ you should place your code here."
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+  ;; revert the buffer automatically when the filed is modified outside emcas
+  (global-auto-revert-mode t)
   ;; toggle off the minor-mode on modeline as default
   (spacemacs/toggle-mode-line-minor-modes-off)
   ;; Use Spacemacs as the $EDITOR for git commits
@@ -440,6 +442,8 @@ you should place your code here."
   ;; if still not good. use C-M-i to manually open the completion list
   (setq company-dabbrev-downcase 0)
   ;; (setq company-idle-delay 0)
+  ;; start autocomplete when start typing
+  (setq-default company-minimum-prefix-length 1)
   (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook
