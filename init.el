@@ -361,6 +361,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; customize the startup-banner image.
+  (setq-default dotspacemacs-startup-banner '"~/.spacemacs.d/images/starship_troopers_warship.png")
   ;; redirect the download site to domestic resource site
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
@@ -405,6 +407,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
   (dolist (hook '(emacs-lisp-mode-hook
