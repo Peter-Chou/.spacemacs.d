@@ -369,6 +369,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
           ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
+  (defconst spacemacs-buffer-logo-title "「  E M B R A C I N G   E M A C S  ⋮⋮⋮  H A C K I N G   S P A C E M A C S  」"
+    "The title displayed beneath the logo.")
   ;; fix the loading theme problem when themes require dash & autothemer package be loaded.
   ;; solution from https://github.com/syl20bnr/spacemacs/issues/8090
   ;; +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -407,7 +409,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
+  ;; disable the note page in spacemacs buffer
+  ;; you can click the [Release Notes] to see the notes instead.
+  (spacemacs-buffer//notes-redisplay-current-note)
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
   (dolist (hook '(emacs-lisp-mode-hook
@@ -617,29 +621,38 @@ you should place your code here."
           (tab-mark 9 [8942 9] [92 9]) ; 9 TAB, 8942 vertical ellipsis 「⋮」
           ))
   ;; tabify indent space to tabs in this buffer, vice versa.
-  ;; tabify / untabify will effect whitespace/tabs in strings, keep this in mind.
-  (defun my-tabify-this-buffer ()
+  ;; this switch won't affect whitespaces / tab not maching "^ +"" or "^\t+" regular expression.
+  (defun leading-space-tab-switcher ()
     (interactive)
-    (progn
-      (setq-local space-indent-count (how-many "^  " (point-min) (point-max)))
-      (setq-local tab-indent-count (how-many "^\t" (point-min) (point-max)))
+    (let ((space-indent-count (how-many "^  " (point-min) (point-max)))
+          (tab-indent-count (how-many "^\t" (point-min) (point-max))))
       (if (> tab-indent-count space-indent-count)
           (progn
+            (message " * untabify this buffer --> now is leading-SPACE-indent *")
             (setq indent-tabs-mode nil)
             (save-excursion
-              (untabify (point-min) (point-max) nil))
-            (message " * untabify this buffer --> now is SPACE-indent *"))
+              (evil-goto-first-line)
+              (while (> tab-indent-count 0)
+                (let ((end-char-location (re-search-forward "^\t+" nil t))
+                      (first-char-location (re-search-backward "^\t+" nil t)))
+                  (untabify first-char-location end-char-location))
+                (setq-local tab-indent-count (how-many "^\t" (point-min) (point-max))))))
         (progn
+          (message " * tabify this buffer --> now is leading-TAB-indent *")
           (setq indent-tabs-mode t)
           (save-excursion
-            (tabify (point-min) (point-max) nil))
-          (message " * tabify this buffer --> now is TAB-indent *")))))
+            (evil-goto-first-line)
+            (while (> space-indent-count 0)
+              (let ((end-char-location (re-search-forward "^ +" nil t))
+                    (first-char-location (re-search-backward "^ +" nil t)))
+                (tabify first-char-location end-char-location))
+              (setq-local space-indent-count (how-many "^  " (point-min) (point-max)))))))))
   ;; enable whitespace by default
   (spacemacs/toggle-whitespace-globally-on)
   (setq-default whitespace-line-column 160)
   ;; set bindings under SPC-o-i maping
   (spacemacs/declare-prefix "ot" "toggles")
-  (spacemacs/set-leader-keys "ott" 'my-tabify-this-buffer)
+  (spacemacs/set-leader-keys "ott" 'leading-space-tab-switcher)
   ;; activate cygwin-terminal from emacs
   (defun open-cygwin-mintty-terminal ()
     (interactive)
@@ -667,11 +680,11 @@ you should place your code here."
     (setq shell-file-name explicit-shell-file-name)
     (spacemacs/set-leader-keys "oc'" 'shell))
 
-  (defun peterzhou-clear-shell-buffer ()
+  (defun peterchou-clear-shell-buffer ()
     (interactive)
     (let ((inhibit-read-only t))
       (erase-buffer)))
-  (spacemacs/set-leader-keys "occ" 'peterzhou-clear-shell-buffer)
+  (spacemacs/set-leader-keys "occ" 'peterchou-clear-shell-buffer)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
