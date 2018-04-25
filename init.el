@@ -603,7 +603,7 @@ you should place your code here."
   ;; set spc-o-w to cleaning the whitespace
   (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
 
-  ;; show indent level within bullet 「•」 ===> useful in python mode.
+  ;; show indent level within vertical ellipsis 「⋮」 ===> useful in python mode.
   ;; from http://www.wilkesley.org/~ian/xah/emacs/whitespace-mode.html
   ;; just show tab mark with basic coloring
   ;;(setq whitespace-style (quote (spaces tabs newline tab-mark)))
@@ -614,7 +614,7 @@ you should place your code here."
         '(
           ;; (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
           ;; (newline-mark 10 [9166 10]) ; 10 LINE FEED 9166 --	RETURN SYMBOL 「⏎」
-          (tab-mark 9 [8226 9] [92 9]) ; 9 TAB, 8226 bullet 「•」
+          (tab-mark 9 [8942 9] [92 9]) ; 9 TAB, 8942 vertical ellipsis 「⋮」
           ))
   ;; tabify indent space to tabs in this buffer, vice versa.
   ;; tabify / untabify will effect whitespace/tabs in strings, keep this in mind.
