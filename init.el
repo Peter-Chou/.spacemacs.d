@@ -179,9 +179,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         dracula
                          gruvbox-light-soft
                          gruvbox-dark-hard
-                         dracula
                          ;; solarized-light
                          ;; subatomic256
                          ;; flatland
@@ -637,7 +637,7 @@ you should place your code here."
                 (let ((end-char-location (re-search-forward "^\t+" nil t))
                       (first-char-location (re-search-backward "^\t+" nil t)))
                   (untabify first-char-location end-char-location))
-                (setq-local tab-indent-count (how-many "^\t" (point-min) (point-max))))))
+                (setq-local tab-indent-count (- tab-indent-count 1)))))
         (progn
           (message " * tabify this buffer --> now is leading-TAB-indent *")
           (setq indent-tabs-mode t)
@@ -647,7 +647,7 @@ you should place your code here."
               (let ((end-char-location (re-search-forward "^ +" nil t))
                     (first-char-location (re-search-backward "^ +" nil t)))
                 (tabify first-char-location end-char-location))
-              (setq-local space-indent-count (how-many "^  " (point-min) (point-max)))))))))
+              (setq-local space-indent-count (- space-indent-count 1))))))))
   ;; enable whitespace by default
   (spacemacs/toggle-whitespace-globally-on)
   (setq-default whitespace-line-column 160)
