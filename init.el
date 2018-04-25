@@ -414,9 +414,9 @@ you should place your code here."
                   text-mode-hook))
     (add-hook hook #'abbrev-mode))
   (define-abbrev-table 'global-abbrev-table '(
-    ;; signature
-    ("9zm" "peterchou")
-    ))
+                                              ;; signature
+                                              ("9zm" "peterchou")
+                                              ))
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
   (add-to-list 'default-frame-alist '(fullscreen . fullboth))
@@ -646,7 +646,32 @@ you should place your code here."
     (progn
       (shell-command "mintty --window=max &")
       (delete-window)))
-  (spacemacs/set-leader-keys "oc" 'open-cygwin-mintty-terminal)
+  (spacemacs/declare-prefix "oc" "cygwin-terminal")
+  (spacemacs/set-leader-keys "oco" 'open-cygwin-mintty-terminal)
+
+  ;; make emacs knows cygwin path(e.g. /cygdrive/c/ <==> c:/)
+  ;; http://www.khngai.com/emacs/cygwin.php
+  (when (eq system-type 'windows-nt)
+    (add-to-list 'load-path "~/.spacemacs.d/lisp/")
+    (setq system-uses-terminfo nil)
+    (setq exec-path (cons "c:/cygwin/bin/" exec-path))
+    (require 'cygwin-mount)
+    (cygwin-mount-activate)
+    (add-hook 'comint-output-filter-functions
+              'shell-strip-ctrl-m nil t)
+    (add-hook 'comint-output-filter-functions
+              'comint-watch-for-password-prompt nil t)
+    (setq explicit-shell-file-name "bash.exe")
+                                        ; For subprocesses invoked via the shell
+                                        ; (e.g., "shell -c command")
+    (setq shell-file-name explicit-shell-file-name)
+    (spacemacs/set-leader-keys "oc'" 'shell))
+
+  (defun peterzhou-clear-shell-buffer ()
+    (interactive)
+    (let ((inhibit-read-only t))
+      (erase-buffer)))
+  (spacemacs/set-leader-keys "occ" 'peterzhou-clear-shell-buffer)
 
   ;; fix the problem of parsing tons of .el files when typing in elisp mode.
   ;; https://github.com/company-mode/company-mode/issues/525
