@@ -625,11 +625,10 @@ you should place your code here."
   ;; this switch won't affect whitespaces / tab not maching "^ +"" or "^\t+" regular expression.
   (defun peterchou/leading-space-tab-switcher ()
     (interactive)
-    (let ((space-indent-count (how-many "^  " (point-min) (point-max)))
+    (let ((space-indent-count (how-many "^ +" (point-min) (point-max)))
           (tab-indent-count (how-many "^\t" (point-min) (point-max))))
       (if (> tab-indent-count space-indent-count)
           (progn
-            (message " * untabify this buffer --> now is leading-SPACE-indent *")
             (setq indent-tabs-mode nil)
             (save-excursion
               (evil-goto-first-line)
@@ -637,9 +636,9 @@ you should place your code here."
                 (let ((end-char-location (re-search-forward "^\t+" nil t))
                       (first-char-location (re-search-backward "^\t+" nil t)))
                   (untabify first-char-location end-char-location))
-                (setq-local tab-indent-count (- tab-indent-count 1)))))
+                (setq-local tab-indent-count (- tab-indent-count 1))))
+            (message " * untabify this buffer --> now is leading-SPACE-indent *"))
         (progn
-          (message " * tabify this buffer --> now is leading-TAB-indent *")
           (setq indent-tabs-mode t)
           (save-excursion
             (evil-goto-first-line)
@@ -647,7 +646,8 @@ you should place your code here."
               (let ((end-char-location (re-search-forward "^ +" nil t))
                     (first-char-location (re-search-backward "^ +" nil t)))
                 (tabify first-char-location end-char-location))
-              (setq-local space-indent-count (- space-indent-count 1))))))))
+              (setq-local space-indent-count (- space-indent-count 1))))
+          (message " * tabify this buffer --> now is leading-TAB-indent *")))))
   ;; enable whitespace by default
   (spacemacs/toggle-whitespace-globally-on)
   (setq-default whitespace-line-column 160)
