@@ -179,9 +179,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         dracula
                          gruvbox-light-soft
                          gruvbox-dark-hard
+                         ;; dracula
                          ;; solarized-light
                          ;; subatomic256
                          ;; flatland
@@ -370,7 +370,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
           ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-  (defconst spacemacs-buffer-logo-title "「  E M B R A C I N G   E M A C S  ⋮⋮⋮  H A C K I N G   S P A C E M A C S  」"
+  (defconst spacemacs-buffer-logo-title "[  E M B R A C I N G   E M A C S  ⋮⋮⋮  H A C K I N G   S P A C E M A C S  ]"
     "The title displayed beneath the logo.")
   ;; fix the loading theme problem when themes require dash & autothemer package be loaded.
   ;; solution from https://github.com/syl20bnr/spacemacs/issues/8090
@@ -410,9 +410,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; disable the note page in spacemacs buffer
-  ;; you can click the [Release Notes] to see the notes instead.
-  (spacemacs-buffer//notes-redisplay-current-note)
+
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
   (dolist (hook '(emacs-lisp-mode-hook
@@ -626,7 +624,7 @@ you should place your code here."
   (defun peterchou/leading-space-tab-switcher ()
     (interactive)
     (let ((space-indent-count (how-many "^ +" (point-min) (point-max)))
-          (tab-indent-count (how-many "^\t" (point-min) (point-max))))
+          (tab-indent-count (how-many "^\t+" (point-min) (point-max))))
       (if (> tab-indent-count space-indent-count)
           (progn
             (setq indent-tabs-mode nil)
