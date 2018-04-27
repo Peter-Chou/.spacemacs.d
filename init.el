@@ -410,7 +410,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
+  ;; (setq exec-path (append exec-path '("C:/global/bin")))
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
   (dolist (hook '(emacs-lisp-mode-hook
@@ -717,9 +717,9 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  ;; set related whitespace-mode background to transparent.
  ;; https://superuser.com/questions/659715/whitespace-mode-cant-not-change-face
- '(whitespace-space ((t (:background nil :bold t))))
+ '(whitespace-space ((t (:background nil))))
  '(whitespace-tab ((t (:background nil :bold t))))
- '(whitespace-indentation ((t (:background nil :bold t))))
+ '(whitespace-indentation ((t (:background nil))))
  ;; solve the issue that background wont change after switch to other themes
  ;; https://www.reddit.com/r/spacemacs/comments/6b1qvj/theme_background_color_not_changing/
  '(default ((((class color) (min-colors 257)) nil) (((class color) (min-colors 89)) (:background "#1c1c1c" :foreground "#eeeeee"))))
