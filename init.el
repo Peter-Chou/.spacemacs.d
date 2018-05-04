@@ -639,7 +639,7 @@ you should place your code here."
         (progn
           (setq indent-tabs-mode t)
           (save-excursion
-            (evil-goto-first-line)
+            (beginning-of-buffer)
             (while (> space-indent-count 0)
               (let ((end-char-location (re-search-forward "^ +" nil t))
                     (first-char-location (re-search-backward "^ +" nil t)))
