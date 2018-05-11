@@ -35,7 +35,8 @@ values."
              python-test-runner '(nose pytest)
              python-sort-imports-on-save t)
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      (markdown :variables
                markdown-live-preview-engine 'vmd)
      emacs-lisp
