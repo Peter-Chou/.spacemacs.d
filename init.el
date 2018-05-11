@@ -413,6 +413,8 @@ you should place your code here."
   ;; (setq exec-path (append exec-path '("C:/global/bin")))
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
+  
+  
   (dolist (hook '(emacs-lisp-mode-hook
                   text-mode-hook))
     (add-hook hook #'abbrev-mode))
@@ -667,6 +669,7 @@ you should place your code here."
     (add-to-list 'load-path "~/.spacemacs.d/lisp/")
     (setq system-uses-terminfo nil)
     (setq exec-path (cons "c:/cygwin/bin/" exec-path))
+    (setq cygwin-mount-cygwin-bin-directory "c:/cygwin/bin/")
     (require 'cygwin-mount)
     (cygwin-mount-activate)
     (add-hook 'comint-output-filter-functions
