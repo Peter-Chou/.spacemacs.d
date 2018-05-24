@@ -283,14 +283,14 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -414,8 +414,8 @@ you should place your code here."
   ;; (setq exec-path (append exec-path '("C:/global/bin")))
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
-  
-  
+
+
   (dolist (hook '(emacs-lisp-mode-hook
                   text-mode-hook))
     (add-hook hook #'abbrev-mode))
@@ -425,7 +425,7 @@ you should place your code here."
                                               ))
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
-  (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+  ;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
   ;; revert the buffer automatically when the filed is modified outside emcas
   (global-auto-revert-mode t)
   ;; toggle off the minor-mode on modeline as default
