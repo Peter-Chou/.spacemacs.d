@@ -154,7 +154,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -415,6 +415,10 @@ you should place your code here."
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
 
+  (define-key evil-insert-state-map (kbd "C-f") 'forward-char)
+  (define-key evil-insert-state-map (kbd "C-b") 'backward-char)
+  (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+  (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
 
   (dolist (hook '(emacs-lisp-mode-hook
                   text-mode-hook))
@@ -460,8 +464,8 @@ you should place your code here."
   (setq company-dabbrev-downcase 0)
   ;; (setq company-idle-delay 0)
   ;; start autocomplete when start typing
-  (setq-default company-minimum-prefix-length 1)
-  (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
+  ;; (setq-default company-minimum-prefix-length 1)
+  ;; (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook
             (lambda ()
