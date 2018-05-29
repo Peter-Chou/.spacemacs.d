@@ -32,7 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      (python :variables
-             python-test-runner '(nose pytest)
+             python-test-runner '(pytest nose)
              python-sort-imports-on-save t)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
