@@ -414,7 +414,10 @@ you should place your code here."
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
   ;; (setq system-uses-terminfo nil)
-
+  ;; 代码按层折腾 c++下 使用
+  ;; https://github.com/bbatsov/prelude/issues/786
+  ;; press C-c @ C-l to hide all methods. Press C-c @ C-M-s again to show all methods
+  (add-hook 'prog-mode-hook 'hs-minor-mode)
   ;; python模式下可以将class下全部函数的代码折叠
   (defun py-outline-level ()
     (let (buffer-invisibility-spec)
