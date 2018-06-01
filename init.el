@@ -414,35 +414,43 @@ you should place your code here."
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
   ;; (setq system-uses-terminfo nil)
-  ;; 代码按层折腾 c++下 使用
-  ;; https://github.com/bbatsov/prelude/issues/786
-  ;; press C-c @ C-l to hide all methods. Press C-c @ C-M-s again to show all methods
+
+  ;; 代码折叠
   (add-hook 'prog-mode-hook 'hs-minor-mode)
-  ;; python模式下可以将class下全部函数的代码折叠
-  (defun py-outline-level ()
-    (let (buffer-invisibility-spec)
-      (save-excursion
-        (skip-chars-forward "\t ")
-        (current-column))))
-  (defun hide-body-recenter ()
+  (add-hook 'prog-mode-hook 'outline-minor-mode)
+  (defun my-level-fold-1 ()
     (interactive)
-    (hide-body)
-    (recenter))
-  (defun my-pythonFold-hook ()
-    (setq outline-regexp "[^ \t\n]\\|[ \t]*\\(def[ \t]+\\|class[ \t]+\\)")
-    (setq outline-level 'py-outline-level)
-    (outline-minor-mode t))
-  (add-hook 'python-mode-hook 'my-pythonFold-hook)
+    (save-excursion
+      (beginning-of-buffer)
+      (outline-hide-sublevels 1)))
+  (defun my-level-fold-2 ()
+    (interactive)
+    (save-excursion
+      (beginning-of-buffer)
+      (outline-hide-sublevels 2)))
+  (defun my-level-fold-3 ()
+    (interactive)
+    (save-excursion
+      (beginning-of-buffer)
+      (outline-hide-sublevels 3)))
 
   (spacemacs/declare-prefix "of" "code-(un)folding")
   ;; spc-o-f-U : 展开全部代码
-  (spacemacs/set-leader-keys "ofU" 'show-all)
-  ;; spc-o-f-F : 折叠所有def代码
-  (spacemacs/set-leader-keys "ofF" 'outline-hide-sublevels)
-  ;; spc-o-f-u : 展开该节点代码
-  (spacemacs/set-leader-keys "off" 'outline-hide-subtree)
+  (spacemacs/set-leader-keys "of0" 'outline-show-all)
+  ;; spc-o-f-1 : 折叠所有1层代码
+  (spacemacs/set-leader-keys "of1" 'my-level-fold-1)
+  ;; spc-o-f-2 : 折叠所有2层代码
+  (spacemacs/set-leader-keys "of2" 'my-level-fold-2)
+  ;; spc-o-f-3 : 折叠所有3层代码
+  (spacemacs/set-leader-keys "of3" 'my-level-fold-3)
   ;; spc-o-f-f : 折叠该节点代码
-  (spacemacs/set-leader-keys "ofu" 'show-subtree)
+  (spacemacs/set-leader-keys "off" 'outline-hide-subtree)
+  ;; spc-o-f-u : 展开该节点代码
+  (spacemacs/set-leader-keys "ofu" 'outline-show-subtree)
+  ;; spc-o-f-l : 折叠盖层的子层代码
+  (spacemacs/set-leader-keys "ofl" 'outline-hide-leaves)
+  ;; spc-o-f-o : 折叠所在代码以外的代码
+  (spacemacs/set-leader-keys "ofo" 'outline-hide-other)
 
   ;; highlight the indentation in python mode
   (require 'highlight-indentation)
