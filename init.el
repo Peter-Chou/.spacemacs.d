@@ -100,8 +100,7 @@ values."
                                       all-the-icons
                                       beacon
                                       default-text-scale
-                                      gruvbox-theme
-                                      dracula-theme)
+                                      gruvbox-theme)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -180,15 +179,15 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         gruvbox-light-soft
                          gruvbox-dark-hard
-                         ;; dracula
+                         gruvbox-light-soft
                          ;; solarized-light
                          ;; subatomic256
                          ;; flatland
                          ;; misterioso
                          ;; gruber-darker
                          ;; spacemacs-dark
+                         ;; spacemacs-light
                          ;; spacemacs-light
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -414,18 +413,45 @@ you should place your code here."
   ;; (setq exec-path (append exec-path '("C:/global/bin")))
   ;; activate abbrev-mode in emacs-lisp-mode and text-mode
   ;; (setq-default abbrev-mode t)
-  
+  ;; (setq system-uses-terminfo nil)
+
+  ;; python模式下可以将class下全部函数的代码折叠
+  (defun py-outline-level ()
+    (let (buffer-invisibility-spec)
+      (save-excursion
+        (skip-chars-forward "\t ")
+        (current-column))))
+  (defun hide-body-recenter ()
+    (interactive)
+    (hide-body)
+    (recenter))
+  (defun my-pythonFold-hook ()
+    (setq outline-regexp "[^ \t\n]\\|[ \t]*\\(def[ \t]+\\|class[ \t]+\\)")
+    (setq outline-level 'py-outline-level)
+    (outline-minor-mode t))
+  (add-hook 'python-mode-hook 'my-pythonFold-hook)
+
+  (spacemacs/declare-prefix "of" "code-(un)folding")
+  ;; spc-o-f-U : 展开全部代码
+  (spacemacs/set-leader-keys "ofU" 'show-all)
+  ;; spc-o-f-F : 折叠所有def代码
+  (spacemacs/set-leader-keys "ofF" 'outline-hide-sublevels)
+  ;; spc-o-f-u : 展开该节点代码
+  (spacemacs/set-leader-keys "off" 'outline-hide-subtree)
+  ;; spc-o-f-f : 折叠该节点代码
+  (spacemacs/set-leader-keys "ofu" 'show-subtree)
+
   ;; highlight the indentation in python mode
   (require 'highlight-indentation)
-  (add-hook 'python-mode-hook (lambda () 
-  	(highlight-indentation-mode 1)
-  	(highlight-indentation-current-column-mode 1)))
+  (add-hook 'python-mode-hook (lambda ()
+                                (highlight-indentation-mode 1)
+                                (highlight-indentation-current-column-mode 1)))
 
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook (lambda ()
-  	(highlight-indentation-mode 1)
-  	(highlight-indentation-current-column-mode 1)
-  	(setq-local tab-width 4)))
+                                  (highlight-indentation-mode 1)
+                                  (highlight-indentation-current-column-mode 1)
+                                  (setq-local tab-width 4)))
   ;; (set-face-background 'highlight-indentation-face "#e3e3d3")
   ;; (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
 
@@ -664,12 +690,14 @@ you should place your code here."
                 (tabify first-char-location end-char-location))
               (setq-local space-indent-count (- space-indent-count 1))))
           (message " * tabify this buffer --> now is leading-TAB-indent *")))))
-  ;; enable whitespace by default
-  (spacemacs/toggle-whitespace-globally-on)
-  (setq-default whitespace-line-column 160)
   ;; set bindings under SPC-o-i maping
   (spacemacs/declare-prefix "ot" "toggles")
   (spacemacs/set-leader-keys "ott" 'peterchou/leading-space-tab-switcher)
+
+  ;; enable whitespace by default
+  (spacemacs/toggle-whitespace-globally-on)
+  (setq-default whitespace-line-column 160)
+
   ;; activate cygwin-terminal from emacs
   (defun open-cygwin-mintty-terminal ()
     (interactive)
