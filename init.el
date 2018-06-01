@@ -421,6 +421,13 @@ you should place your code here."
   	(highlight-indentation-mode 1)
   	(highlight-indentation-current-column-mode 1)))
 
+  ;; set c/c++ tab width to 4 whitespaces
+  (add-hook 'c-mode-common-hook (lambda ()
+  	(highlight-indentation-mode 1)
+  	(highlight-indentation-current-column-mode 1)
+  	(setq-local tab-width 4)))
+  ;; (set-face-background 'highlight-indentation-face "#e3e3d3")
+  ;; (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
 
   (define-key evil-insert-state-map (kbd "C-f") 'forward-char)
   (define-key evil-insert-state-map (kbd "C-b") 'backward-char)
@@ -473,10 +480,7 @@ you should place your code here."
   ;; start autocomplete when start typing
   ;; (setq-default company-minimum-prefix-length 1)
   ;; (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
-  ;; set c/c++ tab width to 4 whitespaces
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (setq-local tab-width 4)))
+
   ;; so you know where it is
   (beacon-mode 1)
   ;; enable anzu-mode in mode-line
