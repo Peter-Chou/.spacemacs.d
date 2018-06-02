@@ -379,6 +379,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; wget https://raw.githubusercontent.com/magnars/dash.el/master/dash.el
   ;; get autothemer.el
   ;; wget https://raw.githubusercontent.com/sebastiansturm/autothemer/master/autothemer.el
+  (add-to-list 'load-path "~/.spacemacs.d/lisp/")
   (load-file "~/.spacemacs.d/dash.el")
   (load-file "~/.spacemacs.d/autothemer.el")
   ;; set python-environment path to anaconda virtual environment folder
@@ -416,7 +417,7 @@ you should place your code here."
   ;; (setq system-uses-terminfo nil)
 
   ;; 代码折叠
-  (add-hook 'prog-mode-hook 'hs-minor-mode)
+  ;; (add-hook 'prog-mode-hook 'hs-minor-mode)
   (add-hook 'prog-mode-hook 'outline-minor-mode)
   (defun my-level-fold-1 ()
     (interactive)
@@ -721,7 +722,6 @@ you should place your code here."
   ;; make emacs knows cygwin path(e.g. /cygdrive/c/ <==> c:/)
   ;; http://www.khngai.com/emacs/cygwin.php
   (when (eq system-type 'windows-nt)
-    (add-to-list 'load-path "~/.spacemacs.d/lisp/")
     (setq system-uses-terminfo nil)
     (setq exec-path (cons "c:/cygwin/bin/" exec-path))
     (setq cygwin-mount-cygwin-bin-directory "c:/cygwin/bin/")
