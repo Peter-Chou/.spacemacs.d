@@ -454,7 +454,7 @@ you should place your code here."
   (spacemacs/set-leader-keys "ofo" 'outline-hide-other)
 
   ;; highlight the indentation in python mode
-  (require 'highlight-indentation)
+  ;; (require 'highlight-indentation)
   (add-hook 'python-mode-hook (lambda ()
                                 (highlight-indentation-mode 1)
                                 (highlight-indentation-current-column-mode 1)))
