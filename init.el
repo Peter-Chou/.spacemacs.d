@@ -382,8 +382,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; get autothemer.el
   ;; wget https://raw.githubusercontent.com/sebastiansturm/autothemer/master/autothemer.el
   (add-to-list 'load-path "~/.spacemacs.d/lisp/")
-  (load-file "~/.spacemacs.d/dash.el")
-  (load-file "~/.spacemacs.d/autothemer.el")
+  (require 'dash)
+  (require 'autothemer)
+  ;; (load-file "~/.spacemacs.d/lisp/dash.el")
+  ;; (load-file "~/.spacemacs.d/lisp/autothemer.el")
   ;; set python-environment path to anaconda virtual environment folder
   ;; make sure the your_env_path/Scripts/ do have pythonw.exe (windows) python.exe (unix)
   ;; in cmd with sudo type the following command:(py27 is the folder holds my python2.7)
@@ -418,6 +420,7 @@ you should place your code here."
   ;; (setq-default abbrev-mode t)
   ;; (setq system-uses-terminfo nil)
   ;; flymd configuration for markdown
+  ;; use flymd-flyit to open brower
   (setq flymd-close-buffer-delete-temp-files t)
   (setq flymd-refresh-interval 0.05)
 
