@@ -457,7 +457,34 @@ you should place your code here."
   ;; (require 'highlight-indentation)
   (add-hook 'python-mode-hook (lambda ()
                                 (highlight-indentation-mode 1)
-                                (highlight-indentation-current-column-mode 1)))
+                                (highlight-indentation-current-column-mode 1)
+                                ;; (spacemacs/set-leader-keys "mgb" 'xref-pop-marker-stack)
+                                ;; fix anaconda-mode use xref issue
+                                (use-package anaconda-mode
+                                  :defer t
+                                  :init
+                                  (progn
+                                    (setq anaconda-mode-installation-directory
+                                          (concat spacemacs-cache-directory "anaconda-mode"))
+                                    (add-hook 'python-mode-hook 'anaconda-mode)
+                                    (add-to-list 'spacemacs-jump-handlers-python-mode
+                                                 '(anaconda-mode-find-definitions :async t)))
+                                  :config
+                                  (progn
+                                    (spacemacs/set-leader-keys-for-major-mode 'python-mode
+                                      "hh" 'anaconda-mode-show-doc
+                                      "ga" 'anaconda-mode-find-assignments
+                                      "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
+                                      "gu" 'anaconda-mode-find-references)
+
+                                    (evilified-state-evilify anaconda-view-mode anaconda-view-mode-map
+                                      (kbd "q") 'quit-window)
+
+                                    (spacemacs|hide-lighter anaconda-mode)
+
+                                    (defadvice anaconda-mode-goto (before python/anaconda-mode-goto activate)
+                                      (evil--jumps-push))))
+                                ))
 
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook (lambda ()
