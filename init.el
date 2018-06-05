@@ -420,16 +420,19 @@ you should place your code here."
   ;; (setq-default abbrev-mode t)
   ;; (setq system-uses-terminfo nil)
   ;; flymd configuration for markdown
-  ;; use flymd-flyit to open brower
+  ;; use flymd-flyit to open brower (firefox)
   (setq flymd-close-buffer-delete-temp-files t)
-  (setq flymd-refresh-interval 0.05)
+  (setq flymd-refresh-interval 0.1)
+  (add-hook 'markdown-mode-hook (lambda ()
+                                  (spacemacs/set-leader-keys-for-major-mode 'markdown-mode
+                                    "cP" 'flymd-flyit)))
 
   ;; 代码折叠
   ;; (add-hook 'prog-mode-hook 'hs-minor-mode)
   (add-hook 'prog-mode-hook 'outline-minor-mode)
   (defun my-level-fold-1 ()
     (interactive)
-    (save-excursion
+    (save-excursio
       (beginning-of-buffer)
       (outline-hide-sublevels 1)))
   (defun my-level-fold-2 ()
