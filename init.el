@@ -102,6 +102,8 @@ values."
                                       beacon
                                       default-text-scale
                                       gruvbox-theme
+                                      zenburn-theme
+                                      espresso-theme
                                       flymd)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -181,15 +183,11 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         gruvbox-dark-hard
-                         gruvbox-light-soft
-                         ;; solarized-light
-                         ;; subatomic256
-                         ;; flatland
-                         ;; misterioso
-                         ;; gruber-darker
+                         zenburn
+                         espresso
+                         ;; gruvbox-dark-hard
+                         ;; gruvbox-light-soft
                          ;; spacemacs-dark
-                         ;; spacemacs-light
                          ;; spacemacs-light
                          )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -197,7 +195,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("CamingoCode"
-                               :size 16.5
+                               :size 17.5
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -284,14 +282,14 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -365,8 +363,9 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; customize the startup-banner image.
-  (setq-default dotspacemacs-startup-banner '"~/.spacemacs.d/images/starship_troopers_warship.png")
+  (setq-default dotspacemacs-startup-banner '"~/.spacemacs.d/images/matcha.png")
   ;; redirect the download site to domestic resource site
+
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
           ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
@@ -404,7 +403,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; utf-8-unix save file only has \n instead of (\r\n in windows)
-  (set-buffer-file-coding-system 'utf-8-unix)
+  ;; (set-buffer-file-coding-system 'utf-8-unix)
+  (add-to-list 'file-coding-system-alist '("\\.py" . utf-8-unix))
 
   )
 
@@ -516,7 +516,7 @@ you should place your code here."
                                               ))
   ;; make new frame fullscreen as default
   ;; use spc-T-F to manually turn off this feature.
-  ;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+  (add-to-list 'default-frame-alist '(fullscreen . fullboth))
   ;; revert the buffer automatically when the filed is modified outside emcas
   (global-auto-revert-mode t)
   ;; toggle off the minor-mode on modeline as default
