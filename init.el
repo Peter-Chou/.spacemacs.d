@@ -103,10 +103,8 @@ values."
                                       all-the-icons-ivy
                                       beacon
                                       default-text-scale
-                                      gruvbox-theme
+                                      organic-green-theme
                                       zenburn-theme
-                                      color-theme-sanityinc-solarized
-                                      moe-theme
                                       flymd)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -186,10 +184,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         zenburn
-                         moe-light
-                         ;; gruvbox-dark-hard
-                         ;; gruvbox-light-soft
+                         ayu
+                         ;; zenburn
+                         organic-green
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
