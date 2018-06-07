@@ -145,6 +145,9 @@
  ;; smartparens
  '(sp-show-pair-mismatch-face ((t (:foreground "#FF0000" :background "#36a3d9" :weight bold))))
  '(sp-show-pair-match-face ((t (:background "#36a3d9" :weight bold))))
+
+ ;; highlight-indentation
+ '(highlight-indentation-current-column-face ((t (:background "#ffec49"))))
  ) ;; End face definitions
 
 
