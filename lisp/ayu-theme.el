@@ -17,7 +17,7 @@
 
 (custom-theme-set-variables
  'ayu
-)
+ )
 
 (custom-theme-set-faces
  'ayu
@@ -87,38 +87,67 @@
  '(diff-changed                        ((t (:foreground "#3388cc"))))
  '(diff-hunk-header                    ((t (:background "#242130"))))
 
+ ;; company-mode
+ '(company-tooltip ((t (:foreground "#dcdccc" :background "#303a4c"  ))))
+ '(company-tooltip-annotation ((t (:foreground "#FFAE57" :background "#303a4c"  ))))
+ '(company-tooltip-annotation-selection ((t (:foreground "#FFAE57" :background "#303a4c"  ))))
+ '(company-tooltip-selection ((t (:foreground "#dcdccc" :background "#313335"  ))))
+ '(company-tooltip-mouse ((t (:background "#303a4c"))))
+ '(company-tooltip-common ((t (:foreground "#ff7727"))))
+ '(company-scrollbar-fg ((t (:background "#313335"))))
+ '(company-scrollbar-bg ((t (:background "#303a4c"))))
+ '(company-preview ((t (:background "#ff7727"))))
+ '(company-preview-common ((t (:foreground "#ff7727" :background "#303a4c"))))
+
+ ;; iedit-mode
+ '(iedit-occurrence ((t (:background "#61b0b7" :weight bold))))
+
+ ;; ruler-mode
+ '(ruler-mode-fill-column ((t (:inherit 'ruler-mode-default :foreground "#ffec49"))))
 
  '(font-lock-comment-face ((t (:foreground "#5C6773"  :italic t))))
- '(font-lock-variable-name-face ((t (:foreground "#D9D7CE"  ))))
- '(font-lock-keyword-face ((t (:foreground "#FFAE57"  :bold t))))
- '(font-lock-constant-face ((t (:foreground "#FFAE57"  ))))
- '(git-gutter:deleted ((t (:foreground "#5CCFE6"  ))))
- '(font-lock-function-name-face ((t (:foreground "#FFD580"  :bold t))))
- '(font-lock-builtin-face ((t (:foreground "#D4BFFF"  ))))
+ '(font-lock-variable-name-face ((t (:foreground "#36a3d9"  ))))
+ '(font-lock-keyword-face ((t (:foreground "#ff7727"  :bold t))))
+ '(font-lock-constant-face ((t (:foreground "#ffec49"  ))))
+ '(font-lock-function-name-face ((t (:foreground "#FFAE57"  ))))
+ '(font-lock-builtin-face ((t (:foreground "#FFAE57"  ))))
  '(font-lock-string-face ((t (:foreground "#BAE67E"  :normal t))))
  '(font-lock-type-face ((t (:foreground "#5CCFE6"  ))))
  '(font-lock-warning-face ((t (:foreground "#FFFFFF" :background "#FFAE57" ))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#5C6773"  :italic t))))
+
  '(diff-added ((t (:foreground "#BAE67E"  ))))
  '(diff-removed ((t (:foreground "#5CCFE6"  ))))
  '(diff-changed ((t (:foreground "#FFAE57"  ))))
+
  '(markdown-list-face ((t (:foreground "#D9D7CE"  ))))
  '(markdown-blockquote-face ((t (:foreground "#80D4FF"  :italic t))))
  '(markdown-link-title-face ((t (:foreground "#FFC44C"  :underline t))))
- '(git-gutter:untracked ((t (:foreground "#5C6773"  ))))
- '(font-lock-comment-delimiter-face ((t (:foreground "#5C6773"  :italic t))))
 
-;; Rainbow delimiters
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#4192a1"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "#47a0b1"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "#55aabb"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "#65b2c1"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "#75bac7"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "#85c2ce"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "#95cad4"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "#a5d2db"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "#b5dae1"))))
+ '(git-gutter:untracked ((t (:foreground "#5C6773"  ))))
+ '(git-gutter:deleted ((t (:foreground "#5CCFE6"  ))))
+
+ ;; Rainbow delimiters
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#dcdccc"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#ff7727"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#ffec49"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#36a3d9"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "#dcdccc"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "#ff7727"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "#ffec49"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "#36a3d9"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "#dcdccc"))))
+ '(rainbow-delimiters-depth-10-face ((t (:foreground "#ff7727"))))
+ '(rainbow-delimiters-depth-11-face ((t (:foreground "#ffec49"))))
+ '(rainbow-delimiters-depth-12-face ((t (:foreground "#36a3d9"))))
  '(rainbow-delimiters-unmatched-face ((t (:foreground "#FF0000"))))
-) ;; End face definitions
+
+ ;; smartparens
+ '(sp-show-pair-mismatch-face ((t (:foreground "#FF0000" :background "#36a3d9" :weight bold))))
+ '(sp-show-pair-match-face ((t (:background "#36a3d9" :weight bold))))
+ ) ;; End face definitions
+
+
 
 ;;;###autoload
 (when load-file-name
