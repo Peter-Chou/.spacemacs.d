@@ -49,7 +49,7 @@
  '(mode-line-buffer-id                 ((t (                                             :box nil :weight bold                         ))))
 
  '(mode-line-inactive                  ((t (:foreground "#b4b09e"  :background "#333942" :box nil :weight light :inherit (mode-line)   ))))
- '(mode-line                           ((t (:foreground "#ffae57"  :background "#333942" :box nil ))))
+ '(mode-line                           ((t (:foreground "#ff7727"  :background "#333942" :box nil ))))
 
  '(isearch                             ((t (:foreground "#99ccee"  :background "#444444"                                               ))))
  '(isearch-fail                        ((t (                       :background "#ffaaaa"                                               ))))
@@ -106,13 +106,13 @@
  '(ruler-mode-fill-column ((t (:inherit 'ruler-mode-default :foreground "#ffec49"))))
 
  '(font-lock-comment-face ((t (:foreground "#5C6773"  :italic t))))
- '(font-lock-variable-name-face ((t (:foreground "#36a3d9"  ))))
+ '(font-lock-variable-name-face ((t (:foreground "#ffec49"  )))) ;; #36a3d9
  '(font-lock-keyword-face ((t (:foreground "#ff7727"  :bold t))))
- '(font-lock-constant-face ((t (:foreground "#ffec49"  ))))
- '(font-lock-function-name-face ((t (:foreground "#FFAE57"  ))))
+ '(font-lock-constant-face ((t (:foreground "#ffffff"  :bold t))))
+ '(font-lock-function-name-face ((t (:foreground "#FFAE57"  :bold t))))
  '(font-lock-builtin-face ((t (:foreground "#FFAE57"  ))))
  '(font-lock-string-face ((t (:foreground "#BAE67E"  :normal t))))
- '(font-lock-type-face ((t (:foreground "#5CCFE6"  ))))
+ '(font-lock-type-face ((t (:foreground "#5CCFE6"  :bold t))))
  '(font-lock-warning-face ((t (:foreground "#FFFFFF" :background "#FFAE57" ))))
  '(font-lock-comment-delimiter-face ((t (:foreground "#5C6773"  :italic t))))
 

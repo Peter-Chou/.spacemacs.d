@@ -103,8 +103,8 @@ values."
                                       all-the-icons-ivy
                                       beacon
                                       default-text-scale
-                                      organic-green-theme
                                       zenburn-theme
+                                      gruvbox-theme
                                       flymd)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -185,8 +185,9 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          ayu
-                         ;; zenburn
-                         organic-green
+                         zenburn
+                         gruvbox-dark-soft
+                         gruvbox-light-medium
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
@@ -816,6 +817,9 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 257)) nil) (((class color) (min-colors 89)) (:background "#1c1c1c" :foreground "#eeeeee"))))
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 4.0))))
+ '(font-lock-keyword-face ((t (:bold t))))
+ '(font-lock-function-name-face ((t (:bold t))))
+ '(font-lock-type-face ((t (:bold t))))
  '(whitespace-indentation ((t (:background nil))))
  '(whitespace-space ((t (:background nil))))
  '(whitespace-tab ((t (:background nil :bold t)))))
