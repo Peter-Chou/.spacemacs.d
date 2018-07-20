@@ -184,10 +184,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         ayu
-                         zenburn
-                         gruvbox-dark-soft
+                         ;; ayu
+                         ;; zenburn
                          gruvbox-light-medium
+                         gruvbox-dark-soft
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
@@ -195,7 +195,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("CamingoCode"
+   dotspacemacs-default-font '("monaco"
                                :size 17.5
                                :weight normal
                                :width normal
@@ -399,7 +399,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default tab-width 4)
   (setq-default indent-tabs-mode t)
   ;; eldoc and so on in your virtual environment
-  ;; (setenv "WORKON_HOME" "C:/Anaconda3/envs")
+  (setenv "WORKON_HOME" "C:/Anaconda3/envs")
   ;; speed up the start-up time
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
@@ -422,6 +422,17 @@ you should place your code here."
   ;; (setq system-uses-terminfo nil)
   ;; flymd configuration for markdown
   ;; use flymd-flyit to open brower (firefox)
+
+  ;; use tab -> select completion, C-n -> select next, C-p -> select previous in company mode
+  (with-eval-after-load 'company
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "TAB") #'company-complete-selection)
+   (define-key company-active-map [tab] #'company-complete-selection)
+  )
+
   (setq flymd-close-buffer-delete-temp-files t)
   (setq flymd-refresh-interval 0.1)
   (add-hook 'markdown-mode-hook (lambda ()
@@ -471,6 +482,25 @@ you should place your code here."
 
   ;; highlight the indentation in python mode
   ;; (require 'highlight-indentation)
+
+    (defun my-pipenv-workon ()
+    "switch python virtualenvironment and restart anaconda server"
+    (interactive)
+    (call-interactively 'pyvenv-workon)
+    (setq python-shell-virtualenv-path pyvenv-virtual-env))
+
+    (defun my-pipenv-activate ()
+    "switch python virtualenvironment and restart anaconda server"
+    (interactive)
+    (call-interactively 'pyvenv-activate)
+    (setq python-shell-virtualenv-path pyvenv-virtual-env))
+
+      (defun my-pipenv-deactivate ()
+    "deactivate pyvenv & anaconda virtual enironment"
+    (interactive)
+    (pyvenv-deactivate)
+    (pythonic-deactivate))
+
   (add-hook 'python-mode-hook (lambda ()
                                 (highlight-indentation-mode 1)
                                 (highlight-indentation-current-column-mode 1)
@@ -491,7 +521,10 @@ you should place your code here."
                                       "hh" 'anaconda-mode-show-doc
                                       "ga" 'anaconda-mode-find-assignments
                                       "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
-                                      "gu" 'anaconda-mode-find-references)
+                                      "gu" 'anaconda-mode-find-references
+                                      "Va" 'my-pipenv-activate
+                                      "Vd" 'my-pipenv-deactivate
+                                      "Vw" 'my-pipenv-workon)
 
                                     (evilified-state-evilify anaconda-view-mode anaconda-view-mode-map
                                       (kbd "q") 'quit-window)
