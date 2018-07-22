@@ -4,13 +4,14 @@
 checkout[[https://github.com/syl20bnr/spacemacs][ spacemacs github page]] Prerequisites section to download Emacs based on your system
 ** STEP 2: clone .emacs.d (spacemacs repository)
 follow the instruction in the install section to clone the .emacs.d folder into your home path
-** STEP 3: clone .spacemacs.d (this repository) 
+(be sure to download the develop branch of spacemacs repository)
+** STEP 3: clone .spacemacs.d (this repository)
 clone this repository into your home path as well.(run the following code in your terminal)
 #+BEGIN_SRC sh
-git clone https://github.com/Peter-Chou/spacemacs-repository.git ~/.spacemacs.d
+git clone -b develop https://github.com/Peter-Chou/spacemacs-repository.git ~/.spacemacs.d
 #+END_SRC
 ** ALMOST THERE: launch Emacs
-Finally, Lauch the emacs for the initial configuration, it will automatically download all the 
+Finally, Lauch the emacs for the initial configuration, it will automatically download all the
 necessary packages and you are ready to go.
 ** TIPS
 In this configuration, The Emacs server will be run as a demon process when you launch Emacs.
