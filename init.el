@@ -42,10 +42,10 @@ This function should only modify configuration layer settings."
      ;; helm
      ;; auto-completion
      ;; better-defaults
-	 html
+     html
      (python :variables
-     		 python-backend 'anaconda
-     		 python-fill-column 80
+             python-backend 'anaconda
+             python-fill-column 80
              python-test-runner 'pytest
              python-sort-imports-on-save t)
      (c-c++ :variables
@@ -516,14 +516,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq-default dotspacemacs-startup-banner '"~/.spacemacs.d/images/matcha.png")
   ;; redirect the download site to domestic resource site
   (setq configuration-layer-elpa-archives
-    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
-    (defconst spacemacs-buffer-logo-title "[  E M B R A C I N G   E M A C S  ⋮⋮⋮  H A C K I N G   S P A C E M A C S  ]"
+  (defconst spacemacs-buffer-logo-title "[  E M B R A C I N G   E M A C S  ⋮⋮⋮  H A C K I N G   S P A C E M A C S  ]"
     "The title displayed beneath the logo.")
 
-    ;; fix the loading theme problem when themes require dash & autothemer package be loaded.
+  ;; fix the loading theme problem when themes require dash & autothemer package be loaded.
   ;; solution from https://github.com/syl20bnr/spacemacs/issues/8090
   ;; +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   ;; get dash package
@@ -659,39 +659,17 @@ before packages are loaded."
     (pyvenv-deactivate)
     (pythonic-deactivate))
 
-  (add-hook 'python-mode-hook (lambda ()
-                                (highlight-indentation-mode 1)
-                                (highlight-indentation-current-column-mode 1)
-                                ;; (spacemacs/set-leader-keys "mgb" 'xref-pop-marker-stack)
-                                ;; fix anaconda-mode use xref issue
-                                (use-package anaconda-mode
-                                  :defer t
-                                  :init
-                                  (progn
-                                    (setq anaconda-mode-installation-directory
-                                          (concat spacemacs-cache-directory "anaconda-mode"))
-                                    (add-hook 'python-mode-hook 'anaconda-mode)
-                                    (add-to-list 'spacemacs-jump-handlers-python-mode
-                                                 '(anaconda-mode-find-definitions :async t)))
-                                  :config
-                                  (progn
-                                    (spacemacs/set-leader-keys-for-major-mode 'python-mode
-                                      "hh" 'anaconda-mode-show-doc
-                                      "ga" 'anaconda-mode-find-assignments
-                                      "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
-                                      "gu" 'anaconda-mode-find-references
-                                      "Va" 'my-pipenv-activate
-                                      "Vd" 'my-pipenv-deactivate
-                                      "Vw" 'my-pipenv-workon)
-
-                                    (evilified-state-evilify anaconda-view-mode anaconda-view-mode-map
-                                      (kbd "q") 'quit-window)
-
-                                    (spacemacs|hide-lighter anaconda-mode)
-
-                                    (defadvice anaconda-mode-goto (before python/anaconda-mode-goto activate)
-                                      (evil--jumps-push))))
-                                ))
+  ;; fix python keybindings
+  (with-eval-after-load 'anaconda-mode
+    (spacemacs/set-leader-keys-for-major-mode 'python-mode
+      "hh" 'anaconda-mode-show-doc
+      "ga" 'anaconda-mode-find-assignments
+      "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
+      "gu" 'anaconda-mode-find-references
+      "Va" 'my-pipenv-activate
+      "Vd" 'my-pipenv-deactivate
+      "Vw" 'my-pipenv-workon)
+    )
 
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook (lambda ()
@@ -760,7 +738,7 @@ before packages are loaded."
   ;; set emcas runing as deamon,
   ;; and rebinding spc q q to frame-killer to keep deamon alive
   ;; still can kill emacs using spc q Q shortcuts
-  (server-start)
+  ;; (server-start)
   ;; binding spc q q to kill the frame and keep buffer alive
   (evil-leader/set-key "qq" 'spacemacs/frame-killer)
   (evil-leader/set-key "qh" 'suspend-frame)
@@ -996,26 +974,26 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (zenburn-theme zeal-at-point yasnippet-snippets yapfify xterm-color ws-butler winum wgrep websocket web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent fish-mode which-key use-package spaceline-all-the-icons smex smeargle smartrep slim-mode skewer-mode shell-pop scss-mode sass-mode restart-emacs request-deferred ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gruvbox-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word default-text-scale cython-mode counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) nil) (((class color) (min-colors 89)) (:background "#1c1c1c" :foreground "#eeeeee"))))
- '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 4.0))))
- '(font-lock-function-name-face ((t (:bold t))))
- '(font-lock-keyword-face ((t (:bold t))))
- '(font-lock-type-face ((t (:bold t))))
- '(whitespace-indentation ((t (:background nil))))
- '(whitespace-space ((t (:background nil))))
- '(whitespace-tab ((t (:background nil :bold t))))
- )
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(package-selected-packages
+     (quote
+      (zenburn-theme zeal-at-point yasnippet-snippets yapfify xterm-color ws-butler winum wgrep websocket web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent fish-mode which-key use-package spaceline-all-the-icons smex smeargle smartrep slim-mode skewer-mode shell-pop scss-mode sass-mode restart-emacs request-deferred ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gruvbox-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word default-text-scale cython-mode counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(default ((((class color) (min-colors 257)) nil) (((class color) (min-colors 89)) (:background "#1c1c1c" :foreground "#eeeeee"))))
+   '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 4.0))))
+   '(font-lock-function-name-face ((t (:bold t))))
+   '(font-lock-keyword-face ((t (:bold t))))
+   '(font-lock-type-face ((t (:bold t))))
+   '(whitespace-indentation ((t (:background nil))))
+   '(whitespace-space ((t (:background nil))))
+   '(whitespace-tab ((t (:background nil :bold t))))
+   )
+  )
