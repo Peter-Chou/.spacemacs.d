@@ -122,7 +122,8 @@ This function should only modify configuration layer settings."
                                       zenburn-theme
                                       gruvbox-theme
                                       flymd
-                                      zeal-at-point)
+                                      zeal-at-point
+                                      sphinx-doc)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -663,6 +664,7 @@ before packages are loaded."
   (with-eval-after-load 'anaconda-mode
     (spacemacs/set-leader-keys-for-major-mode 'python-mode
       "hh" 'anaconda-mode-show-doc
+      "hd" 'sphinx-doc ;; auto-docstring
       "ga" 'anaconda-mode-find-assignments
       "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
       "gu" 'anaconda-mode-find-references
@@ -676,7 +678,11 @@ before packages are loaded."
                                 (highlight-indentation-current-column-mode 1)
                                 (setq-local tab-width 4)
                                 ;; turn on fill-column-indicator when python mode is active
-                                (fci-mode 1)))
+                                (fci-mode 1)
+                                ;; activate sphinx-doc package
+                                (require 'sphinx-doc)
+                                (sphinx-doc-mode t)
+                                ))
 
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook (lambda ()
@@ -981,26 +987,18 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(package-selected-packages
-     (quote
-      (zenburn-theme zeal-at-point yasnippet-snippets yapfify xterm-color ws-butler winum wgrep websocket web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent fish-mode which-key use-package spaceline-all-the-icons smex smeargle smartrep slim-mode skewer-mode shell-pop scss-mode sass-mode restart-emacs request-deferred ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gruvbox-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word default-text-scale cython-mode counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(default ((((class color) (min-colors 257)) nil) (((class color) (min-colors 89)) (:background "#1c1c1c" :foreground "#eeeeee"))))
-   '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 4.0))))
-   '(font-lock-function-name-face ((t (:bold t))))
-   '(font-lock-keyword-face ((t (:bold t))))
-   '(font-lock-type-face ((t (:bold t))))
-   '(whitespace-indentation ((t (:background nil))))
-   '(whitespace-space ((t (:background nil))))
-   '(whitespace-tab ((t (:background nil :bold t))))
-   )
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (sphinx-doc zenburn-theme zeal-at-point yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep websocket web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smex smeargle smartrep slim-mode skewer-mode shell-pop scss-mode sass-mode restart-emacs request-deferred ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gruvbox-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word default-text-scale cython-mode counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
