@@ -671,6 +671,13 @@ before packages are loaded."
       "Vw" 'my-pipenv-workon)
     )
 
+  (add-hook 'python-mode-hook (lambda ()
+                                (highlight-indentation-mode 1)
+                                (highlight-indentation-current-column-mode 1)
+                                (setq-local tab-width 4)
+                                ;; turn on fill-column-indicator when python mode is active
+                                (fci-mode 1)))
+
   ;; set c/c++ tab width to 4 whitespaces
   (add-hook 'c-mode-common-hook (lambda ()
                                   (highlight-indentation-mode 1)
