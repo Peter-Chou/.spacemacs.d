@@ -676,10 +676,10 @@ before packages are loaded."
                                   :config
                                   (progn
                                     (spacemacs/set-leader-keys-for-major-mode 'python-mode
-                                      ; "hh" 'anaconda-mode-show-doc
-                                      ; "ga" 'anaconda-mode-find-assignments
-                                      ; "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
-                                      ; "gu" 'anaconda-mode-find-references
+                                      "hh" 'anaconda-mode-show-doc
+                                      "ga" 'anaconda-mode-find-assignments
+                                      "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
+                                      "gu" 'anaconda-mode-find-references
                                       "Va" 'my-pipenv-activate
                                       "Vd" 'my-pipenv-deactivate
                                       "Vw" 'my-pipenv-workon)
