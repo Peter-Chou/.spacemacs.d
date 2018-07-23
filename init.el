@@ -123,7 +123,8 @@ This function should only modify configuration layer settings."
                                       gruvbox-theme
                                       flymd
                                       zeal-at-point
-                                      sphinx-doc)
+                                      sphinx-doc
+                                      olivetti)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -577,412 +578,418 @@ before packages are loaded."
   ;; (setq system-uses-terminfo nil)
   ;; flymd configuration for markdown
   ;; use flymd-flyit to open brower (firefox)
-
-  (spacemacs/set-leader-keys "oh" 'zeal-at-point)
-  ;; (global-set-key "\C-cd" 'zeal-at-point)
-  (add-hook 'python-mode-hook
-            (lambda () (setq zeal-at-point-docset '("python" "django" "twisted" "sphinx" "flask" "tornado" "sqlalchemy" "numpy" "scipy" "pandas" "matplotlib" "salt" "cvp"))))
-  ;; use tab -> select completion, C-n -> select next, C-p -> select previous in company mode
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "M-n") nil)
-    (define-key company-active-map (kbd "M-p") nil)
-    (define-key company-active-map (kbd "C-n") #'company-select-next)
-    (define-key company-active-map (kbd "C-p") #'company-select-previous)
-    (define-key company-active-map (kbd "TAB") #'company-complete-selection)
-    (define-key company-active-map [tab] #'company-complete-selection)
+  (defun my-center-buffer-mode ()
+    (interactive)
+    (olivetti-mode)
+    (olivetti-set-width 100)
     )
+  (spacemacs/set-leader-keys "wc" 'my-center-buffer-mode)
 
-  (setq flymd-close-buffer-delete-temp-files t)
-  (setq flymd-refresh-interval 0.1)
-  (add-hook 'markdown-mode-hook (lambda ()
-                                  (spacemacs/set-leader-keys-for-major-mode 'markdown-mode
-                                    "cP" 'flymd-flyit)))
+    (spacemacs/set-leader-keys "oh" 'zeal-at-point)
+    ;; (global-set-key "\C-cd" 'zeal-at-point)
+    (add-hook 'python-mode-hook
+              (lambda () (setq zeal-at-point-docset '("python" "django" "twisted" "sphinx" "flask" "tornado" "sqlalchemy" "numpy" "scipy" "pandas" "matplotlib" "salt" "cvp"))))
+    ;; use tab -> select completion, C-n -> select next, C-p -> select previous in company mode
+    (with-eval-after-load 'company
+      (define-key company-active-map (kbd "M-n") nil)
+      (define-key company-active-map (kbd "M-p") nil)
+      (define-key company-active-map (kbd "C-n") #'company-select-next)
+      (define-key company-active-map (kbd "C-p") #'company-select-previous)
+      (define-key company-active-map (kbd "TAB") #'company-complete-selection)
+      (define-key company-active-map [tab] #'company-complete-selection)
+      )
 
-  ;; https://www.emacswiki.org/emacs/font-lock+.el
-  (require 'font-lock+)
-  (all-the-icons-ivy-setup)
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-  ;; 代码折叠
-  ;; (add-hook 'prog-mode-hook 'hs-minor-mode)
-  (add-hook 'prog-mode-hook 'outline-minor-mode)
-  (defun my-level-fold-1 ()
-    (interactive)
-    (save-excursion
-      (beginning-of-buffer)
-      (outline-hide-sublevels 1)))
-  (defun my-level-fold-2 ()
-    (interactive)
-    (save-excursion
-      (beginning-of-buffer)
-      (outline-hide-sublevels 2)))
-  (defun my-level-fold-3 ()
-    (interactive)
-    (save-excursion
-      (beginning-of-buffer)
-      (outline-hide-sublevels 3)))
+    (setq flymd-close-buffer-delete-temp-files t)
+    (setq flymd-refresh-interval 0.1)
+    (add-hook 'markdown-mode-hook (lambda ()
+                                    (spacemacs/set-leader-keys-for-major-mode 'markdown-mode
+                                      "cP" 'flymd-flyit)))
 
-  (spacemacs/declare-prefix "of" "code-(un)folding")
-  ;; spc-o-f-U : 展开全部代码
-  (spacemacs/set-leader-keys "of0" 'outline-show-all)
-  ;; spc-o-f-1 : 折叠所有1层代码
-  (spacemacs/set-leader-keys "of1" 'my-level-fold-1)
-  ;; spc-o-f-2 : 折叠所有2层代码
-  (spacemacs/set-leader-keys "of2" 'my-level-fold-2)
-  ;; spc-o-f-3 : 折叠所有3层代码
-  (spacemacs/set-leader-keys "of3" 'my-level-fold-3)
-  ;; spc-o-f-f : 折叠该节点代码
-  (spacemacs/set-leader-keys "off" 'outline-hide-subtree)
-  ;; spc-o-f-u : 展开该节点代码
-  (spacemacs/set-leader-keys "ofu" 'outline-show-subtree)
-  ;; spc-o-f-l : 折叠盖层的子层代码
-  (spacemacs/set-leader-keys "ofl" 'outline-hide-leaves)
-  ;; spc-o-f-o : 折叠所在代码以外的代码
-  (spacemacs/set-leader-keys "ofo" 'outline-hide-other)
+    ;; https://www.emacswiki.org/emacs/font-lock+.el
+    (require 'font-lock+)
+    (all-the-icons-ivy-setup)
+    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+    ;; 代码折叠
+    ;; (add-hook 'prog-mode-hook 'hs-minor-mode)
+    (add-hook 'prog-mode-hook 'outline-minor-mode)
+    (defun my-level-fold-1 ()
+      (interactive)
+      (save-excursion
+        (beginning-of-buffer)
+        (outline-hide-sublevels 1)))
+    (defun my-level-fold-2 ()
+      (interactive)
+      (save-excursion
+        (beginning-of-buffer)
+        (outline-hide-sublevels 2)))
+    (defun my-level-fold-3 ()
+      (interactive)
+      (save-excursion
+        (beginning-of-buffer)
+        (outline-hide-sublevels 3)))
 
-  ;; highlight the indentation in python mode
-  ;; (require 'highlight-indentation)
+    (spacemacs/declare-prefix "of" "code-(un)folding")
+    ;; spc-o-f-U : 展开全部代码
+    (spacemacs/set-leader-keys "of0" 'outline-show-all)
+    ;; spc-o-f-1 : 折叠所有1层代码
+    (spacemacs/set-leader-keys "of1" 'my-level-fold-1)
+    ;; spc-o-f-2 : 折叠所有2层代码
+    (spacemacs/set-leader-keys "of2" 'my-level-fold-2)
+    ;; spc-o-f-3 : 折叠所有3层代码
+    (spacemacs/set-leader-keys "of3" 'my-level-fold-3)
+    ;; spc-o-f-f : 折叠该节点代码
+    (spacemacs/set-leader-keys "off" 'outline-hide-subtree)
+    ;; spc-o-f-u : 展开该节点代码
+    (spacemacs/set-leader-keys "ofu" 'outline-show-subtree)
+    ;; spc-o-f-l : 折叠盖层的子层代码
+    (spacemacs/set-leader-keys "ofl" 'outline-hide-leaves)
+    ;; spc-o-f-o : 折叠所在代码以外的代码
+    (spacemacs/set-leader-keys "ofo" 'outline-hide-other)
 
-  (defun my-pipenv-workon ()
-    "switch python virtualenvironment and restart anaconda server"
-    (interactive)
-    (call-interactively 'pyvenv-workon)
-    (setq python-shell-virtualenv-path pyvenv-virtual-env))
+    ;; highlight the indentation in python mode
+    ;; (require 'highlight-indentation)
 
-  (defun my-pipenv-activate ()
-    "switch python virtualenvironment and restart anaconda server"
-    (interactive)
-    (call-interactively 'pyvenv-activate)
-    (setq python-shell-virtualenv-path pyvenv-virtual-env))
+    (defun my-pipenv-workon ()
+      "switch python virtualenvironment and restart anaconda server"
+      (interactive)
+      (call-interactively 'pyvenv-workon)
+      (setq python-shell-virtualenv-path pyvenv-virtual-env))
 
-  (defun my-pipenv-deactivate ()
-    "deactivate pyvenv & anaconda virtual enironment"
-    (interactive)
-    (pyvenv-deactivate)
-    (pythonic-deactivate))
+    (defun my-pipenv-activate ()
+      "switch python virtualenvironment and restart anaconda server"
+      (interactive)
+      (call-interactively 'pyvenv-activate)
+      (setq python-shell-virtualenv-path pyvenv-virtual-env))
 
-  ;; fix python keybindings
-  (with-eval-after-load 'anaconda-mode
-    (spacemacs/set-leader-keys-for-major-mode 'python-mode
-      "hh" 'anaconda-mode-show-doc
-      "hd" 'sphinx-doc ;; auto-docstring
-      "ga" 'anaconda-mode-find-assignments
-      "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
-      "gu" 'anaconda-mode-find-references
-      "Va" 'my-pipenv-activate
-      "Vd" 'my-pipenv-deactivate
-      "Vw" 'my-pipenv-workon)
-    )
+    (defun my-pipenv-deactivate ()
+      "deactivate pyvenv & anaconda virtual enironment"
+      (interactive)
+      (pyvenv-deactivate)
+      (pythonic-deactivate))
 
-  (add-hook 'python-mode-hook (lambda ()
-                                (highlight-indentation-mode 1)
-                                (highlight-indentation-current-column-mode 1)
-                                (setq-local tab-width 4)
-                                ;; turn on fill-column-indicator when python mode is active
-                                (fci-mode 1)
-                                ;; activate sphinx-doc package
-                                (require 'sphinx-doc)
-                                (sphinx-doc-mode t)
-                                ))
+    ;; fix python keybindings
+    (with-eval-after-load 'anaconda-mode
+      (spacemacs/set-leader-keys-for-major-mode 'python-mode
+        "hh" 'anaconda-mode-show-doc
+        "hd" 'sphinx-doc ;; auto-docstring
+        "ga" 'anaconda-mode-find-assignments
+        "gb" 'xref-pop-marker-stack  ;; remove anaconda-mode-go-back
+        "gu" 'anaconda-mode-find-references
+        "Va" 'my-pipenv-activate
+        "Vd" 'my-pipenv-deactivate
+        "Vw" 'my-pipenv-workon)
+      )
 
-  ;; set c/c++ tab width to 4 whitespaces
-  (add-hook 'c-mode-common-hook (lambda ()
+    (add-hook 'python-mode-hook (lambda ()
                                   (highlight-indentation-mode 1)
                                   (highlight-indentation-current-column-mode 1)
-                                  (setq-local tab-width 4)))
-  ;; (set-face-background 'highlight-indentation-face "#e3e3d3")
-  ;; (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
+                                  (setq-local tab-width 4)
+                                  ;; turn on fill-column-indicator when python mode is active
+                                  (fci-mode 1)
+                                  ;; activate sphinx-doc package
+                                  (require 'sphinx-doc)
+                                  (sphinx-doc-mode t)
+                                  ))
 
-  (define-key evil-insert-state-map (kbd "C-f") 'forward-char)
-  (define-key evil-insert-state-map (kbd "C-b") 'backward-char)
-  (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
-  (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
+    ;; set c/c++ tab width to 4 whitespaces
+    (add-hook 'c-mode-common-hook (lambda ()
+                                    (highlight-indentation-mode 1)
+                                    (highlight-indentation-current-column-mode 1)
+                                    (setq-local tab-width 4)))
+    ;; (set-face-background 'highlight-indentation-face "#e3e3d3")
+    ;; (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
 
-  (dolist (hook '(emacs-lisp-mode-hook
-                  text-mode-hook))
-    (add-hook hook #'abbrev-mode))
-  (define-abbrev-table 'global-abbrev-table '(
-                                              ;; signature
-                                              ("9zm" "peterchou")
-                                              ))
-  ;; make new frame fullscreen as default
-  ;; use spc-T-F to manually turn off this feature.
-  (add-to-list 'default-frame-alist '(fullscreen . fullboth))
-  ;; revert the buffer automatically when the filed is modified outside emcas
-  (global-auto-revert-mode t)
-  ;; toggle off the minor-mode on modeline as default
-  (spacemacs/toggle-mode-line-minor-modes-off)
-  ;; Use Spacemacs as the $EDITOR for git commits
-  ;; (global-git-commit-mode t)
-  ;; show time on powerline
-  ;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
-  (setq display-time-24hr-format t)
-  (setq display-time-format "%H:%M:%S")        ; add seconds
-  (setq display-time-interval 1)               ; update every second
-  (setq display-time-default-load-average nil) ; don't show load average
-  (setq display-time-mail-string "")           ; don't show mail
-  (display-time-mode 1)                        ; show time in mode line on startup
-  ;; disable creating lockfiles.
-  (setq create-lockfiles nil)
-  ;; set yasnippet snippet directory from github
-  ;; https://github.com/AndreaCrotti/yasnippet-snippets
-  (setq yas-snippet-dirs
-        '("~/.spacemacs.d/yasnippet-snippets/snippets"
-          ))
-  ;; Prevent the visual selection overriding my system clipboard
-  (fset 'evil-visual-update-x-selection 'ignore)
-  ;; activate global beacon-mode which acts
-  ;; Whenever the window scrolls a light will shine on top of your curso
-  ;; binding C-M-- to decrease font size, C-M-=to increase font size
-  ;; and change the font size globally within default-text-scale-mode
-  (default-text-scale-mode 1)
+    (define-key evil-insert-state-map (kbd "C-f") 'forward-char)
+    (define-key evil-insert-state-map (kbd "C-b") 'backward-char)
+    (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+    (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
 
-  ;; try to make company completion quick.
-  ;; if still not good. use C-M-i to manually open the completion list
-  (setq company-dabbrev-downcase 0)
-  ;; (setq company-idle-delay 0)
-  ;; start autocomplete when start typing
-  ;; (setq-default company-minimum-prefix-length 1)
-  ;; (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
+    (dolist (hook '(emacs-lisp-mode-hook
+                    text-mode-hook))
+      (add-hook hook #'abbrev-mode))
+    (define-abbrev-table 'global-abbrev-table '(
+                                                ;; signature
+                                                ("9zm" "peterchou")
+                                                ))
+    ;; make new frame fullscreen as default
+    ;; use spc-T-F to manually turn off this feature.
+    (add-to-list 'default-frame-alist '(fullscreen . fullboth))
+    ;; revert the buffer automatically when the filed is modified outside emcas
+    (global-auto-revert-mode t)
+    ;; toggle off the minor-mode on modeline as default
+    (spacemacs/toggle-mode-line-minor-modes-off)
+    ;; Use Spacemacs as the $EDITOR for git commits
+    ;; (global-git-commit-mode t)
+    ;; show time on powerline
+    ;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
+    (setq display-time-24hr-format t)
+    (setq display-time-format "%H:%M:%S")        ; add seconds
+    (setq display-time-interval 1)               ; update every second
+    (setq display-time-default-load-average nil) ; don't show load average
+    (setq display-time-mail-string "")           ; don't show mail
+    (display-time-mode 1)                        ; show time in mode line on startup
+    ;; disable creating lockfiles.
+    (setq create-lockfiles nil)
+    ;; set yasnippet snippet directory from github
+    ;; https://github.com/AndreaCrotti/yasnippet-snippets
+    (setq yas-snippet-dirs
+          '("~/.spacemacs.d/yasnippet-snippets/snippets"
+            ))
+    ;; Prevent the visual selection overriding my system clipboard
+    (fset 'evil-visual-update-x-selection 'ignore)
+    ;; activate global beacon-mode which acts
+    ;; Whenever the window scrolls a light will shine on top of your curso
+    ;; binding C-M-- to decrease font size, C-M-=to increase font size
+    ;; and change the font size globally within default-text-scale-mode
+    (default-text-scale-mode 1)
 
-  ;; so you know where it is
-  (beacon-mode 1)
-  ;; enable anzu-mode in mode-line
-  (anzu-mode +1)
-  ;; set emcas runing as deamon,
-  ;; and rebinding spc q q to frame-killer to keep deamon alive
-  ;; still can kill emacs using spc q Q shortcuts
-  ;; (server-start)
-  ;; binding spc q q to kill the frame and keep buffer alive
-  (evil-leader/set-key "qq" 'spacemacs/frame-killer)
-  (evil-leader/set-key "qh" 'suspend-frame)
-  ;; save buffer and kill the frame
-  (defun spacemacs/save-buffer-and-kill-frame ()
-    "kill the current buffer and the current frame"
-    (interactive)
-    (save-buffer)
-    (kill-buffer)
-    (spacemacs/frame-killer))
-  ;; binding spc q w to save-buffer-and-kill-frame function
-  (evil-leader/set-key "qw" 'spacemacs/save-buffer-and-kill-frame)
-  ;; set new-tree icons
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  ;; active the function ',' in vim (repeat f,F,t,T in reverse)
-  (define-key evil-normal-state-map
-    "," 'evil-repeat-find-char-reverse)
-  ;; customize some settings on ace-window packages
-  (global-set-key [remap other-window] 'ace-window)
-  (custom-set-faces
-   '(aw-leading-char-face
-     ((t (:inherit ace-jump-face-foreground :height 4.0)))))
-  ;; fix the align problem between chinese/english in org table
-  (when (configuration-layer/layer-usedp 'chinese)
-    (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
-  ;; fix the delay when showing text in chinese
-  (dolist (charset '(kana han cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "Microsoft Yahei" :size 20)))
-  ;; highlight the selected line
-  (global-hl-line-mode t)
-  ;; set backspace to clear highlight in normal mode.
-  (define-key evil-normal-state-map
-    (kbd "<backspace>") 'spacemacs/evil-search-clear-highlight)
-  ;; set the appearance of menu bar as arrow shape
-  (setq powerline-default-separator 'arrow)
-  ;; activate hungry delete mode
-  (global-hungry-delete-mode t)
-  ;; fix the issue that Deleting left of empty smartparen pair doesn't delete right when hungry-delete is enabled
-  ;; https://github.com/syl20bnr/spacemacs/issues/6584
-  (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
-  ;; set fd to escape evil mode in 0.3
-  (setq-default evil-escape-delay 0.3)
-  ;;set up fly-check to ignore the E501 error
-  (setq-default flycheck-flake8-maximum-line-length 160)
-  ;; tunning the dired-mode
-  ;; always take recursive action without further permission
-  (setq dired-recursive-deletes 'always)
-  (setq dired-recursive-copies 'always)
-  ;; force horizontal split window
-  (setq split-width-threshold 120)
-  ;; activate org mode to markdown choice
-  (with-eval-after-load "org" '(require 'ox-md nil t))
-  ;; fix problem of exporting chinese pdf
-  ;; add the following lines on the top of your org file
-  ;; you could change font Maison Neue to other fonts
-  ;; #+LaTeX_HEADER: \usepackage{fontspec}
-  ;; #+LATEX_HEADER: \setmonofont[Scale=0.9]{Input Mono}
-  ;; #+LATEX_HEADER: \setromanfont{Maison Neue}
-  ;; #+LATEX_HEADER: \linespread{1.5}
-  ;; #+LATEX_HEADER: \usepackage[margin=1.25in]{geometry}
-  ;; #+TITLE: Document Title Here
-  (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
-                                "xelatex -interaction nonstopmode %f"))
+    ;; try to make company completion quick.
+    ;; if still not good. use C-M-i to manually open the completion list
+    (setq company-dabbrev-downcase 0)
+    ;; (setq company-idle-delay 0)
+    ;; start autocomplete when start typing
+    ;; (setq-default company-minimum-prefix-length 1)
+    ;; (setq-default auto-completion-complete-with-key-sequence-delay 0.001)
 
-  ;;Don't ask me when kill process buffer
-  (setq kill-buffer-query-functions
-        (remq 'process-kill-buffer-query-function
-              kill-buffer-query-functions))
+    ;; so you know where it is
+    (beacon-mode 1)
+    ;; enable anzu-mode in mode-line
+    (anzu-mode +1)
+    ;; set emcas runing as deamon,
+    ;; and rebinding spc q q to frame-killer to keep deamon alive
+    ;; still can kill emacs using spc q Q shortcuts
+    ;; (server-start)
+    ;; binding spc q q to kill the frame and keep buffer alive
+    (evil-leader/set-key "qq" 'spacemacs/frame-killer)
+    (evil-leader/set-key "qh" 'suspend-frame)
+    ;; save buffer and kill the frame
+    (defun spacemacs/save-buffer-and-kill-frame ()
+      "kill the current buffer and the current frame"
+      (interactive)
+      (save-buffer)
+      (kill-buffer)
+      (spacemacs/frame-killer))
+    ;; binding spc q w to save-buffer-and-kill-frame function
+    (evil-leader/set-key "qw" 'spacemacs/save-buffer-and-kill-frame)
+    ;; set new-tree icons
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+    ;; active the function ',' in vim (repeat f,F,t,T in reverse)
+    (define-key evil-normal-state-map
+      "," 'evil-repeat-find-char-reverse)
+    ;; customize some settings on ace-window packages
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 4.0)))))
+    ;; fix the align problem between chinese/english in org table
+    (when (configuration-layer/layer-usedp 'chinese)
+      (when (and (spacemacs/system-is-mac) window-system)
+        (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
+    ;; fix the delay when showing text in chinese
+    (dolist (charset '(kana han cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font) charset
+                        (font-spec :family "Microsoft Yahei" :size 20)))
+    ;; highlight the selected line
+    (global-hl-line-mode t)
+    ;; set backspace to clear highlight in normal mode.
+    (define-key evil-normal-state-map
+      (kbd "<backspace>") 'spacemacs/evil-search-clear-highlight)
+    ;; set the appearance of menu bar as arrow shape
+    (setq powerline-default-separator 'arrow)
+    ;; activate hungry delete mode
+    (global-hungry-delete-mode t)
+    ;; fix the issue that Deleting left of empty smartparen pair doesn't delete right when hungry-delete is enabled
+    ;; https://github.com/syl20bnr/spacemacs/issues/6584
+    (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
+    ;; set fd to escape evil mode in 0.3
+    (setq-default evil-escape-delay 0.3)
+    ;;set up fly-check to ignore the E501 error
+    (setq-default flycheck-flake8-maximum-line-length 160)
+    ;; tunning the dired-mode
+    ;; always take recursive action without further permission
+    (setq dired-recursive-deletes 'always)
+    (setq dired-recursive-copies 'always)
+    ;; force horizontal split window
+    (setq split-width-threshold 120)
+    ;; activate org mode to markdown choice
+    (with-eval-after-load "org" '(require 'ox-md nil t))
+    ;; fix problem of exporting chinese pdf
+    ;; add the following lines on the top of your org file
+    ;; you could change font Maison Neue to other fonts
+    ;; #+LaTeX_HEADER: \usepackage{fontspec}
+    ;; #+LATEX_HEADER: \setmonofont[Scale=0.9]{Input Mono}
+    ;; #+LATEX_HEADER: \setromanfont{Maison Neue}
+    ;; #+LATEX_HEADER: \linespread{1.5}
+    ;; #+LATEX_HEADER: \usepackage[margin=1.25in]{geometry}
+    ;; #+TITLE: Document Title Here
+    (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
+                                  "xelatex -interaction nonstopmode %f"))
 
-  ;; fix the malfunction of c-e in better-defaults
-  (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
-  (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
+    ;;Don't ask me when kill process buffer
+    (setq kill-buffer-query-functions
+          (remq 'process-kill-buffer-query-function
+                kill-buffer-query-functions))
 
-  ;; if file exceed 500kb, it will be opened in fundamental-mode to speed up the loading
-  (defun spacemacs/check-large-file ()
-    (when (> (buffer-size) 500000)
-      (progn (fundamental-mode)
-             (hl-line-mode -1)))
-    (if (and (executable-find "wc")
-             (> (string-to-number (shell-command-to-string (format "wc -l %s" (buffer-file-name))))
-                5000))
-        (linum-mode -1)))
+    ;; fix the malfunction of c-e in better-defaults
+    (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
+    (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
 
-  (add-hook 'find-file-hook 'spacemacs/check-large-file)
+    ;; if file exceed 500kb, it will be opened in fundamental-mode to speed up the loading
+    (defun spacemacs/check-large-file ()
+      (when (> (buffer-size) 500000)
+        (progn (fundamental-mode)
+               (hl-line-mode -1)))
+      (if (and (executable-find "wc")
+               (> (string-to-number (shell-command-to-string (format "wc -l %s" (buffer-file-name))))
+                  5000))
+          (linum-mode -1)))
 
-  ;; https://emacs-china.org/t/ranger-golden-ratio/964/2
-  ;; enable ranger function with disable the golden ratio mode
-  ;; set quit funtion to key q in normal mode
-  (defun my-ranger ()
-    (interactive)
-    (if golden-ratio-mode
-        (progn
-          (golden-ratio-mode -1)
-          (ranger)
-          (setq golden-ratio-previous-enable t))
-      (progn
-        (ranger)
-        (setq golden-ratio-previous-enable nil))))
+    (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
-  (defun my-quit-ranger ()
-    (interactive)
-    (if golden-ratio-previous-enable
-        (progn
-          (ranger-close)
-          (golden-ratio-mode 1))
-      (ranger-close)))
-
-  (with-eval-after-load 'ranger
-    (progn
-      (define-key ranger-normal-mode-map (kbd "q") 'my-quit-ranger)))
-
-  (spacemacs/set-leader-keys "ar" 'my-ranger)
-
-  ;; Do not show ^M in files containing mixed UNIX and DOS line endings.
-  (defun hidden-dos-eol ()
-    (interactive)
-    (unless buffer-display-table
-      (setq buffer-display-table (make-display-table)))
-    (aset buffer-display-table ?\^M []))
-  ;; Replace DOS eolns CR LF with Unix eolns CR
-  (defun remove-dos-eol ()
-    (interactive)
-    (goto-char (point-min))
-    (while (search-forward "\r" nil t) (replace-match "")))
-  ;; set eol features under SPC-o-d key binding.
-  (spacemacs/declare-prefix "od" "doc-EOF")
-  ;; set spc-o -d-h to hide the ^M
-  (spacemacs/set-leader-keys "odh" 'hidden-dos-eol)
-  ;; set spc-o-d-d to delete the ^M
-  (spacemacs/set-leader-keys "odd" 'remove-dos-eol)
-  ;; set spc-o-w to cleaning the whitespace
-  (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
-
-  ;; show indent level within vertical ellipsis 「⋮」 ===> useful in python mode.
-  ;; from http://www.wilkesley.org/~ian/xah/emacs/whitespace-mode.html
-  ;; just show tab mark with basic coloring
-  ;;(setq whitespace-style (quote (spaces tabs newline tab-mark)))
-  ;;show all marks with basic coloring
-  ;;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
-  (setq whitespace-display-mappings
-        ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
-        '(
-          ;; (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
-          ;; (newline-mark 10 [9166 10]) ; 10 LINE FEED 9166 --	RETURN SYMBOL 「⏎」
-          (tab-mark 9 [8942 9] [92 9]) ; 9 TAB, 8942 vertical ellipsis 「⋮」
-          ))
-  ;; tabify indent space to tabs in this buffer, vice versa.
-  ;; this switch won't affect whitespaces / tab not maching "^ +"" or "^\t+" regular expression.
-  (defun peterchou/leading-space-tab-switcher ()
-    (interactive)
-    (let ((space-indent-count (how-many "^ +" (point-min) (point-max)))
-          (tab-indent-count (how-many "^\t+" (point-min) (point-max))))
-      (if (> tab-indent-count space-indent-count)
+    ;; https://emacs-china.org/t/ranger-golden-ratio/964/2
+    ;; enable ranger function with disable the golden ratio mode
+    ;; set quit funtion to key q in normal mode
+    (defun my-ranger ()
+      (interactive)
+      (if golden-ratio-mode
           (progn
-            (setq indent-tabs-mode nil)
+            (golden-ratio-mode -1)
+            (ranger)
+            (setq golden-ratio-previous-enable t))
+        (progn
+          (ranger)
+          (setq golden-ratio-previous-enable nil))))
+
+    (defun my-quit-ranger ()
+      (interactive)
+      (if golden-ratio-previous-enable
+          (progn
+            (ranger-close)
+            (golden-ratio-mode 1))
+        (ranger-close)))
+
+    (with-eval-after-load 'ranger
+      (progn
+        (define-key ranger-normal-mode-map (kbd "q") 'my-quit-ranger)))
+
+    (spacemacs/set-leader-keys "ar" 'my-ranger)
+
+    ;; Do not show ^M in files containing mixed UNIX and DOS line endings.
+    (defun hidden-dos-eol ()
+      (interactive)
+      (unless buffer-display-table
+        (setq buffer-display-table (make-display-table)))
+      (aset buffer-display-table ?\^M []))
+    ;; Replace DOS eolns CR LF with Unix eolns CR
+    (defun remove-dos-eol ()
+      (interactive)
+      (goto-char (point-min))
+      (while (search-forward "\r" nil t) (replace-match "")))
+    ;; set eol features under SPC-o-d key binding.
+    (spacemacs/declare-prefix "od" "doc-EOF")
+    ;; set spc-o -d-h to hide the ^M
+    (spacemacs/set-leader-keys "odh" 'hidden-dos-eol)
+    ;; set spc-o-d-d to delete the ^M
+    (spacemacs/set-leader-keys "odd" 'remove-dos-eol)
+    ;; set spc-o-w to cleaning the whitespace
+    (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
+
+    ;; show indent level within vertical ellipsis 「⋮」 ===> useful in python mode.
+    ;; from http://www.wilkesley.org/~ian/xah/emacs/whitespace-mode.html
+    ;; just show tab mark with basic coloring
+    ;;(setq whitespace-style (quote (spaces tabs newline tab-mark)))
+    ;;show all marks with basic coloring
+    ;;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+    (setq whitespace-display-mappings
+          ;; all numbers are Unicode codepoint in decimal. try (insert-char 182 ) to see it
+          '(
+            ;; (space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+            ;; (newline-mark 10 [9166 10]) ; 10 LINE FEED 9166 --	RETURN SYMBOL 「⏎」
+            (tab-mark 9 [8942 9] [92 9]) ; 9 TAB, 8942 vertical ellipsis 「⋮」
+            ))
+    ;; tabify indent space to tabs in this buffer, vice versa.
+    ;; this switch won't affect whitespaces / tab not maching "^ +"" or "^\t+" regular expression.
+    (defun peterchou/leading-space-tab-switcher ()
+      (interactive)
+      (let ((space-indent-count (how-many "^ +" (point-min) (point-max)))
+            (tab-indent-count (how-many "^\t+" (point-min) (point-max))))
+        (if (> tab-indent-count space-indent-count)
+            (progn
+              (setq indent-tabs-mode nil)
+              (save-excursion
+                (beginning-of-buffer)
+                (while (> tab-indent-count 0)
+                  (let ((end-char-location (re-search-forward "^\t+" nil t))
+                        (first-char-location (re-search-backward "^\t+" nil t)))
+                    (untabify first-char-location end-char-location))
+                  (setq-local tab-indent-count (- tab-indent-count 1))))
+              (message " * untabify this buffer --> now is leading-SPACE-indent *"))
+          (progn
+            (setq indent-tabs-mode t)
             (save-excursion
               (beginning-of-buffer)
-              (while (> tab-indent-count 0)
-                (let ((end-char-location (re-search-forward "^\t+" nil t))
-                      (first-char-location (re-search-backward "^\t+" nil t)))
-                  (untabify first-char-location end-char-location))
-                (setq-local tab-indent-count (- tab-indent-count 1))))
-            (message " * untabify this buffer --> now is leading-SPACE-indent *"))
-        (progn
-          (setq indent-tabs-mode t)
-          (save-excursion
-            (beginning-of-buffer)
-            (while (> space-indent-count 0)
-              (let ((end-char-location (re-search-forward "^ +" nil t))
-                    (first-char-location (re-search-backward "^ +" nil t)))
-                (tabify first-char-location end-char-location))
-              (setq-local space-indent-count (- space-indent-count 1))))
-          (message " * tabify this buffer --> now is leading-TAB-indent *")))))
-  ;; set bindings under SPC-o-i maping
-  (spacemacs/declare-prefix "ot" "toggles")
-  (spacemacs/set-leader-keys "ott" 'peterchou/leading-space-tab-switcher)
+              (while (> space-indent-count 0)
+                (let ((end-char-location (re-search-forward "^ +" nil t))
+                      (first-char-location (re-search-backward "^ +" nil t)))
+                  (tabify first-char-location end-char-location))
+                (setq-local space-indent-count (- space-indent-count 1))))
+            (message " * tabify this buffer --> now is leading-TAB-indent *")))))
+    ;; set bindings under SPC-o-i maping
+    (spacemacs/declare-prefix "ot" "toggles")
+    (spacemacs/set-leader-keys "ott" 'peterchou/leading-space-tab-switcher)
 
-  ;; enable whitespace by default
-  (spacemacs/toggle-whitespace-globally-on)
-  (setq-default whitespace-line-column 160)
+    ;; enable whitespace by default
+    (spacemacs/toggle-whitespace-globally-on)
+    (setq-default whitespace-line-column 160)
 
-  ;; activate cygwin-terminal from emacs
-  (defun open-cygwin-mintty-terminal ()
-    (interactive)
-    (progn
-      (shell-command "mintty --window=max &")
-      (delete-window)))
-  (spacemacs/declare-prefix "oc" "cygwin-terminal")
-  (spacemacs/set-leader-keys "oco" 'open-cygwin-mintty-terminal)
+    ;; activate cygwin-terminal from emacs
+    (defun open-cygwin-mintty-terminal ()
+      (interactive)
+      (progn
+        (shell-command "mintty --window=max &")
+        (delete-window)))
+    (spacemacs/declare-prefix "oc" "cygwin-terminal")
+    (spacemacs/set-leader-keys "oco" 'open-cygwin-mintty-terminal)
 
-  ;; make emacs knows cygwin path(e.g. /cygdrive/c/ <==> c:/)
-  ;; http://www.khngai.com/emacs/cygwin.php
-  (when (eq system-type 'windows-nt)
-    (setq system-uses-terminfo nil)
-    (setq exec-path (cons "c:/cygwin/bin/" exec-path))
-    (setq cygwin-mount-cygwin-bin-directory "c:/cygwin/bin/")
-    (require 'cygwin-mount)
-    (cygwin-mount-activate)
-    (add-hook 'comint-output-filter-functions
-              'shell-strip-ctrl-m nil t)
-    (add-hook 'comint-output-filter-functions
-              'comint-watch-for-password-prompt nil t)
-    (setq explicit-shell-file-name "bash.exe")
+    ;; make emacs knows cygwin path(e.g. /cygdrive/c/ <==> c:/)
+    ;; http://www.khngai.com/emacs/cygwin.php
+    (when (eq system-type 'windows-nt)
+      (setq system-uses-terminfo nil)
+      (setq exec-path (cons "c:/cygwin/bin/" exec-path))
+      (setq cygwin-mount-cygwin-bin-directory "c:/cygwin/bin/")
+      (require 'cygwin-mount)
+      (cygwin-mount-activate)
+      (add-hook 'comint-output-filter-functions
+                'shell-strip-ctrl-m nil t)
+      (add-hook 'comint-output-filter-functions
+                'comint-watch-for-password-prompt nil t)
+      (setq explicit-shell-file-name "bash.exe")
                                         ; For subprocesses invoked via the shell
                                         ; (e.g., "shell -c command")
-    (setq shell-file-name explicit-shell-file-name)
-    (spacemacs/set-leader-keys "oc'" 'shell))
+      (setq shell-file-name explicit-shell-file-name)
+      (spacemacs/set-leader-keys "oc'" 'shell))
 
-  (defun peterchou-clear-shell-buffer ()
-    (interactive)
-    (let ((inhibit-read-only t))
-      (erase-buffer)))
-  (spacemacs/set-leader-keys "occ" 'peterchou-clear-shell-buffer)
+    (defun peterchou-clear-shell-buffer ()
+      (interactive)
+      (let ((inhibit-read-only t))
+        (erase-buffer)))
+    (spacemacs/set-leader-keys "occ" 'peterchou-clear-shell-buffer)
 
-  ;; fix the problem of parsing tons of .el files when typing in elisp mode.
-  ;; https://github.com/company-mode/company-mode/issues/525
-  (defun semantic-completion-advice (adviced-f &rest r)
-    "Check if POINT it's inside a string or comment before calling semantic-*"
-    (if (or (inside-string-q) (inside-comment-q))
-        (not (message "Oleeee! do not call function, we're inside a string or comment!"))
-      (apply adviced-f r)))
+    ;; fix the problem of parsing tons of .el files when typing in elisp mode.
+    ;; https://github.com/company-mode/company-mode/issues/525
+    (defun semantic-completion-advice (adviced-f &rest r)
+      "Check if POINT it's inside a string or comment before calling semantic-*"
+      (if (or (inside-string-q) (inside-comment-q))
+          (not (message "Oleeee! do not call function, we're inside a string or comment!"))
+        (apply adviced-f r)))
 
-  ;; fix elisp complete problem
-  ;; (advice-add 'semantic-analyze-completion-at-point-function :around #'semantic-completion-advice)
-  )
+    ;; fix elisp complete problem
+    ;; (advice-add 'semantic-analyze-completion-at-point-function :around #'semantic-completion-advice)
+    )
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
+  ;; Do not write anything past this comment. This is where Emacs will
+  ;; auto-generate custom variable definitions.
+  (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
@@ -994,7 +1001,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (sphinx-doc zenburn-theme zeal-at-point yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep websocket web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smex smeargle smartrep slim-mode skewer-mode shell-pop scss-mode sass-mode restart-emacs request-deferred ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gruvbox-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word default-text-scale cython-mode counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
+    (olivetti zenburn-theme zeal-at-point yasnippet-snippets yapfify xterm-color ws-butler winum which-key wgrep websocket web-mode web-beautify volatile-highlights vmd-mode vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent sphinx-doc spaceline-all-the-icons smex smeargle smartrep slim-mode skewer-mode shell-pop scss-mode sass-mode restart-emacs request-deferred ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make gruvbox-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode disaster diminish define-word default-text-scale cython-mode counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
