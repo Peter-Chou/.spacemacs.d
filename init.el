@@ -577,6 +577,10 @@ before packages are loaded."
   ;; (setq-default abbrev-mode t)
   ;; (setq system-uses-terminfo nil)
 
+  ;; set orignal evil-surrounding keybinding
+  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
+
   ;; use olivetti to center the buffer
   (with-eval-after-load 'olivetti
     (olivetti-set-width 100))
@@ -647,6 +651,31 @@ before packages are loaded."
   ;; highlight the indentation in python mode
   ;; (require 'highlight-indentation)
 
+  (defun my-quit-subjob ()
+    (interactive)
+    (save-excursion
+      (switch-to-buffer "*compilation*")
+      (comint-quit-subjob)
+      (switch-to-buffer (other-buffer (current-buffer) 1))
+      ))
+  (defun my-python-toggle-breakpoint ()
+    "Add a break point, highlight it."
+    (interactive)
+    (let ((trace (cond ((spacemacs/pyenv-executable-find "wdb") "import wdb; wdb.set_trace() # XXX BREAKPOINT")
+                       ((spacemacs/pyenv-executable-find "ipdb") "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
+                       ((spacemacs/pyenv-executable-find "pudb") "import pudb; pudb.set_trace() # XXX BREAKPOINT")
+                       ((spacemacs/pyenv-executable-find "ipdb3") "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
+                       ((spacemacs/pyenv-executable-find "pudb3") "import pudb; pudb.set_trace() # XXX BREAKPOINT")
+                       (t "import pdb; pdb.set_trace() # XXX BREAKPOINT")))
+          (line (thing-at-point 'line)))
+      (if (and line (string-match trace line))
+          (kill-whole-line)
+        (progn
+          (back-to-indentation)
+          (insert trace)
+          (insert "\n")
+          (python-indent-line)))))
+
   (defun my-pipenv-workon ()
     "switch python virtualenvironment and restart anaconda server"
     (interactive)
@@ -675,7 +704,9 @@ before packages are loaded."
       "gu" 'anaconda-mode-find-references
       "Va" 'my-pipenv-activate
       "Vd" 'my-pipenv-deactivate
-      "Vw" 'my-pipenv-workon)
+      "Vw" 'my-pipenv-workon
+      "db" 'my-python-toggle-breakpoint
+      "ck" 'my-quit-subjob)
     )
 
   (add-hook 'python-mode-hook (lambda ()
