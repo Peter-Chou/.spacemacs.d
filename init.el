@@ -648,16 +648,17 @@ before packages are loaded."
   ;; spc-o-f-o : 折叠所在代码以外的代码
   (spacemacs/set-leader-keys "ofo" 'outline-hide-other)
 
-  ;; highlight the indentation in python mode
-  ;; (require 'highlight-indentation)
-
   (defun my-quit-subjob ()
     (interactive)
     (save-excursion
+      (setq peter-current-buffer-name (buffer-name))
+      (previous-buffer)
+      (setq peter-previous-buffer-name (buffer-name))
       (switch-to-buffer "*compilation*")
       (comint-quit-subjob)
-      (switch-to-buffer (other-buffer (current-buffer) 1))
-      ))
+      (switch-to-buffer peter-previous-buffer-name)
+      (switch-to-buffer peter-current-buffer-name)))
+
   (defun my-python-toggle-breakpoint ()
     "Add a break point, highlight it."
     (interactive)
