@@ -38,7 +38,7 @@
 (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
 ;; show time on powerline
-;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
+;; ;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
 (setq display-time-24hr-format t)
 (setq display-time-format "%H:%M:%S")        ; add seconds
 (setq display-time-interval 1)               ; update every second
@@ -55,6 +55,11 @@
 ;; ------ flycheck mode -------------------------------------------------------
 ;;set up fly-check to ignore the E501 error
 (setq-default flycheck-flake8-maximum-line-length 160)
+
+
+;; ------ whitespace mode -------------------------------------------------------
+;; set max width = 160
+(setq-default whitespace-line-column 160)
 
 
 ;; ------ dired mode ----------------------------------------------------------
@@ -80,6 +85,15 @@
                               ))
 ;; activate autopep8 on save
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+
+
+;; ------ c/c++ mode ----------------------------------------------------------
+(add-hook 'c-mode-common-hook (lambda ()
+                                (highlight-indentation-mode 1)
+                                (highlight-indentation-current-column-mode 1)
+                                (fci-mode 1)
+                                ;; (setq-local tab-width 4)
+                                ))
 
 
 (provide 'init-default)

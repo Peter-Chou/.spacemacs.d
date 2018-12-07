@@ -13,12 +13,6 @@
 (advice-add 'semantic-analyze-completion-at-point-function :around #'semantic-completion-advice)
 
 
-;; ------ evil mode -----------------------------------------------------------
-;; fix the malfunction of c-e in better-defaults
-(define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
-(define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
-
-
 ;; ------ ranger mode ---------------------------------------------------------
 ;; enable ranger function with disable the golden ratio mode
 ;; set quit funtion to key q in normal mode

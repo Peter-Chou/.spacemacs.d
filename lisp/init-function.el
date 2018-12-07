@@ -20,6 +20,12 @@
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
+(defun my-clear-shell-buffer ()
+  "clear shell buffer"
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
+
 
 ;; ------ python mode ---------------------------------------------------------
 (defun my-pipenv-workon ()
@@ -91,5 +97,6 @@
     (comint-quit-subjob)
     (switch-to-buffer peter-previous-buffer-name)
     (switch-to-buffer peter-current-buffer-name)))
+
 
 (provide 'init-function)

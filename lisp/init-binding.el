@@ -2,6 +2,10 @@
 ;; ------ global -------------------------------------------------------------
 ;; <SPC>-d go back where jumps
 (spacemacs/set-leader-keys "d" 'xref-pop-marker-stack)
+
+;; <SPC>-' use shell-here command
+(spacemacs/set-leader-keys "'" 'shell-here)
+
 ;; spacemacs quit bindings
 (evil-leader/set-key "qw" 'spacemacs/save-buffer-and-kill-frame)
 (evil-leader/set-key "qq" 'spacemacs/frame-killer)
@@ -14,6 +18,26 @@
 (spacemacs/set-leader-keys "odd" 'remove-dos-eol)
 
 (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
+
+;; SPC-o-s family binding
+(spacemacs/declare-prefix "os" "shell")
+(spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
+(spacemacs/set-leader-keys "oc'" 'shell-here)
+(cond ((eq system-type 'windows-nt)
+       ;; Windows-specific code goes here.
+       (progn
+         (spacemacs/set-leader-keys "oso" 'open-cygwin-mintty-shell))
+       )
+      ((eq system-type 'gnu/linux)
+       ;; Linux-specific code goes here.
+       ))
+
+;; ------ evil mode -----------------------------------------------------------
+;; emacs keybinding
+(define-key evil-insert-state-map (kbd "C-f") 'forward-char)
+(define-key evil-insert-state-map (kbd "C-b") 'backward-char)
+(define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
+(define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
 
 
 ;; ------ company mode --------------------------------------------------------
@@ -44,5 +68,8 @@
     "db" 'my-python-toggle-breakpoint
     "ck" 'my-quit-subjob
     "sk" 'my-quit-interactive-subjob))
+
+
+
 
   (provide 'init-binding)
