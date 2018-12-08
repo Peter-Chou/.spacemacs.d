@@ -2,7 +2,7 @@
 ;; ------ global --------------------------------------------------------------
 
 
-;; ------ emacs mode ----------------------------------------------------------
+;; ------ emacs lisp mode -----------------------------------------------------
 ;; fix the problem of parsing tons of .el files when typing
 ;; https://github.com/company-mode/company-mode/issues/525
 (defun semantic-completion-advice (adviced-f &rest r)
@@ -57,5 +57,6 @@
 ;; fix the issue that Deleting left of empty smartparen pair doesn't delete right when hungry-delete is enabled
 ;; https://github.com/syl20bnr/spacemacs/issues/6584
 (defadvice hungry-delete-backward (before sp-delete-pair-advice activate) (save-match-data (sp-delete-pair (ad-get-arg 0))))
+
 
 (provide 'init-fix)

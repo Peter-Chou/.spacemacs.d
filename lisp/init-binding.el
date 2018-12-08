@@ -32,12 +32,17 @@
        ;; Linux-specific code goes here.
        ))
 
+
 ;; ------ evil mode -----------------------------------------------------------
 ;; emacs keybinding
 (define-key evil-insert-state-map (kbd "C-f") 'forward-char)
 (define-key evil-insert-state-map (kbd "C-b") 'backward-char)
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
+
+;; set orignal evil-surrounding keybinding
+(evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+(evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
 
 
 ;; ------ company mode --------------------------------------------------------
@@ -54,12 +59,6 @@
 (setq-default company-minimum-prefix-length 1)
 
 
-;; ------ evil mode -----------------------------------------------------------
-;; set orignal evil-surrounding keybinding
-(evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
-(evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
-
-
 ;; ------ python mode -----------------------------------------------------------
 ;; fix python keybindings
 (with-eval-after-load 'anaconda-mode
@@ -71,8 +70,6 @@
     "db" 'my-python-toggle-breakpoint
     "ck" 'my-quit-subjob
     "sk" 'my-quit-interactive-subjob))
-
-
 
 
   (provide 'init-binding)
