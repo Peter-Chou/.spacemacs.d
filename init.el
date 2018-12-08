@@ -40,8 +40,6 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; helm
-     ;; auto-completion
-     ;; better-defaults
      csv
      html
      sql
@@ -59,10 +57,9 @@ This function should only modify configuration layer settings."
             c-c++-enable-clang-format-on-save t
             )
      (shell :variables
-            shell-default-shell 'eshell
+            ;; shell-default-shell 'eshell
+            ;; shell-default-position 'bottom
             shell-default-height 40)
-     ;; git
-     ;; markdown
      ivy
      ranger
      multiple-cursors
@@ -96,13 +93,7 @@ This function should only modify configuration layer settings."
      (syntax-checking :variables
                       syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
-
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      ;; spell-checking
-     ;; syntax-checking
      ;; version-control
      )
 
@@ -229,7 +220,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner '"~/.spacemacs.d/image/matcha.png"
+   dotspacemacs-startup-banner 'official
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -513,9 +504,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
     '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
-  )
 
   (add-to-list 'load-path "~/.spacemacs.d/lisp/")
+  ;; utf-8-unix save file only has \n instead of (\r\n in windows)
+  (add-to-list 'file-coding-system-alist '("\\.py" . utf-8-unix))
+  ;; (set-buffer-file-coding-system 'utf-8-unix)
+
+  )
+
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -535,8 +531,8 @@ before packages are loaded."
   (require 'init-fix)
   (require 'init-function)
   (require 'init-default)
-  (require 'init-lang-config)
-  (require 'init-cygwin)
+  (require 'init-msys2)
+  ;; (require 'init-cygwin)
 
   (beacon-mode 1)
 

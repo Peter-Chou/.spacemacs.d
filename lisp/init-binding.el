@@ -26,7 +26,7 @@
 (cond ((eq system-type 'windows-nt)
        ;; Windows-specific code goes here.
        (progn
-         (spacemacs/set-leader-keys "oso" 'open-cygwin-mintty-shell))
+         (spacemacs/set-leader-keys "oso" 'open-mintty-shell))
        )
       ((eq system-type 'gnu/linux)
        ;; Linux-specific code goes here.
