@@ -22,7 +22,7 @@
 ;; SPC-o-s family binding
 (spacemacs/declare-prefix "os" "shell")
 (spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
-(spacemacs/set-leader-keys "oc'" 'shell-here)
+(spacemacs/set-leader-keys "os'" 'shell-here)
 (cond ((eq system-type 'windows-nt)
        ;; Windows-specific code goes here.
        (progn
@@ -49,6 +49,9 @@
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "TAB") #'company-complete-selection)
   (define-key company-active-map [tab] #'company-complete-selection))
+
+;; start auto complete when start typing
+(setq-default company-minimum-prefix-length 1)
 
 
 ;; ------ evil mode -----------------------------------------------------------
