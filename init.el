@@ -55,12 +55,16 @@ This function should only modify configuration layer settings."
      (c-c++ :variables
           c-c++-default-mode-for-headers 'c++-mode
           ;; c-c++-backend 'lsp-ccls
-          ;; c-c++-lsp-executable "~/ccls/build/ccls"
+          ;; c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
           ;; c-c++-lsp-executable "/usr/bin/ccls"
          ;; c-c++-lsp-sem-highlight-rainbow t
          c-c++-enable-clang-support t
          c-c++-enable-clang-format-on-save t
             )
+     (scala :variables
+     	 scala-indent:use-javadoc-style t
+     	 scala-enable-eldoc t
+     	 scala-auto-insert-asterisk-in-comments t)
      (shell :variables
             ;; shell-default-shell 'eshell
             ;; shell-default-position 'bottom
