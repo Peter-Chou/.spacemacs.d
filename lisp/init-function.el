@@ -29,7 +29,7 @@
 (defun open-mintty-terminal ()
   (interactive)
   (progn
-    (shell-command "mintty --window=max &")
+    (shell-command "mintty /bin/env DISABLE_AWESOME_FONT=1 /bin/zsh --login -i &")
     (delete-window)))
 
 
