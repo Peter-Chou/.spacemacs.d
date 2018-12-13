@@ -22,6 +22,7 @@
 ;; SPC-o-s family binding
 (spacemacs/declare-prefix "os" "shell")
 (spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
+(spacemacs/set-leader-keys "oso" 'open-mintty-terminal)
 
 
 ;; ------ evil mode -----------------------------------------------------------

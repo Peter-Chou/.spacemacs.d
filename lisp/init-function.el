@@ -26,6 +26,12 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
+(defun open-mintty-terminal ()
+  (interactive)
+  (progn
+    (shell-command "mintty --window=max &")
+    (delete-window)))
+
 
 ;; ------ python mode ---------------------------------------------------------
 (defun my-pipenv-workon ()
