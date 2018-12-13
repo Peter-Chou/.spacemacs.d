@@ -22,15 +22,6 @@
 ;; SPC-o-s family binding
 (spacemacs/declare-prefix "os" "shell")
 (spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
-(spacemacs/set-leader-keys "os'" 'shell-here)
-(cond ((eq system-type 'windows-nt)
-       ;; Windows-specific code goes here.
-       (progn
-         (spacemacs/set-leader-keys "oso" 'open-mintty-shell))
-       )
-      ((eq system-type 'gnu/linux)
-       ;; Linux-specific code goes here.
-       ))
 
 
 ;; ------ evil mode -----------------------------------------------------------
