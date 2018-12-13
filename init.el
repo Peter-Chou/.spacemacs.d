@@ -544,22 +544,7 @@ before packages are loaded."
   (require 'init-default)
   (require 'init-msys2)
   ;; (require 'init-cygwin)
-
-  (beacon-mode 1)
-
-  ;; enable anzu-mode in mode-line
-  (anzu-mode 1)
-
-  ;; binding C-M-- / C-M-= to decrease / increase font size globally
-  (default-text-scale-mode 1)
-
-  ;; activate hungry delete mode
-  (global-hungry-delete-mode t)
-
-  ;; activate all-the-icon famliy
-  (require 'font-lock+)
-  (all-the-icons-ivy-setup)
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  (require 'init-misc)
 
   )
 
