@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: print_in_emacs
+# key: pe
+# --
+print($0, flush=True)
