@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
             c-c++-lsp-cache-dir "./"
             c-c++-lsp-sem-highlight-rainbow t
          ;; c-c++-enable-clang-support t
-         ;; c-c++-enable-clang-format-on-save t
+            c-c++-enable-clang-format-on-save t
             )
      (cmake :variables
             cmake-enable-cmake-ide-support t)
@@ -68,6 +68,7 @@ This function should only modify configuration layer settings."
      	 scala-enable-eldoc t
      	 scala-auto-insert-asterisk-in-comments t)
      (shell :variables
+            shell-default-shell 'shell
             ;; shell-default-shell 'eshell
             ;; shell-default-position 'bottom
             shell-default-height 40)
