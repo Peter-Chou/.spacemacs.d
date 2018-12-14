@@ -22,18 +22,18 @@
 (setq split-width-threshold 120)
 
 ;;Don't ask me when kill process buffer
-(setq kill-buffer-query-functions
-      (remq 'process-kill-buffer-query-function
-            kill-buffer-query-functions))
+(setq kill-buffer-query-functions (remq 'process-kill-buffer-query-function
+                                        kill-buffer-query-functions))
 
 ;; if file exceed 500kb, it will be opened in fundamental-mode to speed up the loading
 (defun spacemacs/check-large-file ()
   (when (> (buffer-size) 500000)
-    (progn (fundamental-mode)
-           (hl-line-mode -1)))
+    (progn
+      (fundamental-mode)
+      (hl-line-mode -1)))
   (if (and (executable-find "wc")
-           (> (string-to-number (shell-command-to-string (format "wc -l %s" (buffer-file-name))))
-              5000))
+           (> (string-to-number (shell-command-to-string (format "wc -l %s"
+                                                                 (buffer-file-name)))) 5000))
       (linum-mode -1)))
 (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
@@ -68,32 +68,45 @@
 (setq dired-recursive-copies 'always)
 
 
+;; ------ fci mode ------------------------------------------------------------
+;; set color for fci rule
+(setq fci-rule-color "#FFA631")
+
+
 ;; ------ python mode ---------------------------------------------------------
-(add-hook 'python-mode-hook (lambda ()
-                              ;; activate hightlight indentation mode
-                              (highlight-indentation-mode 1)
-                              (highlight-indentation-current-column-mode 1)
-                              (require 'py-autopep8)
-                              (setq indent-tabs-mode nil
-                                    tab-width 2
-                                    ;; E121 Fix indentation to be a multiple of four
-                                    ;; E402 Fix module level import not at top of file
-                                    ;; E401 Put imports on separate lines
-                                    py-autopep8-options '("--max-line-length=80" "--indent-size=2" "--ignore=E121" "--ignore=E402" "--ignore=E401"))
-                              ;; turn on fill-column-indicator when python mode is active
-                              (fci-mode 1)
-                              ))
+(add-hook 'python-mode-hook
+          (lambda ()
+            ;; activate hightlight indentation mode
+            (highlight-indentation-mode 1)
+            (highlight-indentation-current-column-mode
+             1)
+            (require 'py-autopep8)
+            (setq indent-tabs-mode nil
+                  tab-width
+                  2
+                  ;; E121 Fix indentation to be a multiple of four
+                  ;; E402 Fix module level import not at top of file
+                  ;; E401 Put imports on separate lines
+                  py-autopep8-options
+                  '("--max-line-length=80" "--indent-size=2"
+                    "--ignore=E121" "--ignore=E402" "--ignore=E401"))
+            ;; turn on fill-column-indicator when python mode is active
+            (fci-mode 1)
+            (fci-update-all-windows t)))
 ;; activate autopep8 on save
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 
 ;; ------ c/c++ mode ----------------------------------------------------------
-(add-hook 'c-mode-common-hook (lambda ()
-                                (highlight-indentation-mode 1)
-                                (highlight-indentation-current-column-mode 1)
-                                (fci-mode 1)
-                                ;; (setq-local tab-width 4)
-                                ))
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (highlight-indentation-mode 1)
+            (highlight-indentation-current-column-mode
+             1)
+            (fci-mode 1)
+            (fci-update-all-windows t)
+            ;; (setq-local tab-width 4)
+            ))
 
 
 (provide 'init-default)
