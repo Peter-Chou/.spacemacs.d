@@ -56,7 +56,7 @@ This function should only modify configuration layer settings."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls.exe")
-            c-c++-lsp-cache-dir "./"
+            c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
             c-c++-lsp-sem-highlight-rainbow t
          ;; c-c++-enable-clang-support t
             c-c++-enable-clang-format-on-save t
