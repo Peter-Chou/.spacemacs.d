@@ -4,7 +4,7 @@
 (spacemacs/set-leader-keys "d" 'xref-pop-marker-stack)
 
 ;; <SPC>-' use shell-here command
-(spacemacs/set-leader-keys "'" 'shell-here)
+(spacemacs/set-leader-keys "'" 'my-shell-here)
 
 ;; spacemacs quit bindings
 (evil-leader/set-key "qw" 'spacemacs/save-buffer-and-kill-frame)
@@ -46,6 +46,9 @@
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "TAB") #'company-complete-selection)
   (define-key company-active-map [tab] #'company-complete-selection))
+
+  ;; use Ctrl-Meta-; to complete the path manually
+  (global-set-key (kbd "C-M-;") 'company-files)
 
 ;; start auto complete when start typing
 (setq-default company-minimum-prefix-length 1)

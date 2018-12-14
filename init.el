@@ -51,27 +51,28 @@ This function should only modify configuration layer settings."
              python-test-runner 'pytest
              python-fill-column 99
              python-sort-imports-on-save t)
-     ;; lsp
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-backend 'lsp-ccls
-            c-c++-lsp-executable (file-truename "~/ccls/build/ccls.exe")
+            c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
-            c-c++-lsp-sem-highlight-rainbow t
-         ;; c-c++-enable-clang-support t
+            c-c++-lsp-sem-highlight-method 'overlay
             c-c++-enable-clang-format-on-save t
+            ;; c-c++-lsp-sem-highlight-method 'font-lock
+            ;; c-c++-lsp-sem-highlight-rainbow t
+            ;; c-c++-enable-clang-support t
             )
      (cmake :variables
             cmake-enable-cmake-ide-support t)
-     (scala :variables
-     	 scala-indent:use-javadoc-style t
-     	 scala-enable-eldoc t
-     	 scala-auto-insert-asterisk-in-comments t)
+     ;; (scala :variables
+     ;; 	 scala-indent:use-javadoc-style t
+     ;; 	 scala-enable-eldoc t
+     ;; 	 scala-auto-insert-asterisk-in-comments t)
      (shell :variables
             shell-default-shell 'shell
             ;; shell-default-shell 'eshell
-            ;; shell-default-position 'bottom
-            shell-default-height 40)
+            shell-default-position 'right
+            shell-default-width 50)
      ivy
      ranger
      multiple-cursors
@@ -122,7 +123,6 @@ This function should only modify configuration layer settings."
                                       beacon
                                       default-text-scale
                                       py-autopep8
-                                      shell-here
                                       all-the-icons
                                       all-the-icons-dired
                                       all-the-icons-ivy
@@ -566,7 +566,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cmake-mode cmake-ide levenshtein zenburn-theme yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smex smeargle slim-mode shell-pop shell-here scss-mode sass-mode restart-emacs request ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort py-autopep8 pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file noflet neotree nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-java lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish define-word default-text-scale cython-mode csv-mode cquery counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-quickhelp company-lsp company-emacs-eclim company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode ccls beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
+    (noflet mvn meghanada maven-test-mode lsp-java groovy-mode groovy-imports pcache gradle-mode ensime sbt-mode scala-mode company-emacs-eclim eclim zenburn-theme yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smex smeargle slim-mode shell-pop shell-here scss-mode sass-mode restart-emacs request ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort py-autopep8 pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree nameless mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lorem-ipsum live-py-mode link-hint ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish define-word default-text-scale cython-mode csv-mode cquery counsel-projectile counsel-css company-web company-statistics company-shell company-rtags company-quickhelp company-lsp company-c-headers company-anaconda column-enforce-mode cmake-mode cmake-ide clean-aindent-mode clang-format centered-cursor-mode ccls beacon auto-yasnippet auto-highlight-symbol auto-compile all-the-icons-ivy all-the-icons-dired aggressive-indent ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

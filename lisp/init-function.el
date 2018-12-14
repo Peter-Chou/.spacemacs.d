@@ -26,6 +26,12 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
+(defun my-shell-here ()
+  "open shell here and automatically close window when quiting the shell"
+  (interactive)
+  (let ((file-name-directory (buffer-file-name)))
+    (call-interactively 'spacemacs/default-pop-shell)))
+
 (defun open-mintty-terminal ()
   (interactive)
   (progn
