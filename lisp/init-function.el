@@ -35,7 +35,8 @@
 (defun open-mintty-terminal ()
   (interactive)
   (progn
-    (shell-command "mintty /bin/env DISABLE_AWESOME_FONT=1 /bin/zsh --login -i &")
+    ;; (shell-command "mintty /bin/env MSYSTEM=MINGW64 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i &")
+    (w32-shell-execute "runas" "c:\\msys64\\usr\\bin\\mintty.exe" " /bin/env MSYSTEM=64 CHERE_INVOKING=1 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i")
     (delete-window)))
 
 
