@@ -37,6 +37,7 @@
   (progn
     ;; (shell-command "mintty /bin/env MSYSTEM=MINGW64 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i &")
     (w32-shell-execute "runas" "c:\\msys64\\usr\\bin\\mintty.exe" " /bin/env MSYSTEM=64 CHERE_INVOKING=1 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i")
+    (w32-send-sys-command)
     (delete-window)))
 
 
@@ -76,16 +77,6 @@
         (insert trace)
         (insert "\n")
         (python-indent-line)))))
-(defun my-quit-subjob ()
-  (interactive)
-  (save-excursion
-    (setq peter-current-buffer-name (buffer-name))
-    (previous-buffer)
-    (setq peter-previous-buffer-name (buffer-name))
-    (switch-to-buffer "*compilation*")
-    (comint-quit-subjob)
-    (switch-to-buffer peter-previous-buffer-name)
-    (switch-to-buffer peter-current-buffer-name)))
 
 (defun my-quit-subjob ()
   "quit runing job in python buffer"
