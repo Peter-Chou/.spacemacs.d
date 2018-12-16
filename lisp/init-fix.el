@@ -52,6 +52,27 @@
 ;; fix cannot read anaconda-mode server response issue
 (setq anaconda-mode-localhost-address "localhost")
 
+;; fix messy output when print chinese
+(defun my-python-execute-file (arg)
+  "execute python file & produce correct chinese outputs"
+  (interactive "P")
+  (set-language-environment 'Chinese-GB18030)
+  (spacemacs/python-execute-file arg)
+  (set-language-environment 'UTF-8))
+
+(defun my-python-execute-file-focus (arg)
+  "EXECUTE PYTHON FILE & SWITCH TO THE SHELL BUFFER IN INSERT STATE & PRODUCE CORRECT CHINESE OUTPUTS"
+  (interactive "P")
+  (set-language-environment 'Chinese-GB18030)
+  (spacemacs/python-execute-file-focus arg)
+  (set-language-environment 'UTF-8))
+
+(when (eq system-type 'windows-nt)
+  (with-eval-after-load 'anaconda-mode
+    (spacemacs/set-leader-keys-for-major-mode 'python-mode
+      "cc" 'my-python-execute-file
+      "cC" 'my-python-execute-file-focus)))
+
 
 ;; ------ hungre-delete mode --------------------------------------------------
 ;; fix the issue that Deleting left of empty smartparen pair doesn't delete right when hungry-delete is enabled
