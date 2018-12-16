@@ -67,11 +67,36 @@
   (spacemacs/python-execute-file-focus arg)
   (set-language-environment 'UTF-8))
 
+(defun my-python-start-or-switch-repl ()
+  (interactive)
+  (set-language-environment 'Chinese-GB18030)
+  (spacemacs/python-start-or-switch-repl)
+  (other-window -1))
+
+(defun my-python-quit-repl ()
+  (interactive)
+  (switch-to-buffer "*Python*")
+  (comint-quit-subjob)
+  (kill-buffer-and-window)
+  (set-language-environment 'UTF-8))
+
+(defun my-python-interrupt-repl ()
+  (interactive)
+  (switch-to-buffer "*Python*")
+  (comint-interrupt-subjob)
+  (other-window -1))
+
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'anaconda-mode
     (spacemacs/set-leader-keys-for-major-mode 'python-mode
       "cc" 'my-python-execute-file
-      "cC" 'my-python-execute-file-focus)))
+      "cC" 'my-python-execute-file-focus
+      "si" 'my-python-start-or-switch-repl
+      "sq" 'my-python-quit-repl
+      "sk" 'my-python-interrupt-repl)
+    (define-key python-mode-map (kbd "C-c C-p") 'my-python-start-or-switch-repl)
+    )
+  )
 
 
 ;; ------ hungre-delete mode --------------------------------------------------
