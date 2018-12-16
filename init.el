@@ -534,7 +534,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (add-to-list 'load-path "~/.spacemacs.d/lisp/")
   ;; utf-8-unix save file only has \n instead of (\r\n in windows)
 
-  (add-to-list 'file-coding-system-alist '("\\.py" . utf-8-unix))
+  ;; (add-to-list 'file-coding-system-alist '("\\.py" . utf-8-unix))
   ;; (set-buffer-file-coding-system 'utf-8-unix)
 
   )
