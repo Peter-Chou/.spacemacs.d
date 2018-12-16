@@ -24,4 +24,4 @@
   )
 
 
-(provide 'init-msys2)
+(provide 'init-msys2-shell)

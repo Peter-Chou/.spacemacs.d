@@ -558,8 +558,8 @@ before packages are loaded."
   (require 'init-fix)
   (require 'init-function)
   (require 'init-default)
-  (require 'init-msys2)
-  ;; (require 'init-cygwin)
+  (require 'init-msys2-shell)
+  ;; (require 'init-cygwin-shell)
   (require 'init-misc)
 
   )

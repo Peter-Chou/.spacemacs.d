@@ -27,4 +27,4 @@
   )
 
 
-(provide 'init-cygwin)
+(provide 'init-cygwin-shell)
