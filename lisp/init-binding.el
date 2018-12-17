@@ -64,7 +64,10 @@
     "Vw" 'my-pipenv-workon
     "db" 'my-python-toggle-breakpoint
     "ck" 'my-quit-subjob
-    "sk" 'my-quit-interactive-subjob))
+    "sk" 'my-quit-interactive-subjob)
+
+  (define-key anaconda-mode-map (kbd "C-M-i") #'company-complete)
+  )
 
 
   (provide 'init-binding)
