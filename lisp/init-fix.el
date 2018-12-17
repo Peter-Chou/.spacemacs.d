@@ -57,6 +57,7 @@
   "execute python file & produce correct chinese outputs"
   (interactive "P")
   (set-language-environment 'Chinese-GB18030)
+  (save-some-buffers t)
   (spacemacs/python-execute-file arg)
   (set-language-environment 'UTF-8))
 
@@ -64,6 +65,7 @@
   "EXECUTE PYTHON FILE & SWITCH TO THE SHELL BUFFER IN INSERT STATE & PRODUCE CORRECT CHINESE OUTPUTS"
   (interactive "P")
   (set-language-environment 'Chinese-GB18030)
+  (save-some-buffers t)
   (spacemacs/python-execute-file-focus arg)
   (set-language-environment 'UTF-8))
 
@@ -89,6 +91,7 @@
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'anaconda-mode
     (spacemacs/set-leader-keys-for-major-mode 'python-mode
+      "'" 'my-python-start-or-switch-repl
       "cc" 'my-python-execute-file
       "cC" 'my-python-execute-file-focus
       "si" 'my-python-start-or-switch-repl
