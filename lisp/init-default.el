@@ -71,42 +71,43 @@
 ;; ------ fci mode ------------------------------------------------------------
 ;; set color for fci rule
 (setq fci-rule-color "#FFA631")
+;; activate fci-mode when in programming mode
+(add-hook 'prog-mode-hook (lambda ()
+                            (fci-mode 1)
+                            (fci-update-all-windows t)
+                            ))
+
+
+;; ------ hightlight-indent-guides mode ---------------------------------------
+(require 'highlight-indent-guides)
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-method 'character)
+;; , ⋮, ┆, ┊, ┋, ┇, ⋮, ┆, ┊, ┋, ┇
+(setq highlight-indent-guides-character ?\┊)
+(setq highlight-indent-guides-responsive 'top)
+(setq highlight-indent-guides-auto-enabled nil)
+(set-face-foreground 'highlight-indent-guides-character-face "dimgray")
+(set-face-foreground 'highlight-indent-guides-top-character-face "#FF0000")
+(setq highlight-indent-guides-auto-character-face-perc 10)
+(setq highlight-indent-guides-auto-top-character-face-perc 20)
 
 
 ;; ------ python mode ---------------------------------------------------------
+;; set two space indent
 (add-hook 'python-mode-hook
           (lambda ()
-            ;; activate hightlight indentation mode
-            (highlight-indentation-mode 1)
-            (highlight-indentation-current-column-mode
-             1)
             (require 'py-autopep8)
             (setq indent-tabs-mode nil
-                  tab-width
-                  2
+                  tab-width 2
                   ;; E121 Fix indentation to be a multiple of four
                   ;; E402 Fix module level import not at top of file
                   ;; E401 Put imports on separate lines
                   py-autopep8-options
                   '("--max-line-length=80" "--indent-size=2"
                     "--ignore=E121" "--ignore=E402" "--ignore=E401"))
-            ;; turn on fill-column-indicator when python mode is active
-            (fci-mode 1)
-            (fci-update-all-windows t)))
+            ))
 ;; activate autopep8 on save
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-
-
-;; ------ c/c++ mode ----------------------------------------------------------
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (highlight-indentation-mode 1)
-            (highlight-indentation-current-column-mode
-             1)
-            (fci-mode 1)
-            (fci-update-all-windows t)
-            ;; (setq-local tab-width 4)
-            ))
 
 
 (provide 'init-default)
