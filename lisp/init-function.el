@@ -46,13 +46,17 @@
   "switch python virtualenvironment and restart anaconda server"
   (interactive)
   (call-interactively 'pyvenv-workon)
-  (setq python-shell-virtualenv-path pyvenv-virtual-env))
+  ;; (setq python-shell-virtualenv-path pyvenv-virtual-env)
+  (pythonic-activate pyvenv-virtual-env)
+  )
 
 (defun my-pipenv-activate ()
   "switch python virtualenvironment and restart anaconda server"
   (interactive)
   (call-interactively 'pyvenv-activate)
-  (setq python-shell-virtualenv-path pyvenv-virtual-env))
+  ;; (setq python-shell-virtualenv-path pyvenv-virtual-env)
+  (pythonic-activate pyvenv-virtual-env)
+  )
 
 (defun my-pipenv-deactivate ()
   "deactivate pyvenv & anaconda virtual enironment"
