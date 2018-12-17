@@ -5,12 +5,12 @@
 ;; ------ emacs lisp mode -----------------------------------------------------
 ;; fix the problem of parsing tons of .el files when typing
 ;; https://github.com/company-mode/company-mode/issues/525
-(defun semantic-completion-advice (adviced-f &rest r)
-  "Check if POINT it's inside a string or comment before calling semantic-*"
-  (if (or (inside-string-q) (inside-comment-q))
-      (not (message "Oleeee! do not call function, we're inside a string or comment!"))
-    (apply adviced-f r)))
-(advice-add 'semantic-analyze-completion-at-point-function :around #'semantic-completion-advice)
+;; (defun semantic-completion-advice (adviced-f &rest r)
+;;   "Check if POINT it's inside a string or comment before calling semantic-*"
+;;   (if (or (inside-string-q) (inside-comment-q))
+;;       (not (message "Oleeee! do not call function, we're inside a string or comment!"))
+;;     (apply adviced-f r)))
+;; (advice-add 'semantic-analyze-completion-at-point-function :around #'semantic-completion-advice)
 
 
 ;; ------ ranger mode ---------------------------------------------------------
