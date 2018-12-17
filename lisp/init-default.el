@@ -47,6 +47,11 @@
 (display-time-mode 1)                        ; show time in mode line on startup
 
 
+;; ------ company mode --------------------------------------------------------
+;; use M-number to choose the candidates
+(setq company-show-numbers t)
+
+
 ;; ------ evil mode -----------------------------------------------------------
 ;; set fd to escape evil mode in 0.3
 (setq-default evil-escape-delay 0.3)
