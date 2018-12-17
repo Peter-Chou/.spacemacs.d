@@ -83,15 +83,17 @@ This function should only modify configuration layer settings."
      ivy
      ranger
      multiple-cursors
-     semantic
+     ;; semantic
      imenu-list
      evil-commentary
      ;; neotree
      (auto-completion :variables
                    auto-completion-return-key-behavior 'complete
                    auto-completion-tab-key-behavior 'complete
-                   ;; auto-completion-idle-delay 0.1
                    auto-completion-enable-snippets-in-popup t
+                   auto-completion-complete-with-key-sequence nil
+                   auto-completion-complete-with-key-sequence-delay 0.1
+                   auto-completion-idle-delay 0.01
                    auto-completion-enable-sort-by-usage t
                    auto-completion-enable-help-tooltip t
                    :disabled-for org markdown)
