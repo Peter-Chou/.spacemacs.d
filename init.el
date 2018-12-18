@@ -292,7 +292,7 @@ It should only modify the values of Spacemacs settings."
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(
                                ;; "Droid Sans Mono Awesome"
-                               "monaco"
+                               "YaHei Monaco Hybird"
                                :size 17.5
                                :weight normal
                                :width normal

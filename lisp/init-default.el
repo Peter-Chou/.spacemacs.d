@@ -62,7 +62,7 @@
 (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute))
 
 
-;; ------ evil mode -----------------------------------------------------------
+;; ------ ranger mode ---------------------------------------------------------
 ;; show dotfiles at ranger startup
 (setq ranger-show-hidden t)
 
