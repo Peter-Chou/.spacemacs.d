@@ -38,7 +38,7 @@
 (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
 ;; show time on powerline
-;; ;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
+;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
 (setq display-time-24hr-format t)
 (setq display-time-format "%H:%M:%S")        ; add seconds
 (setq display-time-interval 1)               ; update every second
@@ -60,6 +60,17 @@
 (with-eval-after-load 'evil-surround
 (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
 (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute))
+
+
+;; ------ evil mode -----------------------------------------------------------
+;; show dotfiles at ranger startup
+(setq ranger-show-hidden t)
+
+;; ignore certain files when moving over them
+(setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
+
+;; set the max files size (in MB)
+(setq ranger-max-preview-size 10)
 
 
 ;; ------ avy mode ------------------------------------------------------------
