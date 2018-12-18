@@ -32,10 +32,6 @@
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
 
-;; set orignal evil-surrounding keybinding
-(evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
-(evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
-
 
 ;; ------ company mode --------------------------------------------------------
 ;; use tab -> select completion, C-n -> select next, C-p -> select previous
@@ -66,6 +62,7 @@
     "ck" 'my-quit-subjob
     "sk" 'my-quit-interactive-subjob)
 
+  ;; use C-/ to show candidates in Helm or Ivy (for fuzzy searching)
   (define-key anaconda-mode-map (kbd "C-M-i") #'company-complete)
   )
 

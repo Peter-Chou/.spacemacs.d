@@ -56,6 +56,16 @@
 ;; set fd to escape evil mode in 0.3
 (setq-default evil-escape-delay 0.3)
 
+;; key binding as vim-surround
+(with-eval-after-load 'evil-surround
+(evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
+(evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute))
+
+
+;; ------ avy mode ------------------------------------------------------------
+;; instant start avy match
+(setq avy-timeout-seconds 0.0)
+
 
 ;; ------ flycheck mode -------------------------------------------------------
 ;;set up fly-check to ignore the E501 error
@@ -102,15 +112,16 @@
 (add-hook 'python-mode-hook
           (lambda ()
             (require 'py-autopep8)
-            (setq indent-tabs-mode nil
-                  tab-width 2
-                  ;; E121 Fix indentation to be a multiple of four
-                  ;; E402 Fix module level import not at top of file
-                  ;; E401 Put imports on separate lines
-                  py-autopep8-options
-                  '("--max-line-length=80" "--indent-size=2"
-                    "--ignore=E121" "--ignore=E402" "--ignore=E401"))
-            ))
+            (setq indent-tabs-mode nil)
+            (setq tab-width 2)
+            (setq python-indent-offset 2)
+            ;; E121 Fix indentation to be a multiple of four
+            ;; E402 Fix module level import not at top of file
+            ;; E401 Put imports on separate lines
+            (setq py-autopep8-options '("--max-line-length=80" "--indent-size=2"
+                              "--ignore=E121" "--ignore=E402" "--ignore=E401"))
+            )
+          )
 ;; activate autopep8 on save
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
