@@ -97,6 +97,7 @@
 ;; ------ fci mode ------------------------------------------------------------
 ;; set color for fci rule
 (setq fci-rule-color "#FFA631")
+(setq fci-rule-use-dashes t)
 ;; activate fci-mode when in programming mode
 (add-hook 'prog-mode-hook (lambda ()
                             (fci-mode 1)
@@ -108,12 +109,12 @@
 (require 'highlight-indent-guides)
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (setq highlight-indent-guides-method 'character)
-;; , ⋮, ┆, ┊, ┋, ┇, ⋮, ┆, ┊, ┋, ┇
-(setq highlight-indent-guides-character ?\┊)
+;; , ⋮, ┆, ┊, ┋, ┇
+(setq highlight-indent-guides-character ?\┋)
 (setq highlight-indent-guides-responsive 'top)
 (setq highlight-indent-guides-auto-enabled nil)
-(set-face-foreground 'highlight-indent-guides-character-face "dimgray")
-(set-face-foreground 'highlight-indent-guides-top-character-face "#FF0000")
+(set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
+(set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10")
 (setq highlight-indent-guides-auto-character-face-perc 10)
 (setq highlight-indent-guides-auto-top-character-face-perc 20)
 
