@@ -119,6 +119,11 @@
 (setq highlight-indent-guides-auto-top-character-face-perc 20)
 
 
+;; ------ treemacs mode -------------------------------------------------------
+(setq treemacs-silent-refresh t)
+(setq treemacs-silent-filewatch t)
+
+
 ;; ------ python mode ---------------------------------------------------------
 ;; set two space indent
 (add-hook 'python-mode-hook
