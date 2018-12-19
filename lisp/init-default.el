@@ -78,6 +78,11 @@
 (setq avy-timeout-seconds 0.0)
 
 
+;; ------ flyspell mode ------------------------------------------------------------
+;; set default spell checker to aspell
+(setq ispell-program-name "aspell")
+
+
 ;; ------ whitespace mode -------------------------------------------------------
 ;; set max width = 160
 (setq-default whitespace-line-column 160)

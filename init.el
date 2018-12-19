@@ -111,12 +111,14 @@ This function should only modify configuration layer settings."
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
      (org :variables
-          org-want-todo-bindings t)
+          org-want-todo-bindings t
+          org-projectile-file "TODO.org"
+          )
      (syntax-checking :variables
                       syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
+     (spell-checking :variables spell-checking-enable-by-default nil)
      theming
-     ;; spell-checking
      ;; version-control
      )
 
