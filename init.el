@@ -139,6 +139,7 @@ This function should only modify configuration layer settings."
                                       all-the-icons-ivy
                                       all-the-icons-dired
                                       darktooth-theme
+                                      solarized-theme
                                       highlight-indent-guides
                                       )
 
@@ -272,7 +273,8 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          darktooth
-                         leuven
+                         solarized-light
+                         ;; leuven
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
@@ -573,7 +575,6 @@ before packages are loaded."
   (require 'init-fix)
   (require 'init-function)
   (require 'init-msys2-shell)
-  ;; (require 'init-cygwin-shell)
   (require 'init-misc)
   (require 'init-default)
   (require 'my-org-config)
