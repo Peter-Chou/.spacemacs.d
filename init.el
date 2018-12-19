@@ -291,8 +291,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(
-                               ;; "Droid Sans Mono Awesome"
-                               "YaHei Monaco Hybird"
+                               "Monaco"
                                :size 17.5
                                :weight normal
                                :width normal
@@ -575,6 +574,7 @@ before packages are loaded."
   ;; (require 'init-cygwin-shell)
   (require 'init-misc)
   (require 'init-default)
+  (require 'my-org-config)
 
   ;; sever started by spacemacs function seems to fail from time to time
   (server-start)
