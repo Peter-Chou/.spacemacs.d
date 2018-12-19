@@ -78,11 +78,6 @@
 (setq avy-timeout-seconds 0.0)
 
 
-;; ------ flycheck mode -------------------------------------------------------
-;;set up fly-check to ignore the E501 error
-(setq-default flycheck-flake8-maximum-line-length 160)
-
-
 ;; ------ whitespace mode -------------------------------------------------------
 ;; set max width = 160
 (setq-default whitespace-line-column 160)
