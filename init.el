@@ -139,7 +139,7 @@ This function should only modify configuration layer settings."
                                       all-the-icons-ivy
                                       all-the-icons-dired
                                       darktooth-theme
-                                      solarized-theme
+                                      gruvbox-theme
                                       highlight-indent-guides
                                       )
 
@@ -273,7 +273,7 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          darktooth
-                         solarized-light
+                         gruvbox-light-soft
                          ;; leuven
                          ;; spacemacs-dark
                          ;; spacemacs-light
