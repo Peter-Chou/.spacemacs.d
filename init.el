@@ -58,11 +58,11 @@ This function should only modify configuration layer settings."
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
             c-c++-lsp-sem-highlight-method 'overlay
-            c-c++-enable-clang-format-on-save t
             ;; c-c++-lsp-sem-highlight-method 'font-lock
             ;; c-c++-lsp-sem-highlight-rainbow t
-            ;; c-c++-enable-clang-support t
+            c-c++-enable-clang-format-on-save t
             )
+
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      ;; (scala :variables
@@ -78,8 +78,8 @@ This function should only modify configuration layer settings."
             shell-default-width 50)
      (treemacs :variables
                treemacs-use-follow-mode t
-               treemacs-use-filewatch-mode t
-               )
+               treemacs-use-filewatch-mode t)
+
      ivy
      ranger
      multiple-cursors
@@ -112,8 +112,8 @@ This function should only modify configuration layer settings."
               ibuffer-group-buffers-by 'projects)
      (org :variables
           org-want-todo-bindings t
-          org-projectile-file "TODO.org"
-          )
+          org-projectile-file "TODO.org")
+
      (syntax-checking :variables
                       syntax-checking-enable-by-default nil
                       syntax-checking-enable-tooltips nil)
@@ -140,8 +140,8 @@ This function should only modify configuration layer settings."
                                       all-the-icons-dired
                                       darktooth-theme
                                       gruvbox-theme
-                                      highlight-indent-guides
-                                      )
+                                      highlight-indent-guides)
+
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -163,7 +163,8 @@ This function should only modify configuration layer settings."
    ;; installs only the used packages but won't delete unused ones. `all'
    ;; installs *all* packages supported by Spacemacs and never uninstalls them.
    ;; (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+   dotspacemacs-install-packages 'used-only)
+  )
 
 (defun dotspacemacs/init ()
   "Initialization:
@@ -272,12 +273,14 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         gruvbox-light-hard
                          darktooth
-                         gruvbox-light-soft
-                         ;; leuven
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
+
+
+
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -516,7 +519,8 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs nil)
+  )
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -524,7 +528,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -535,12 +540,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq configuration-layer-elpa-archives
     '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
       ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-      ))
+      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
   (add-to-list 'load-path "~/.spacemacs.d/lisp/")
 
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+
 
   (setq theming-modifications
         '((darktooth
@@ -564,6 +569,7 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   )
 
+
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
 This function is called at the very end of Spacemacs startup, after layer
@@ -586,9 +592,10 @@ before packages are loaded."
 
   )
 
+
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-)
+ )
