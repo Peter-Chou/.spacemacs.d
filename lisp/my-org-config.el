@@ -1,5 +1,8 @@
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
+
 (with-eval-after-load 'org
   (setq org-startup-folded 'content)
+
   )
 
 ;; add project's TODO files to the agenda automatically
