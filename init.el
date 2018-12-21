@@ -51,13 +51,14 @@ This function should only modify configuration layer settings."
              python-backend 'anaconda
              python-test-runner 'pytest
              python-fill-column 80
+             python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
-            c-c++-lsp-sem-highlight-method 'overlay
+            ;; c-c++-lsp-sem-highlight-method 'overlay
             ;; c-c++-lsp-sem-highlight-method 'font-lock
             ;; c-c++-lsp-sem-highlight-rainbow t
             c-c++-enable-clang-format-on-save t
@@ -65,12 +66,6 @@ This function should only modify configuration layer settings."
 
      (cmake :variables
             cmake-enable-cmake-ide-support t)
-     ;; (scala :variables
-     ;; 	 scala-indent:use-javadoc-style t
-     ;; 	 scala-enable-eldoc t
-     ;; 	 scala-auto-insert-asterisk-in-comments t
-     ;;		 scala-auto-start-ensime t
-     ;; )
      (shell :variables
             shell-default-shell 'shell
             ;; shell-default-shell 'eshell
@@ -95,7 +90,7 @@ This function should only modify configuration layer settings."
                    auto-completion-complete-with-key-sequence-delay 0.1
                    auto-completion-idle-delay 0.3
                    auto-completion-enable-sort-by-usage t
-                   auto-completion-enable-help-tooltip t
+                   ;; auto-completion-enable-help-tooltip t
                    :disabled-for org markdown)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
@@ -132,7 +127,6 @@ This function should only modify configuration layer settings."
                                       dash
                                       s
                                       beacon
-                                      py-autopep8
                                       default-text-scale
                                       all-the-icons
                                       all-the-icons-ivy
@@ -299,8 +293,9 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(
-                               "Monaco"
-                               :size 17.5
+                               ;; "Monaco"
+                               "Fira Code Retina"
+                               :size 18.5
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)

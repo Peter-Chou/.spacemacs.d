@@ -45,7 +45,7 @@
 ;; fix the delay when showing text in chinese
 (dolist (charset '(kana han cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font) charset
-                    (font-spec :family "Microsoft Yahei" :size 20)))
+                    (font-spec :family "Microsoft Yahei" :size 18.5)))
 
 
 ;; ------ python mode ---------------------------------------------------------
