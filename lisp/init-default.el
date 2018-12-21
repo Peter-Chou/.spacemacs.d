@@ -92,14 +92,12 @@
 (add-hook 'electric-operator-mode-hook (lambda ()
                             (electric-operator-add-rules-for-mode 'c++-mode
                                                                   (cons "*" nil)
-                                                                  (cons "&" nil)
-                                                                  )
+                                                                  (cons "&" nil))
 
-                            (electric-operator-add-rules-for-mode 'c++-mode
-                                                                  (cons "*" nil)
-                                                                  (cons "&" nil)
-                                                                  )
-                            ))
+                            (electric-operator-add-rules-for-mode 'c-mode
+                                                                  (cons "*" nil))
+                            )
+          )
 
 
 ;; ------ smart semicolon mode -----------------------------------------------
@@ -156,19 +154,11 @@
 ;; set two space indent
 (add-hook 'python-mode-hook
           (lambda ()
-            (require 'py-autopep8)
             (setq indent-tabs-mode nil)
             (setq tab-width 2)
             (setq python-indent-offset 2)
-            ;; E121 Fix indentation to be a multiple of four
-            ;; E402 Fix module level import not at top of file
-            ;; E401 Put imports on separate lines
-            (setq py-autopep8-options '("--max-line-length=80" "--indent-size=2"
-                              "--ignore=E121" "--ignore=E402" "--ignore=E401"))
             )
           )
-;; activate autopep8 on save
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 
 (provide 'init-default)
