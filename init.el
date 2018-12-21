@@ -119,7 +119,6 @@ This function should only modify configuration layer settings."
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
      theming
-     ;; version-control
      )
 
    ;; List of additional packages that will be installed without being
@@ -140,6 +139,8 @@ This function should only modify configuration layer settings."
                                       all-the-icons-dired
                                       darktooth-theme
                                       gruvbox-theme
+                                      electric-operator
+                                      smart-semicolon
                                       highlight-indent-guides)
 
 

@@ -37,14 +37,20 @@
       (linum-mode -1)))
 (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
+
+;; ------ display-time mode --------------------------------------------------------
 ;; show time on powerline
-;; copy from https://github.com/syl20bnr/spacemacs/issues/9458
 (setq display-time-24hr-format t)
-(setq display-time-format "%H:%M:%S")        ; add seconds
-(setq display-time-interval 1)               ; update every second
-(setq display-time-default-load-average nil) ; don't show load average
-(setq display-time-mail-string "")           ; don't show mail
-(display-time-mode 1)                        ; show time in mode line on startup
+(setq display-time-day-and-date t)
+(setq display-time-format "%m.%d %a %H:%M:%S")
+;; update every second
+(setq display-time-interval 1)
+;; don't show load average
+(setq display-time-default-load-average nil)
+;; don't show mail
+(setq display-time-mail-string "")
+;; show time in mode line on startup
+(display-time-mode 1)
 
 
 ;; ------ company mode --------------------------------------------------------
@@ -78,7 +84,29 @@
 (setq avy-timeout-seconds 0.0)
 
 
-;; ------ flyspell mode ------------------------------------------------------------
+;; ------ electric-operator mode -----------------------------------------------
+(add-hook 'python-mode-hook #'electric-operator-mode)
+(add-hook 'c-mode-common-hook #'electric-operator-mode)
+
+;; ignore *, & operator in c/c++ mode
+(add-hook 'electric-operator-mode-hook (lambda ()
+                            (electric-operator-add-rules-for-mode 'c++-mode
+                                                                  (cons "*" nil)
+                                                                  (cons "&" nil)
+                                                                  )
+
+                            (electric-operator-add-rules-for-mode 'c++-mode
+                                                                  (cons "*" nil)
+                                                                  (cons "&" nil)
+                                                                  )
+                            ))
+
+
+;; ------ smart semicolon mode -----------------------------------------------
+(add-hook 'c-mode-common-hook #'smart-semicolon-mode)
+
+
+;; ------ flyspell mode -------------------------------------------------------
 ;; set default spell checker to aspell
 (setq ispell-program-name "aspell")
 
