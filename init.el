@@ -573,18 +573,23 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (require 'init-binding)
   (require 'init-fix)
   (require 'init-function)
   (require 'init-msys2-shell)
   (require 'init-misc)
-  (require 'init-default)
-  (require 'my-org-config)
+  (require 'fira-code-symbol)
 
   ;; sever started by spacemacs function seems to fail from time to time
   (server-start)
 
+  ;; load custom-set-variables & custom-set-faces in custom file
   (load-file custom-file)
+
+  ;; *-config.el file must be loaded after init-*.el files
+  ;; otherwise they wouldn't work properly
+  (require 'my-org-config)
+  (require 'my-default-config)
+  (require 'my-keybinding-config)
 
   )
 
