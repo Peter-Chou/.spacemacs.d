@@ -114,6 +114,19 @@
 (setq-default whitespace-line-column 160)
 
 
+;; ------ prettify mode -------------------------------------------------------
+;; remap lamda to λ in emacs-lisp mode
+(defun my-pretty-lambda ()
+  "make some word or string show as pretty Unicode symbols"
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955)  ;; λ
+          ))
+  (prettify-symbols-mode))
+;; activate prettify mode for lambda symbol just in emacs lisp mode
+(add-hook 'emacs-lisp-mode-hook 'my-pretty-lambda)
+
+
 ;; ------ dired mode ----------------------------------------------------------
 ;; always take recursive action without further permission
 (setq dired-recursive-deletes 'always)
