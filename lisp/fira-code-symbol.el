@@ -1,6 +1,4 @@
 ;;; Fira code
-;; to let fira code symbols works in emacs, you have to install the fira code Symbol
-;; https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip
 ;; font lock mode is always local to a particular buffer
 ;; so needs some modifications to work in all buffers
 
@@ -133,11 +131,12 @@
 (defvar peter--fira-code-symbol-toggle-flag -1)
 
 (defun peter/trigger-fira-code-symbol ()
+  "add fira code symbol to current buffer's font lock mode"
   (setq-local peter--fira-code-symbol-toggle-flag 1)
   (font-lock-add-keywords nil fira-code-symbol-font-lock-keywords-alist)
+  (font-lock-fontify-buffer)
   )
 
-(add-hook 'emacs-lisp-mode-hook #'peter/trigger-fira-code-symbol)
 
 (defun peter/fira-code-symbol-enable ()
   "Enable Fira Code ligatures in all writeable buffers."
@@ -147,8 +146,7 @@
               (with-current-buffer buffer
                 (setq-local peter--fira-code-symbol-toggle-flag 1)
                 (font-lock-add-keywords nil fira-code-symbol-font-lock-keywords-alist)
-                (font-lock-fontify-buffer)
-                )
+                (font-lock-fontify-buffer))
             (buffer-read-only nil)))
         (buffer-list))
   )
@@ -156,17 +154,12 @@
 (defun peter/fira-code-symbol-disable ()
   "Disable Fira Code ligatures in all writeable buffers."
   (interactive)
-  ;; (font-lock-fontify-buffer)
-  ;; (let ((current-prefix-arg 2))
-  ;;   (font-lock-mode)
-  ;;   )
   (mapc (lambda (buffer)
           (condition-case nil
               (with-current-buffer buffer
                 (setq-local peter--fira-code-symbol-toggle-flag -1)
                 (font-lock-remove-keywords nil fira-code-symbol-font-lock-keywords-alist)
-                (font-lock-fontify-buffer)
-                )
+                (font-lock-fontify-buffer))
             (buffer-read-only nil)))
         (buffer-list))
   )
@@ -179,9 +172,8 @@
     (peter/fira-code-symbol-enable))
   )
 
-;; (add-hook 'prog-mode-hook #'peter/fira-code-symbol-enable)
+;; default enable fira code symbol in prog mode
+(add-hook 'prog-mode-hook 'peter/trigger-fira-code-symbol)
 
 
-(provide 'fira-code)
-
-!=
+(provide 'fira-code-symbol)
