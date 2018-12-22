@@ -24,9 +24,6 @@
 (spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
 (spacemacs/set-leader-keys "oso" 'open-mintty-terminal)
 
-;; SPC-o-t family binding
-(spacemacs/declare-prefix "ot" "toggle")
-
 
 ;; ------ evil mode -----------------------------------------------------------
 ;; emacs keybinding
