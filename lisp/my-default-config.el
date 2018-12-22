@@ -115,16 +115,17 @@
 
 
 ;; ------ prettify mode -------------------------------------------------------
-;; remap lamda to λ in emacs-lisp mode
-(defun my-pretty-lambda ()
-  "make some word or string show as pretty Unicode symbols"
-  (setq prettify-symbols-alist
-        '(
-          ("lambda" . 955)  ;; λ
-          ))
-  (prettify-symbols-mode))
-;; activate prettify mode for lambda symbol just in emacs lisp mode
-(add-hook 'emacs-lisp-mode-hook 'my-pretty-lambda)
+(font-lock-add-keywords 'emacs-lisp-mode
+                        '(("(\\(lambda\\)\\>" (0 (prog1 ()
+                                                   (compose-region (match-beginning 1)
+                                                                   (match-end 1)
+                                                                   ?λ))))))
+
+
+;; ------ fira code symbol mode -----------------------------------------------
+;; activate global fira code symbol mode if fira-code-symbol is required in init.el
+(if (fboundp 'global-fira-code-symbol-mode)
+    (global-fira-code-symbol-mode 1))
 
 
 ;; ------ dired mode ----------------------------------------------------------
@@ -174,4 +175,4 @@
           )
 
 
-(provide 'init-default)
+(provide 'my-default-config)

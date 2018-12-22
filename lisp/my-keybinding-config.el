@@ -24,6 +24,12 @@
 (spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
 (spacemacs/set-leader-keys "oso" 'open-mintty-terminal)
 
+;; SPC-o-t family binding
+(spacemacs/declare-prefix "ot" "toggle")
+;; set spc-o-t-s to toggle on/off fira code symbol
+(if (fboundp 'global-fira-code-symbol-mode)
+    (spacemacs/set-leader-keys "ots" 'global-fira-code-symbol-mode))
+
 
 ;; ------ evil mode -----------------------------------------------------------
 ;; emacs keybinding
@@ -67,4 +73,4 @@
   )
 
 
-  (provide 'init-binding)
+(provide 'my-keybinding-config)
