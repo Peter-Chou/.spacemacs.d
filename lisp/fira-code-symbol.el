@@ -172,6 +172,9 @@
     (peter/fira-code-symbol-enable))
   )
 
+;; set SPC-o-t-s to toggle on / off fira code symbol
+(spacemacs/set-leader-keys "ots" 'peter/toggle-fira-code-symbol)
+
 ;; default enable fira code symbol in prog mode
 (add-hook 'prog-mode-hook 'peter/trigger-fira-code-symbol)
 
