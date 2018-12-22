@@ -580,6 +580,9 @@ before packages are loaded."
   (require 'init-misc)
   (require 'init-default)
   (require 'my-org-config)
+  ;; you have to install the fira code Symbol to make it works in emacs
+  ;; https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip
+  (require 'fira-code-symbol)
 
   ;; sever started by spacemacs function seems to fail from time to time
   (server-start)
