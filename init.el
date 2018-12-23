@@ -133,6 +133,7 @@ This function should only modify configuration layer settings."
                                       all-the-icons-dired
                                       darktooth-theme
                                       gruvbox-theme
+                                      evil-vimish-fold
                                       electric-operator
                                       smart-semicolon
                                       highlight-indent-guides)
@@ -506,7 +507,7 @@ It should only modify the values of Spacemacs settings."
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'trailing
+   dotspacemacs-whitespace-cleanup nil
 
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
@@ -592,7 +593,6 @@ before packages are loaded."
   (require 'my-keybinding-config)
 
   )
-
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
