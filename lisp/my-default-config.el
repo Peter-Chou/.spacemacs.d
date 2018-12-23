@@ -127,7 +127,7 @@
 ;; (if (fboundp 'global-fira-code-symbol-mode)
 ;;     (global-fira-code-symbol-mode 1))
 
-(add-hook 'python-mode-hook 'fira-code-symbol-hook)
+;; (add-hook 'python-mode-hook 'fira-code-symbol-hook)
 ;; (add-hook 'emacs-lisp-mode-hook 'fira-code-symbol-hook)
 ;; (remove-hook 'python-mode-hook 'fira-code-symbol-hook)
 ;; (add-hook 'prog-mode-hook 'fira-code-symbol-hook)

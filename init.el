@@ -128,9 +128,9 @@ This function should only modify configuration layer settings."
                                       s
                                       beacon
                                       default-text-scale
-                                      all-the-icons
-                                      all-the-icons-ivy
-                                      all-the-icons-dired
+                                      ;; all-the-icons
+                                      ;; all-the-icons-ivy
+                                      ;; all-the-icons-dired
                                       darktooth-theme
                                       gruvbox-theme
                                       evil-vimish-fold

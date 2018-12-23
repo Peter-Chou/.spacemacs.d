@@ -29,3 +29,6 @@ alias ec="emacsclient -n -c"
 if you close your Emacs frame, you can recall the Emacs by typing ~ec~ in your terminal.
 
 you can open a file (e.g. foo.py in your current directory) by typing ~e foo.py~ in your terminal.
+** TODO check-list [0%]
+   - [ ] check the function
+   - [ ] yes i know
