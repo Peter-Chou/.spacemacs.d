@@ -1,9 +1,8 @@
-;;; Fira code
+;;; inspired from https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632
 ;; This works when using emacs --daemon + emacsclient
 (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
 ;; This works when using emacs without server/client
 (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
-;; I haven't found one statement that makes both of the above situations work, so I use both for now
 
 (defconst fira-code-symbol-font-lock-keywords-alist
         '(
@@ -16,7 +15,7 @@
           ("\\\\" . #Xe106)
           ("\\\\\\" . #Xe107)
           ("{-" . #Xe108)
-          ("[]" . #Xe109)
+          ;; ("[]" . #Xe109)
           ("::" . #Xe10a)
           (":::" . #Xe10b)
           (":=" . #Xe10c)
@@ -118,16 +117,17 @@
           ("x" . #Xe16b)
           (":" . #Xe16c)
           ("+" . #Xe16d)
-          ("*" . #Xe16f)
-          ))
+          ("*" . #Xe16f)))
 
-(defun fira-code-symbol-mode--enable ()
+(defvar fira-code-symbol-mode--old-prettify-alist)
+
+(defun turn-on-fira-code-symbol-mode ()
   "Enable Fira Code ligatures in current buffer."
   (setq-local fira-code-symbol-mode--old-prettify-alist prettify-symbols-alist)
   (setq-local prettify-symbols-alist (append fira-code-symbol-font-lock-keywords-alist fira-code-symbol-mode--old-prettify-alist))
-  (prettify-symbols-mode t))
+  (prettify-symbols-mode 1))
 
-(defun fira-code-symbol-mode--disable ()
+(defun turn-off-fira-code-symbol-mode ()
   "Disable Fira Code ligatures in current buffer."
   (setq-local prettify-symbols-alist fira-code-symbol-mode--old-prettify-alist)
   (prettify-symbols-mode -1))
@@ -137,12 +137,48 @@
   :lighter " Fira Code Symbol"
   (setq-local prettify-symbols-unprettify-at-point 'right-edge)
   (if fira-code-symbol-mode
-      (fira-code-symbol-mode--enable)
-    (fira-code-symbol-mode--disable)))
+      (turn-on-fira-code-symbol-mode)
+    (turn-off-fira-code-symbol-mode)))
 
 (define-globalized-minor-mode global-fira-code-symbol-mode fira-code-symbol-mode
-  (lambda () (fira-code-symbol-mode 1))
-  )
+  (lambda () (fira-code-symbol-mode 1)))
+
+(defun fira-code-symbol-hook ()
+  "enable fira code symbol in major mode"
+  (fira-code-symbol-mode 1))
+
+(defun remove-fira-code-symbol-from-major-mode ()
+  "disable fira code symbol in current major mode & remove hook in major-mode-hook"
+  (remove-hook (intern (format "%s-hook" major-mode)) 'fira-code-symbol-hook))
+
+(defun add-fira-code-symbol-from-major-mode ()
+  "enable fira code symbol in current major mode & remove hook in major-mode-hook"
+  (add-hook (intern (format "%s-hook" major-mode)) 'fira-code-symbol-hook))
+
+(defun disable-fira-code-symbol-in-major-mode ()
+  "disable in all buffers opened in current major mode & remove hook from current major mode "
+  (interactive)
+  (let ((current-buffer-major-mode major-mode))
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        (if (and (eq major-mode current-buffer-major-mode) fira-code-symbol-mode)
+            (fira-code-symbol-mode -1)
+          )
+          )))
+  (remove-fira-code-symbol-from-major-mode)
+  (remove-hook 'prog-mode-hook 'fira-code-symbol-hook))
+
+(defun enable-fira-code-symbol-in-major-mode ()
+  "enable in all buffers opened in current major mode & add hook to current major mode "
+  (interactive)
+  (let ((current-buffer-major-mode major-mode))
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        (if (and (eq major-mode current-buffer-major-mode) (not (eq fira-code-symbol-mode 1)))
+            (fira-code-symbol-mode 1)
+          )
+        )))
+  (add-fira-code-symbol-from-major-mode))
 
 
 (provide 'fira-code-symbol)
