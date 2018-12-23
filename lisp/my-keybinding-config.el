@@ -11,6 +11,9 @@
 (evil-leader/set-key "qq" 'spacemacs/frame-killer)
 (evil-leader/set-key "qh" 'suspend-frame)
 
+;; append gitignore pattern from https://github.com/github/gitignore
+(evil-leader/set-key "gfa" 'gitignore-templates-insert)
+
 ;; ------ spacemacs SPC-o -----------------------------------------------------
 ;; SPC-o-d family binding
 (spacemacs/declare-prefix "od" "doc-EOF")
