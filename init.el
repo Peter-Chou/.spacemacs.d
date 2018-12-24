@@ -127,11 +127,11 @@ This function should only modify configuration layer settings."
                                       s
                                       beacon
                                       default-text-scale
-                                      ;; all-the-icons
-                                      ;; all-the-icons-ivy
-                                      ;; all-the-icons-dired
-                                      darktooth-theme
+                                      all-the-icons
+                                      all-the-icons-ivy
+                                      all-the-icons-dired
                                       gruvbox-theme
+                                      doom-themes
                                       evil-vimish-fold
                                       electric-operator
                                       smart-semicolon
@@ -268,8 +268,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-peacock
+                         doom-molokai
                          gruvbox-light-hard
-                         darktooth
+                         ;; darktooth
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
