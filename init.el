@@ -58,9 +58,9 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
+            c-c++-lsp-sem-highlight-method 'font-lock
             ;; c-c++-lsp-sem-highlight-method 'overlay
-            ;; c-c++-lsp-sem-highlight-method 'font-lock
-            ;; c-c++-lsp-sem-highlight-rainbow t
+            c-c++-lsp-sem-highlight-rainbow t
             c-c++-enable-clang-format-on-save t
             )
 
@@ -81,7 +81,6 @@ This function should only modify configuration layer settings."
      ;; semantic
      imenu-list
      evil-commentary
-     ;; neotree
      (auto-completion :variables
                    auto-completion-return-key-behavior 'complete
                    auto-completion-tab-key-behavior 'complete
