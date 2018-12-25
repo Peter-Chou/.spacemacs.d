@@ -4,7 +4,35 @@
 (setq create-lockfiles nil)
 
 ;; toggle off the minor-mode on modeline as default
-(spacemacs/toggle-mode-line-minor-modes-off)
+(cond ((eq (car dotspacemacs-mode-line-theme) 'spacemacs)
+       ;; spacemacs specific configuration
+       (spacemacs/toggle-mode-line-minor-modes-off)
+       )
+      ((eq (car dotspacemacs-mode-line-theme) 'doom)
+       ;; doom specific configuration
+       (setq doom-modeline-lsp nil)
+       (setq doom-modeline-persp-name nil)
+       (setq doom-modeline-github nil)
+       (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+
+       ;; add a customized venv segment
+       (doom-modeline-def-segment python-venv
+         "The current python virtual environment state."
+         (when (eq major-mode 'python-mode)
+           (if (eq python-shell-virtualenv-root nil)
+               ""
+             (propertize
+              (let ((base-dir-name (file-name-nondirectory (substring python-shell-virtualenv-root 0 -1))))
+                (if (< 13 (length base-dir-name))
+                    (format " (%s...)" (substring base-dir-name 0 10))
+                  (format " (%s)" base-dir-name)))
+              'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
+
+       (doom-modeline-def-modeline 'main
+         '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info remote-host buffer-position " " selection-info)
+         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode python-venv process vcs flycheck))
+       )
+      )
 
 ;; revert the buffer automatically when the filed is modified outside emcas
 (global-auto-revert-mode t)
