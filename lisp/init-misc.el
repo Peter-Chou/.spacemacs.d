@@ -14,7 +14,7 @@
 (evil-vimish-fold-mode 1)
 
 ;; activate all-the-icon famliy
-;; (require 'font-lock+)
+(require 'font-lock+)
 (all-the-icons-ivy-setup)
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
