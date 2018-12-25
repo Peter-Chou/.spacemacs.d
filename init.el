@@ -131,6 +131,7 @@ This function should only modify configuration layer settings."
                                       all-the-icons-ivy
                                       all-the-icons-dired
                                       gruvbox-theme
+                                      prettify-greek
                                       doom-themes
                                       evil-vimish-fold
                                       electric-operator
@@ -269,7 +270,7 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          doom-peacock
-                         doom-molokai
+                         ;; doom-molokai
                          gruvbox-light-hard
                          ;; darktooth
                          ;; spacemacs-dark
@@ -286,7 +287,8 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
+   dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.0)
+   ;; dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
