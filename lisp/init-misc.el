@@ -13,6 +13,9 @@
 ;; activate evil vimish fold mode
 (evil-vimish-fold-mode 1)
 
+;; activate fontify-face mode
+(fontify-face-mode)
+
 ;; activate all-the-icon famliy
 (require 'font-lock+)
 (all-the-icons-ivy-setup)
