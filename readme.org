@@ -1,14 +1,17 @@
 #+TITLE: My configurations of spacemacs
 * Quick installation
 ** STEP 1: download Emacs
-checkout[[https://github.com/syl20bnr/spacemacs][ spacemacs github page]] Prerequisites section to download Emacs based on your system
+checkout[[https://github.com/syl20bnr/spacemacs/tree/develop][spacemacs github page]] Prerequisites section to download Emacs based on your system
 ** STEP 2: clone .emacs.d (spacemacs repository)
 follow the instruction in the install section to clone the .emacs.d folder into your home path
 (be sure to download the develop branch of spacemacs repository)
+#+BEGIN_SRC sh
+git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
+#+END_SRC
 ** STEP 3: clone .spacemacs.d (this repository)
 clone this repository into your home path as well.(run the following code in your terminal)
 #+BEGIN_SRC sh
-git clone -b develop https://github.com/Peter-Chou/spacemacs-repository.git ~/.spacemacs.d
+git clone https://github.com/Peter-Chou/spacemacs-repository.git ~/.spacemacs.d
 #+END_SRC
 ** ALMOST THERE: launch Emacs
 Finally, Lauch the emacs for the initial configuration, it will automatically download all the
@@ -29,6 +32,3 @@ alias ec="emacsclient -n -c"
 if you close your Emacs frame, you can recall the Emacs by typing ~ec~ in your terminal.
 
 you can open a file (e.g. foo.py in your current directory) by typing ~e foo.py~ in your terminal.
-** TODO check-list [0%]
-   - [ ] check the function
-   - [ ] yes i know
