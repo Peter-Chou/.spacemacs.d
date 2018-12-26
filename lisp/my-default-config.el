@@ -86,6 +86,11 @@
 (setq company-show-numbers t)
 
 
+;; ------ magit mode --------------------------------------------------------
+;; for ediff just show two windows
+(setq magit-ediff-dwim-show-on-hunks t)
+
+
 ;; ------ evil mode -----------------------------------------------------------
 ;; set fd to escape evil mode in 0.3
 (setq-default evil-escape-delay 0.3)
