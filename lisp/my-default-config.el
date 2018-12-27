@@ -14,6 +14,9 @@
        (setq doom-modeline-persp-name nil)
        (setq doom-modeline-github nil)
        (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+       (setq doom-modeline-major-mode-icon t)
+       (setq doom-modeline-major-mode-color-icon t)
+
 
        ;; add a customized venv segment
        (doom-modeline-def-segment python-venv
@@ -88,7 +91,10 @@
 
 ;; ------ magit mode --------------------------------------------------------
 ;; for ediff just show two windows
-(setq magit-ediff-dwim-show-on-hunks t)
+(setq magit-revert-buffers 'silent
+      magit-diff-refine-hunk t
+      ;; magit-ediff-dwim-show-on-hunks t
+      )
 
 
 ;; ------ evil mode -----------------------------------------------------------
