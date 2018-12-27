@@ -3,6 +3,9 @@
 ;; disable lock files  .#file-name
 (setq create-lockfiles nil)
 
+;; update version control info in modeline
+;; (setq auto-revert-check-vc-info t)
+
 ;; toggle off the minor-mode on modeline as default
 (cond ((eq (car dotspacemacs-mode-line-theme) 'spacemacs)
        ;; spacemacs specific configuration
@@ -14,9 +17,12 @@
        (setq doom-modeline-persp-name nil)
        (setq doom-modeline-github nil)
        (setq doom-modeline-buffer-file-name-style 'relative-from-project)
-       (setq doom-modeline-major-mode-icon t)
-       (setq doom-modeline-major-mode-color-icon t)
+       (setq doom-modeline-icon t)
 
+       ;; set major mode face color
+       (set-face-attribute 'doom-modeline-buffer-major-mode nil :weight 'bold :foreground "#fd780f")
+       ;; set dictory name face color
+       (set-face-attribute 'doom-modeline-buffer-path nil :weight 'bold :foreground "#1da1f2")
 
        ;; add a customized venv segment
        (doom-modeline-def-segment python-venv
@@ -91,10 +97,10 @@
 
 ;; ------ magit mode --------------------------------------------------------
 ;; for ediff just show two windows
-(setq magit-revert-buffers 'silent
-      magit-diff-refine-hunk t
+;; (setq magit-revert-buffers 'silent)
+ (setq magit-diff-refine-hunk t)
+;; (magit-auto-revert-mode 1)
       ;; magit-ediff-dwim-show-on-hunks t
-      )
 
 
 ;; ------ evil mode -----------------------------------------------------------
