@@ -97,11 +97,7 @@ This function should only modify configuration layer settings."
               vinegar-reuse-dired-buffer t)
      (git :variables
           git-magit-status-fullscreen t
-          magit-push-always-verify nil
-          magit-save-repository-buffers 'dontask
-          magit-revert-buffers 'silent
-          magit-refs-show-commit-count 'all
-          magit-revision-show-gravatars nil)
+          )
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
      (org :variables
@@ -131,9 +127,10 @@ This function should only modify configuration layer settings."
                                       all-the-icons-ivy
                                       all-the-icons-dired
                                       gruvbox-theme
-                                      prettify-greek
-                                      doom-themes
+                                      jbeans-theme
+                                      solarized-theme
                                       evil-vimish-fold
+                                      prettify-greek
                                       electric-operator
                                       fontify-face
                                       smart-semicolon
@@ -270,11 +267,10 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         doom-solarized-light
-                         doom-peacock
-                         ;; doom-molokai
+                         jbeans
+                         solarized-light
+                         ;; solarized-dark
                          ;; gruvbox-light-hard
-                         ;; darktooth
                          ;; spacemacs-dark
                          ;; spacemacs-light
                          )
@@ -289,8 +285,8 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.0)
-   ;; dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
+   ;; dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.0)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
