@@ -109,6 +109,7 @@ This function should only modify configuration layer settings."
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
      theming
+     peter-misc
      )
 
    ;; List of additional packages that will be installed without being
@@ -119,20 +120,10 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
-                                      beacon
-                                      default-text-scale
-                                      all-the-icons
-                                      all-the-icons-ivy
-                                      all-the-icons-dired
                                       gruvbox-theme
                                       solarized-theme
                                       darktooth-theme
-                                      evil-vimish-fold
-                                      prettify-greek
-                                      electric-operator
-                                      fontify-face
-                                      smart-semicolon
-                                      highlight-indent-guides)
+                                      )
 
 
    ;; A list of packages that cannot be updated.
@@ -293,7 +284,6 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '(
-                               ;; "Monaco"
                                "Fira Code Retina"
                                :size 18.5
                                :weight normal
@@ -576,7 +566,6 @@ before packages are loaded."
   (require 'init-fix)
   (require 'init-function)
   (require 'init-msys2-shell)
-  (require 'init-misc)
   (require 'fira-code-symbol)
 
   ;; sever started by spacemacs function seems to fail from time to time

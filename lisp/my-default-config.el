@@ -96,6 +96,10 @@
 (setq company-show-numbers t)
 
 
+;; ------ eldoc mode --------------------------------------------------------
+(setq eldoc-idle-delay 0.3)
+
+
 ;; ------ writeroom mode ------------------------------------------------------
 (setq writeroom-width 90)
 (setq writeroom-fullscreen-effect 'maximized)
@@ -135,26 +139,6 @@
 (setq avy-timeout-seconds 0.0)
 
 
-;; ------ electric-operator mode -----------------------------------------------
-(add-hook 'python-mode-hook #'electric-operator-mode)
-(add-hook 'c-mode-common-hook #'electric-operator-mode)
-
-;; ignore *, & operator in c/c++ mode
-(add-hook 'electric-operator-mode-hook (lambda ()
-                            (electric-operator-add-rules-for-mode 'c++-mode
-                                                                  (cons "*" nil)
-                                                                  (cons "&" nil))
-
-                            (electric-operator-add-rules-for-mode 'c-mode
-                                                                  (cons "*" nil))
-                            )
-          )
-
-
-;; ------ smart semicolon mode -----------------------------------------------
-(add-hook 'c-mode-common-hook #'smart-semicolon-mode)
-
-
 ;; ------ flyspell mode -------------------------------------------------------
 ;; set default spell checker to aspell
 (setq ispell-program-name "aspell")
@@ -175,14 +159,7 @@
 
 ;; ------ fira code symbol mode -----------------------------------------------
 ;; activate global fira code symbol mode if fira-code-symbol is required in init.el
-;; (if (fboundp 'global-fira-code-symbol-mode)
-;;     (global-fira-code-symbol-mode 1))
-
-;; (add-hook 'python-mode-hook 'fira-code-symbol-hook)
-;; (add-hook 'emacs-lisp-mode-hook 'fira-code-symbol-hook)
-;; (remove-hook 'python-mode-hook 'fira-code-symbol-hook)
 ;; (add-hook 'prog-mode-hook 'fira-code-symbol-hook)
-;; (remove-hook 'python-mode-hook 'fira-code-symbol-hook)
 
 
 ;; ------ dired mode ----------------------------------------------------------
@@ -200,20 +177,6 @@
                             (fci-mode 1)
                             (fci-update-all-windows t)
                             ))
-
-
-;; ------ hightlight-indent-guides mode ---------------------------------------
-(require 'highlight-indent-guides)
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(setq highlight-indent-guides-method 'character)
-;; , ⋮, ┆, ┊, ┋, ┇
-(setq highlight-indent-guides-character ?\┋)
-(setq highlight-indent-guides-responsive 'top)
-(setq highlight-indent-guides-auto-enabled nil)
-(set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
-(set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10")
-(setq highlight-indent-guides-auto-character-face-perc 10)
-(setq highlight-indent-guides-auto-top-character-face-perc 20)
 
 
 ;; ------ treemacs mode -------------------------------------------------------
