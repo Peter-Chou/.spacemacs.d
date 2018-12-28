@@ -96,6 +96,11 @@
 (setq company-show-numbers t)
 
 
+;; ------ writeroom mode ------------------------------------------------------
+(setq writeroom-width 90)
+(setq writeroom-fullscreen-effect 'maximized)
+
+
 ;; ------ magit mode --------------------------------------------------------
 ;; for ediff just show two windows
 ;; (setq magit-revert-buffers 'silent)
