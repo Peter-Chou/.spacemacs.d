@@ -60,7 +60,7 @@ This function should only modify configuration layer settings."
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
             c-c++-lsp-sem-highlight-method 'font-lock
             ;; c-c++-lsp-sem-highlight-method 'overlay
-            c-c++-lsp-sem-highlight-rainbow t
+            ;; c-c++-lsp-sem-highlight-rainbow t
             c-c++-enable-clang-format-on-save t
             )
 
@@ -119,8 +119,6 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
-                                      dash
-                                      s
                                       beacon
                                       default-text-scale
                                       all-the-icons
@@ -128,6 +126,7 @@ This function should only modify configuration layer settings."
                                       all-the-icons-dired
                                       gruvbox-theme
                                       solarized-theme
+                                      darktooth-theme
                                       evil-vimish-fold
                                       prettify-greek
                                       electric-operator
@@ -141,12 +140,12 @@ This function should only modify configuration layer settings."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
+                                    nlinum
                                     vi-tilde-fringe
                                     firebelly-theme
                                     niflheim-theme
                                     pastels-on-dark-theme
                                     tronesque-theme
-                                    leuven-theme
                                     zonokai-theme)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -267,7 +266,8 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          solarized-light
-                         solarized-dark
+                         darktooth
+                         ;; solarized-dark
                          ;; gruvbox-light-hard
                          ;; spacemacs-dark
                          ;; spacemacs-light
@@ -582,14 +582,14 @@ before packages are loaded."
   ;; sever started by spacemacs function seems to fail from time to time
   (server-start)
 
-  ;; load custom-set-variables & custom-set-faces in custom file
-  (load-file custom-file)
-
   ;; *-config.el file must be loaded after init-*.el files
   ;; otherwise they wouldn't work properly
   (require 'my-org-config)
   (require 'my-default-config)
   (require 'my-keybinding-config)
+
+  ;; load custom-set-variables & custom-set-faces in custom file
+  (load-file custom-file)
 
   )
 
