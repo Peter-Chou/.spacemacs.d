@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (c) 2018 Peter Chou
 ;;
-;; Author:  <Peter-Chou>
+;; Author:  <Peter Chou>
 ;; URL: https://github.com/Peter-Chou/spacemacs-repository
 ;;
 ;; This file is not part of GNU Emacs.
@@ -28,7 +28,6 @@
 (defun peter-misc/init-all-the-icons ()
   (use-package all-the-icons
     :defer t))
-
 
 (defun peter-misc/init-all-the-icons-ivy ()
   (use-package all-the-icons-ivy
