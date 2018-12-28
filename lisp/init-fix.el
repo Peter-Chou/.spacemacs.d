@@ -19,7 +19,7 @@
 (defun my-ranger ()
   (interactive)
   (if golden-ratio-mode
-      (prog
+      (progn
         (golden-ratio-mode -1)
         (ranger)
         (setq golden-ratio-previous-enable t))
@@ -29,7 +29,7 @@
 
 (defun my-quit-ranger ()
   (interactive)
-  (if golden-ratio-previous-enable
+  (if (and (boundp 'golden-ratio-previous-enable) golden-ratio-previous-enable)
       (progn
         (ranger-close)
         (golden-ratio-mode 1))
