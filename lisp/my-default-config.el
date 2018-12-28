@@ -79,7 +79,8 @@
 ;; show time on powerline
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
-(setq display-time-format "%m.%d %a %H:%M:%S")
+(setq display-time-format "%m.%d %a %H:%M")
+;; (setq display-time-format "%m.%d %a %H:%M:%S")
 ;; update every second
 (setq display-time-interval 1)
 ;; don't show load average
