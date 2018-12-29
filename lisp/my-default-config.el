@@ -25,21 +25,21 @@
        (set-face-attribute 'doom-modeline-buffer-path nil :weight 'bold :foreground "#1da1f2")
 
        ;; add a customized venv segment
-       (doom-modeline-def-segment python-venv
+       (doom-modeline-def-segment my-python-venv
          "The current python virtual environment state."
          (when (eq major-mode 'python-mode)
            (if (eq python-shell-virtualenv-root nil)
                ""
              (propertize
               (let ((base-dir-name (file-name-nondirectory (substring python-shell-virtualenv-root 0 -1))))
-                (if (< 13 (length base-dir-name))
-                    (format " (%s...)" (substring base-dir-name 0 10))
+                (if (< 10 (length base-dir-name))
+                    (format " (%s..)" (substring base-dir-name 0 8))
                   (format " (%s)" base-dir-name)))
               'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
 
        (doom-modeline-def-modeline 'main
          '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info remote-host buffer-position " " selection-info)
-         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode python-venv process vcs flycheck))
+         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode my-python-venv process vcs flycheck))
        )
       )
 
@@ -75,7 +75,7 @@
 (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
 
-;; ------ display-time mode --------------------------------------------------------
+;; ------ display-time mode ---------------------------------------------------
 ;; show time on powerline
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
@@ -96,7 +96,11 @@
 (setq company-show-numbers t)
 
 
-;; ------ eldoc mode --------------------------------------------------------
+;; ------ lsp mode ------------------------------------------------------------
+(setq lsp-ui-sideline-enable nil)
+
+
+;; ------ eldoc mode ----------------------------------------------------------
 (setq eldoc-idle-delay 0.3)
 
 
@@ -105,10 +109,13 @@
 (setq writeroom-fullscreen-effect 'maximized)
 
 
-;; ------ magit mode --------------------------------------------------------
+;; ------ magit mode ----------------------------------------------------------
 ;; for ediff just show two windows
 ;; (setq magit-revert-buffers 'silent)
- (setq magit-diff-refine-hunk t)
+(setq magit-diff-refine-hunk t
+      ;; don't display fringe in magit status
+      magit-section-visibility-indicator nil
+      )
 ;; (magit-auto-revert-mode 1)
       ;; magit-ediff-dwim-show-on-hunks t
 
