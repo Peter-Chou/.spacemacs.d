@@ -20,6 +20,14 @@
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
+(defun peter/load-my-layout ()
+  (interactive)
+  (persp-load-state-from-file (concat persp-save-dir "peter")))
+
+(defun peter/save-my-layout ()
+  (interactive)
+  (persp-save-state-to-file (concat persp-save-dir "peter")))
+
 (defun my-clear-shell-buffer ()
   "clear shell buffer"
   (interactive)

@@ -22,6 +22,12 @@
 
 (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
 
+;; SPC-o-l family binding
+(spacemacs/declare-prefix "ol" "layout")
+(spacemacs/set-leader-keys "oll" 'peter/load-my-layout)
+(spacemacs/set-leader-keys "ols" 'peter/save-my-layout)
+
+
 ;; SPC-o-s family binding
 (spacemacs/declare-prefix "os" "shell")
 (spacemacs/set-leader-keys "osc" 'my-clear-shell-buffer)
