@@ -61,9 +61,7 @@ This function should only modify configuration layer settings."
             c-c++-lsp-sem-highlight-method 'font-lock
             ;; c-c++-lsp-sem-highlight-method 'overlay
             ;; c-c++-lsp-sem-highlight-rainbow t
-            c-c++-enable-clang-format-on-save t
-            )
-
+            c-c++-enable-clang-format-on-save t)
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      (shell :variables
@@ -74,7 +72,9 @@ This function should only modify configuration layer settings."
      (treemacs :variables
                treemacs-use-follow-mode t
                treemacs-use-filewatch-mode t)
-
+     (spacemacs-layouts :variables
+                        layouts-enable-autosave nil
+                        layouts-autosave-delay 300)
      ivy
      ranger
      multiple-cursors
@@ -256,8 +256,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         solarized-light
                          darktooth
+                         solarized-light
                          ;; solarized-dark
                          ;; gruvbox-light-hard
                          ;; spacemacs-dark
@@ -544,6 +544,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; utf-8-unix save file only has \n instead of (\r\n in windows)
   ;; (add-to-list 'file-coding-system-alist '("\\.py" . utf-8-unix))
   ;; (set-buffer-file-coding-system 'utf-8-unix)
+  (set-language-environment 'UTF-8)
 
   )
 
