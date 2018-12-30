@@ -16,7 +16,7 @@
     all-the-icons
     all-the-icons-ivy
     beacon
-    ;; company-box
+    company-box
     default-text-scale
     electric-operator
     evil-vimish-fold
@@ -34,8 +34,6 @@
 (defun peter-misc/init-all-the-icons-ivy ()
   (use-package all-the-icons-ivy
     :ensure t
-    :init
-    ;; (require 'font-lock+)
     :config
     (all-the-icons-ivy-setup)))
 
@@ -45,11 +43,11 @@
     :config
     (beacon-mode 1)))
 
-;; (defun peter-misc/init-company-box ()
-;;   (use-package company-box
-;;     :if (display-graphic-p)
-;;     :defer t
-;;     :hook (company-mode . company-box-mode)))
+(defun peter-misc/init-company-box ()
+  (use-package company-box
+    :if (display-graphic-p)
+    :defer t
+    :hook (company-mode . company-box-mode)))
 
 (defun peter-misc/init-default-text-scale ()
   (use-package default-text-scale
@@ -82,15 +80,17 @@
 (defun peter-misc/init-highlight-indent-guides ()
   (use-package highlight-indent-guides
     :defer t
-    :hook ((prog-mode . highlight-indent-guides-mode))
-    (highlight-indent-guides-mode . (lambda ()
-                                      (set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
-                                      (set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10")))
+    :hook ((prog-mode . highlight-indent-guides-mode)
+           (highlight-indent-guides-mode . (lambda ()
+                                             (set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
+                                             (set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10"))))
+    
     :config
     (progn
       (setq highlight-indent-guides-method 'character
       ;; , ⋮, ┆, ┊, ┋, ┇
-       highlight-indent-guides-character ?\┋
+
+       highlight-indent-guides-character ?\┇
        highlight-indent-guides-responsive 'top
        highlight-indent-guides-auto-enabled nil
        highlight-indent-guides-auto-character-face-perc 10
