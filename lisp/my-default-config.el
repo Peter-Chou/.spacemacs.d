@@ -13,11 +13,12 @@
        )
       ((eq (car dotspacemacs-mode-line-theme) 'doom)
        ;; doom specific configuration
-       (setq doom-modeline-lsp nil)
-       (setq doom-modeline-persp-name nil)
-       (setq doom-modeline-github nil)
-       (setq doom-modeline-buffer-file-name-style 'relative-from-project)
-       (setq doom-modeline-icon t)
+       (setq
+        doom-modeline-lsp nil
+        doom-modeline-persp-name nil
+        doom-modeline-github nil
+        doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-icon t)
 
        ;; set major mode face color
        (set-face-attribute 'doom-modeline-buffer-major-mode nil :weight 'bold :foreground "#fd780f")
@@ -50,16 +51,19 @@
 (fset 'evil-visual-update-x-selection 'ignore)
 
 ;; set the appearance of menu bar as arrow shape
-(setq powerline-default-separator 'arrow)
+(setq
+ powerline-default-separator 'arrow)
 
 ;; make new frame fullscreen as default
 ;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
 
 ;; force horizontal split window
-(setq split-width-threshold 120)
+(setq
+ split-width-threshold 120)
 
 ;;Don't ask me when kill process buffer
-(setq kill-buffer-query-functions (remq 'process-kill-buffer-query-function
+(setq
+ kill-buffer-query-functions (remq 'process-kill-buffer-query-function
                                         kill-buffer-query-functions))
 
 ;; if file exceed 500kb, it will be opened in fundamental-mode to speed up the loading
@@ -77,47 +81,54 @@
 
 ;; ------ display-time mode ---------------------------------------------------
 ;; show time on powerline
-(setq display-time-24hr-format t)
-(setq display-time-day-and-date t)
-(setq display-time-format "%m.%d %a %H:%M")
-;; (setq display-time-format "%m.%d %a %H:%M:%S")
-;; update every second
-(setq display-time-interval 1)
-;; don't show load average
-(setq display-time-default-load-average nil)
-;; don't show mail
-(setq display-time-mail-string "")
+(setq
+ display-time-24hr-format t
+ display-time-day-and-date t
+ display-time-format "%m.%d %a %H:%M"
+ ;; (setq display-time-format "%m.%d %a %H:%M:%S")
+ ;; update every second
+ display-time-interval 1
+ ;; don't show load average
+ display-time-default-load-average nil
+ ;; don't show mail
+ display-time-mail-string ""
+ )
 ;; show time in mode line on startup
 (display-time-mode 1)
 
 
 ;; ------ company mode --------------------------------------------------------
 ;; use M-number to choose the candidates
-(setq company-show-numbers t)
+(setq
+ company-show-numbers t)
 
 
 ;; ------ lsp mode ------------------------------------------------------------
-(setq lsp-ui-sideline-enable nil)
+(setq
+ lsp-ui-sideline-enable nil)
 
 
 ;; ------ eldoc mode ----------------------------------------------------------
-(setq eldoc-idle-delay 0.3)
+(setq
+ eldoc-idle-delay 0.3)
 
 
 ;; ------ writeroom mode ------------------------------------------------------
-(setq writeroom-width 90)
-(setq writeroom-fullscreen-effect 'maximized)
+(setq
+ writeroom-width 90
+ writeroom-fullscreen-effect 'maximized
+ )
 
 
 ;; ------ magit mode ----------------------------------------------------------
 ;; for ediff just show two windows
 ;; (setq magit-revert-buffers 'silent)
-(setq magit-diff-refine-hunk t
-      ;; don't display fringe in magit status
-      magit-section-visibility-indicator nil
-      )
+(setq
+ magit-diff-refine-hunk t
+ ;; magit-ediff-dwim-show-on-hunks t
+;; don't display fringe in magit status
+ magit-section-visibility-indicator nil)
 ;; (magit-auto-revert-mode 1)
-      ;; magit-ediff-dwim-show-on-hunks t
 
 
 ;; ------ evil mode -----------------------------------------------------------
@@ -132,28 +143,30 @@
 
 ;; ------ ranger mode ---------------------------------------------------------
 ;; show dotfiles at ranger startup
-(setq ranger-show-hidden t)
-
-;; ignore certain files when moving over them
-(setq ranger-ignored-extensions '("mkv" "iso" "mp4"))
-
-;; set the max files size (in MB)
-(setq ranger-max-preview-size 10)
+(setq
+ ranger-show-hidden t
+ ;; ignore certain files when moving over them
+ ranger-ignored-extensions '("mkv" "iso" "mp4")
+ ;; set the max files size (in MB)
+ ranger-max-preview-size 10)
 
 
 ;; ------ avy mode ------------------------------------------------------------
 ;; instant start avy match
-(setq avy-timeout-seconds 0.0)
+(setq
+ avy-timeout-seconds 0.0)
 
 
 ;; ------ flyspell mode -------------------------------------------------------
 ;; set default spell checker to aspell
-(setq ispell-program-name "aspell")
+(setq
+ ispell-program-name "aspell")
 
 
 ;; ------ whitespace mode -------------------------------------------------------
 ;; set max width = 160
-(setq-default whitespace-line-column 160)
+(setq-default
+ whitespace-line-column 160)
 
 
 ;; ------ prettify mode -------------------------------------------------------
@@ -171,14 +184,16 @@
 
 ;; ------ dired mode ----------------------------------------------------------
 ;; always take recursive action without further permission
-(setq dired-recursive-deletes 'always)
-(setq dired-recursive-copies 'always)
+(setq
+ dired-recursive-copies 'always
+ dired-recursive-deletes 'always)
 
 
 ;; ------ fci mode ------------------------------------------------------------
 ;; set color for fci rule
-(setq fci-rule-color "#FFA631")
-(setq fci-rule-use-dashes t)
+(setq
+ fci-rule-color "#FFA631"
+ fci-rule-use-dashes t)
 ;; activate fci-mode when in programming mode
 (add-hook 'prog-mode-hook (lambda ()
                             (fci-mode 1)
@@ -187,19 +202,17 @@
 
 
 ;; ------ treemacs mode -------------------------------------------------------
-(setq treemacs-silent-refresh t)
-(setq treemacs-silent-filewatch t)
+(setq
+ treemacs-silent-refresh t
+ treemacs-silent-filewatch t)
 
 
 ;; ------ python mode ---------------------------------------------------------
 ;; set two space indent
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode nil)
-            (setq tab-width 2)
-            (setq python-indent-offset 2)
-            )
-          )
+(add-hook 'python-mode-hook (lambda ()
+                              (setq indent-tabs-mode nil
+                                    tab-width 2
+                                    python-indent-offset 2)))
 
 
 (provide 'my-default-config)
