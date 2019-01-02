@@ -215,4 +215,12 @@
                                     python-indent-offset 2)))
 
 
+;; ------ java mode -----------------------------------------------------------
+;; download java ls from https://projects.eclipse.org/projects/eclipse.jdt.ls
+;; unzip to ~/eclipse.jdt.ls/server/
+(setq
+ lsp-java-server-install-dir (expand-file-name "~/eclipse.jdt.ls/server/")
+ lsp-java-workspace-dir (expand-file-name "~/eclipse.jdt.ls/workspace/"))
+
+
 (provide 'my-default-config)

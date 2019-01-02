@@ -62,6 +62,8 @@ This function should only modify configuration layer settings."
             ;; c-c++-lsp-sem-highlight-method 'overlay
             ;; c-c++-lsp-sem-highlight-rainbow t
             c-c++-enable-clang-format-on-save t)
+     (java :variables java-backend 'lsp)
+     dap                                ;; required by java layer
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      (shell :variables
@@ -258,8 +260,8 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          srcery
-                         darktooth
                          solarized-light
+                         ;; darktooth
                          ;; solarized-dark
                          ;; gruvbox-light-hard
                          ;; spacemacs-dark
