@@ -58,9 +58,6 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
-            c-c++-lsp-sem-highlight-method 'font-lock
-            ;; c-c++-lsp-sem-highlight-method 'overlay
-            ;; c-c++-lsp-sem-highlight-rainbow t
             c-c++-enable-clang-format-on-save t)
      (java :variables java-backend 'lsp)
      dap                                ;; required by java layer
@@ -68,7 +65,6 @@ This function should only modify configuration layer settings."
             cmake-enable-cmake-ide-support t)
      (shell :variables
             shell-default-shell 'shell
-            ;; shell-default-shell 'eshell
             shell-default-position 'right
             shell-default-width 50)
      (treemacs :variables
