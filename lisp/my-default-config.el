@@ -3,6 +3,9 @@
 ;; disable lock files  .#file-name
 (setq create-lockfiles nil)
 
+;; show file size (Emacs 22+)
+(size-indication-mode t)
+
 ;; update version control info in modeline
 ;; (setq auto-revert-check-vc-info t)
 
@@ -40,7 +43,7 @@
 
        (doom-modeline-def-modeline 'main
          '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info remote-host buffer-position " " selection-info)
-         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode my-python-venv process vcs flycheck))
+         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode my-python-venv process vcs checker))
        )
       )
 
@@ -186,7 +189,7 @@
 ;; always take recursive action without further permission
 (setq
  dired-recursive-copies 'always
- dired-recursive-deletes 'always)
+ dired-recursive-deletes 'top) ;; “top” means ask once
 
 
 ;; ------ fci mode ------------------------------------------------------------
