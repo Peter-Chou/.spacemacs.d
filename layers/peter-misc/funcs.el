@@ -1,4 +1,4 @@
-;;; packages.el --- peter-misc layer packages file for Spacemacs.
+;;; funcs.el --- peter-misc layer functions file for Spacemacs.
 ;;
 ;; Copyright (c) 2018-2019 Peter Chou
 ;;
