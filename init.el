@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
+            c-c++-lsp-sem-highlight-method 'overlay
             c-c++-enable-clang-format-on-save t)
      (java :variables java-backend 'lsp)
      dap                                ;; required by java layer
@@ -119,9 +120,6 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       srcery-theme
-                                      gruvbox-theme
-                                      solarized-theme
-                                      darktooth-theme
                                       )
 
 
@@ -255,13 +253,9 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         spacemacs-light
                          srcery
-                         solarized-light
-                         ;; darktooth
-                         ;; solarized-dark
-                         ;; gruvbox-light-hard
                          ;; spacemacs-dark
-                         ;; spacemacs-light
                          )
 
 
@@ -539,6 +533,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
            )
           )
         )
+
+  ;; disable background for comment lines in spacemacs theme
+  (setq spacemacs-theme-comment-bg nil)
 
   (set-language-environment 'UTF-8)
 
