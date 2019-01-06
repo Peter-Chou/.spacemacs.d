@@ -1,6 +1,6 @@
 ;;; packages.el --- peter-misc layer packages file for Spacemacs.
 ;;
-;; Copyright (c) 2018 Peter Chou
+;; Copyright (c) 2018-2019 Peter Chou
 ;;
 ;; Author:  <Peter Chou>
 ;; URL: https://github.com/Peter-Chou/spacemacs-repository
@@ -24,6 +24,7 @@
     highlight-indent-guides
     prettify-greek
     smart-semicolon
+    symbol-overlay
     treemacs-icons-dired
     ))
 
@@ -104,6 +105,20 @@
   (use-package smart-semicolon
     :defer t
     :hook ((c-mode-common . smart-semicolon-mode))))
+
+(defun peter-misc/init-symbol-overlay ()
+  (use-package symbol-overlay
+    :defer t
+    :hook ((prog-mode . symbol-overlay-mode))
+    :config
+    (progn
+      (global-set-key (kbd "M-i") 'symbol-overlay-put)
+      (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
+      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
+      (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
+      (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
+      (define-key symbol-overlay-map (kbd "<") 'spacemacs//symbol-overlay-switch-first)
+      (define-key symbol-overlay-map (kbd ">") 'spacemacs//symbol-overlay-switch-last))))
 
 (defun peter-misc/init-treemacs-icons-dired ()
   (use-package treemacs-icons-dired
