@@ -42,7 +42,7 @@
               'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
 
        (doom-modeline-def-modeline 'main
-         '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info remote-host buffer-position " " selection-info)
+         '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info remote-host buffer-position parrot " " selection-info)
          '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode my-python-venv process vcs checker))
        )
       )
@@ -104,6 +104,25 @@
 ;; use M-number to choose the candidates
 (setq
  company-show-numbers t)
+
+
+;; ------ flymd mode ----------------------------------------------------------
+;; use latest mathjax from https://www.mathjax.org
+;; replace http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+;; in ~/.emacs.d/elpa/26.1/develop/flymd-20160617.1214/flymd.html
+;; with https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML
+
+;; preview md using firefox since chrome prevents jQuery from loading local files
+(defun my-flymd-browser-function (url)
+  (let ((browse-url-browser-function 'browse-url-firefox))
+    (if (string-equal system-type "windows-nt")
+      (setq url (concat "file:///" url)))
+    (browse-url url)))
+
+(setq
+ flymd-browser-open-function 'my-flymd-browser-function
+ flymd-output-directory (expand-file-name "~/.emacs.d/.cache")
+ flymd-close-buffer-delete-temp-files t)
 
 
 ;; ------ lsp mode ------------------------------------------------------------
@@ -219,7 +238,7 @@
 
 
 ;; ------ java mode -----------------------------------------------------------
-;; download java ls from https://projects.eclipse.org/projects/eclipse.jdt.ls
+;; download java ls from https://projects.eclipse.org/projects/eclipse.jdt.ls/downloads
 ;; unzip to ~/eclipse.jdt.ls/server/
 (setq
  lsp-java-server-install-dir (expand-file-name "~/eclipse.jdt.ls/server/")

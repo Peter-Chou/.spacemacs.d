@@ -41,11 +41,12 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; helm
      csv
+     chrome
      html
      sql
      shell-scripts
      emacs-lisp
-     markdown
+     (markdown :variables markdown-live-preview-engine 'vmd)
      yaml
      (python :variables
              python-backend 'anaconda
@@ -58,7 +59,6 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
             c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
-            c-c++-lsp-sem-highlight-method 'overlay
             c-c++-enable-clang-format-on-save t)
      (java :variables java-backend 'lsp)
      dap                                ;; required by java layer
