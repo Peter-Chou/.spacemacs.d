@@ -22,6 +22,7 @@
     evil-vimish-fold
     fontify-face
     highlight-indent-guides
+    ;; markdown-preview-mode
     prettify-greek
     smart-semicolon
     symbol-overlay
@@ -81,7 +82,8 @@
 (defun peter-misc/init-highlight-indent-guides ()
   (use-package highlight-indent-guides
     :defer t
-    :hook ((prog-mode . highlight-indent-guides-mode)
+    :hook ((python-mode . highlight-indent-guides-mode)
+           ;; (prog-mode . highlight-indent-guides-mode)
            (highlight-indent-guides-mode . (lambda ()
                                              (set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
                                              (set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10"))))
@@ -89,13 +91,22 @@
     :config
     (progn
       (setq highlight-indent-guides-method 'character
-      ;; , ⋮, ┆, ┊, ┋, ┇
+            
+            highlight-indent-guides-character ?\┋ ;; candidates: , ⋮, ┆, ┊, ┋, ┇
+            highlight-indent-guides-responsive 'top
+            highlight-indent-guides-auto-enabled nil
+            highlight-indent-guides-auto-character-face-perc 10
+            highlight-indent-guides-auto-top-character-face-perc 20))))
 
-       highlight-indent-guides-character ?\┇
-       highlight-indent-guides-responsive 'top
-       highlight-indent-guides-auto-enabled nil
-       highlight-indent-guides-auto-character-face-perc 10
-       highlight-indent-guides-auto-top-character-face-perc 20))))
+;; (defun peter-misc/init-markdown-preview-mode ()
+;;   (use-package markdown-preview-mode
+;;     ;; install markdown using msys2
+;;     :defer t
+;;     :hook ((markdown-preiew-mode . (lambda ()
+;;                                              (add-to-list 'markdown-preview-javascript '("https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" . async))
+;;     :config
+;;     (setq markdown-preview-stylesheets (list "http://thomasf.github.io/solarized-css/solarized-light.min.css"))
+;;                                              )))))
 
 (defun peter-misc/init-prettify-greek ()
   (use-package prettify-greek
