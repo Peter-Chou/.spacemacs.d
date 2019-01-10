@@ -113,6 +113,7 @@
 ;; with https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML
 
 ;; preview md using firefox since chrome prevents jQuery from loading local files
+;; install firefox and put it into PATH
 (defun my-flymd-browser-function (url)
   (let ((browse-url-browser-function 'browse-url-firefox))
     (if (string-equal system-type "windows-nt")
