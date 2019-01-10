@@ -6,6 +6,10 @@
 ;; <SPC>-' use shell-here command
 (spacemacs/set-leader-keys "'" 'my-shell-here)
 
+;; enable dired-hide-details-mode when opening dired
+(spacemacs/set-leader-keys "fj" 'my-dired-jump)
+(spacemacs/set-leader-keys "jd" 'my-deer)
+
 ;; spacemacs quit bindings
 (evil-leader/set-key "qw" 'spacemacs/save-buffer-and-kill-frame)
 (evil-leader/set-key "qq" 'spacemacs/frame-killer)

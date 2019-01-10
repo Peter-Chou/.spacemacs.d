@@ -20,6 +20,16 @@
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
+(defun my-dired-jump ()
+  (interactive)
+  (dired-jump)
+  (dired-hide-details-mode -1))
+
+(defun my-deer ()
+  (interactive)
+  (deer)
+  (dired-hide-details-mode -1))
+
 (defun peter/load-my-layout ()
   (interactive)
   (persp-load-state-from-file (concat persp-save-dir "peter")))
