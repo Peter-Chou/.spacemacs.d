@@ -229,6 +229,10 @@
  treemacs-silent-refresh t
  treemacs-silent-filewatch t)
 
+(with-eval-after-load 'treemacs-evil
+  (define-key evil-treemacs-state-map (kbd "F") 'treemacs-create-file)
+  (define-key evil-treemacs-state-map (kbd "+") 'treemacs-create-dir))
+
 
 ;; ------ python mode ---------------------------------------------------------
 ;; set two space indent
