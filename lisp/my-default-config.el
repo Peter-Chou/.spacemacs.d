@@ -131,11 +131,6 @@
  lsp-ui-sideline-enable nil)
 
 
-;; ------ eldoc mode ----------------------------------------------------------
-(setq
- eldoc-idle-delay 0.3)
-
-
 ;; ------ writeroom mode ------------------------------------------------------
 (setq
  writeroom-width 90
@@ -232,6 +227,11 @@
 (with-eval-after-load 'treemacs-evil
   (define-key evil-treemacs-state-map (kbd "F") 'treemacs-create-file)
   (define-key evil-treemacs-state-map (kbd "+") 'treemacs-create-dir))
+
+
+;; ------ emacs lisp mode -----------------------------------------------------
+;; Enable aggressive indent for emacs-lisp mode
+(add-hook 'emacs-lisp-mode-hook #'spacemacs/toggle-aggressive-indent-on)
 
 
 ;; ------ python mode ---------------------------------------------------------
