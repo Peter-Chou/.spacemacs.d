@@ -77,19 +77,19 @@ This function should only modify configuration layer settings."
      ivy
      ranger
      multiple-cursors
-     ;; semantic
+     semantic
      imenu-list
      evil-commentary
      (auto-completion :variables
-                   auto-completion-return-key-behavior 'complete
-                   auto-completion-tab-key-behavior 'complete
-                   auto-completion-enable-snippets-in-popup t
-                   auto-completion-complete-with-key-sequence nil
-                   auto-completion-complete-with-key-sequence-delay 0.1
-                   auto-completion-idle-delay 0.3
-                   auto-completion-enable-sort-by-usage t
-                   ;; auto-completion-enable-help-tooltip t
-                   :disabled-for org markdown)
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-idle-delay 0.3
+                      auto-completion-enable-sort-by-usage t
+                      ;; auto-completion-enable-help-tooltip t
+                      :disabled-for org markdown)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
      (vinegar :variables
@@ -253,8 +253,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-light
                          srcery
+                         spacemacs-light
                          ;; spacemacs-dark
                          )
 
@@ -423,7 +423,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers 'relative
-
+   
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -538,7 +538,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq spacemacs-theme-comment-bg nil)
 
   (set-language-environment 'UTF-8)
-
+  
   )
 
 

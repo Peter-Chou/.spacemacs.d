@@ -2,15 +2,16 @@
 ;; ------ global --------------------------------------------------------------
 
 
-;; ------ emacs lisp mode -----------------------------------------------------
+;; ------ semantic mode -----------------------------------------------------
 ;; fix the problem of parsing tons of .el files when typing
-;; https://github.com/company-mode/company-mode/issues/525
-;; (defun semantic-completion-advice (adviced-f &rest r)
-;;   "Check if POINT it's inside a string or comment before calling semantic-*"
-;;   (if (or (inside-string-q) (inside-comment-q))
-;;       (not (message "Oleeee! do not call function, we're inside a string or comment!"))
-;;     (apply adviced-f r)))
-;; (advice-add 'semantic-analyze-completion-at-point-function :around #'semantic-completion-advice)
+;; https://emacs-china.org/t/topic/5728/7?u=et2010
+(semantic-mode 1)
+(semantic-default-elisp-setup)
+;; enable /semantic/ with minimal features for /stickyfunc/ and /*-semantic-or-imenu/
+;; stop semantic parsing (huge,slow) elisp sys libraries
+(setq-mode-local emacs-lisp-mode
+                 semanticdb-find-default-throttle
+                 (default-value 'semanticdb-find-default-throttle))
 
 
 ;; ------ ranger mode ---------------------------------------------------------
