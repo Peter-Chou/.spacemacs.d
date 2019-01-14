@@ -53,9 +53,9 @@
 (defun open-mintty-terminal ()
   (interactive)
   (progn
-    ;; (shell-command "mintty /bin/env MSYSTEM=MINGW64 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i &")
-    (w32-shell-execute "runas" "c:\\msys64\\usr\\bin\\mintty.exe" " /bin/env MSYSTEM=64 CHERE_INVOKING=1 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i")
-    (w32-send-sys-command)
+    (shell-command "mintty /bin/env MSYSTEM=MINGW64 CHERE_INVOKING=1 /bin/bash --login -i &")
+    ;; (w32-shell-execute "runas" "c:\\msys64\\usr\\bin\\mintty.exe" " /bin/env MSYSTEM=64 CHERE_INVOKING=1 DISABLE_AWESOME_FONT=1 /bin/zsh --login -i")
+    ;; (w32-send-sys-command)
     (delete-window)))
 
 
@@ -86,12 +86,12 @@
   "Add a break point, highlight it."
   (interactive)
   (let ((trace (cond ((spacemacs/pyenv-executable-find "wdb") "import wdb; wdb.set_trace() # XXX BREAKPOINT")
-                     ((spacemacs/pyenv-executable-find "ipdb") "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
-                     ((spacemacs/pyenv-executable-find "pudb") "import pudb; pudb.set_trace() # XXX BREAKPOINT")
-                     ((spacemacs/pyenv-executable-find "ipdb3") "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
-                     ((spacemacs/pyenv-executable-find "pudb3") "import pudb; pudb.set_trace() # XXX BREAKPOINT")
-                     (t "import pdb; pdb.set_trace() # XXX BREAKPOINT")))
-        (line (thing-at-point 'line)))
+  ((spacemacs/pyenv-executable-find "ipdb") "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
+  ((spacemacs/pyenv-executable-find "pudb") "import pudb; pudb.set_trace() # XXX BREAKPOINT")
+  ((spacemacs/pyenv-executable-find "ipdb3") "import ipdb; ipdb.set_trace() # XXX BREAKPOINT")
+  ((spacemacs/pyenv-executable-find "pudb3") "import pudb; pudb.set_trace() # XXX BREAKPOINT")
+  (t "import pdb; pdb.set_trace() # XXX BREAKPOINT")))
+  (line (thing-at-point 'line)))
     (if (and line (string-match trace line))
         (kill-whole-line)
       (progn
