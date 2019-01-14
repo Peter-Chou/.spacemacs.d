@@ -26,6 +26,9 @@
 
 (spacemacs/set-leader-keys "ow" 'whitespace-cleanup)
 
+;; selected code in png
+(spacemacs/set-leader-keys "oc" 'carbon-now-sh)
+
 ;; SPC-o-l family binding
 (spacemacs/declare-prefix "ol" "layout")
 (spacemacs/set-leader-keys "oll" 'peter/load-my-layout)

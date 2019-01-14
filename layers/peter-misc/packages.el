@@ -16,13 +16,13 @@
     all-the-icons
     all-the-icons-ivy
     beacon
+    carbon-now-sh
     company-box
     default-text-scale
     electric-operator
     evil-vimish-fold
     fontify-face
     highlight-indent-guides
-    ;; markdown-preview-mode
     prettify-greek
     smart-semicolon
     symbol-overlay
@@ -44,6 +44,10 @@
     :ensure t
     :config
     (beacon-mode 1)))
+
+(defun peter-misc/init-carbon-now-sh ()
+  (use-package carbon-now-sh
+    :ensure t))
 
 (defun peter-misc/init-company-box ()
   (use-package company-box
