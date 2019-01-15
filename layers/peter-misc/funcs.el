@@ -3,7 +3,7 @@
 ;; Copyright (c) 2018-2019 Peter Chou
 ;;
 ;; Author:  <Peter Chou>
-;; URL: https://github.com/Peter-Chou/spacemacs-repository
+;; URL: https://github.com/Peter-Chou/spacemacs-settings
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -11,7 +11,7 @@
 
 ;;; Code:
 
-;; symbol-overlay
+;;;; symbol-overlay
 
 (defun spacemacs//symbol-overlay-switch-first ()
   (interactive)

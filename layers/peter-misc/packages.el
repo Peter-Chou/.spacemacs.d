@@ -3,7 +3,7 @@
 ;; Copyright (c) 2018-2019 Peter Chou
 ;;
 ;; Author:  <Peter Chou>
-;; URL: https://github.com/Peter-Chou/spacemacs-repository
+;; URL: https://github.com/Peter-Chou/spacemacs-settings
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
@@ -13,31 +13,16 @@
 
 (defconst peter-misc-packages
   '(
-    all-the-icons
-    all-the-icons-ivy
     beacon
     carbon-now-sh
-    company-box
     default-text-scale
     electric-operator
     evil-vimish-fold
     fontify-face
     highlight-indent-guides
-    prettify-greek
     smart-semicolon
     symbol-overlay
-    treemacs-icons-dired
     ))
-
-(defun peter-misc/init-all-the-icons ()
-  (use-package all-the-icons
-    :defer t))
-
-(defun peter-misc/init-all-the-icons-ivy ()
-  (use-package all-the-icons-ivy
-    :ensure t
-    :config
-    (all-the-icons-ivy-setup)))
 
 (defun peter-misc/init-beacon ()
   (use-package beacon
@@ -49,11 +34,6 @@
   (use-package carbon-now-sh
     :ensure t))
 
-(defun peter-misc/init-company-box ()
-  (use-package company-box
-    :if (display-graphic-p)
-    :defer t
-    :hook (company-mode . company-box-mode)))
 
 (defun peter-misc/init-default-text-scale ()
   (use-package default-text-scale
@@ -63,15 +43,16 @@
 
 (defun peter-misc/init-electric-operator ()
   (use-package electric-operator
+    :if enable-electric-operator
     :defer t
     :hook ((c-mode-common . electric-operator-mode)
            (python-mode . electric-operator-mode)
            (electric-operator-mode . (lambda ()
-                                      (electric-operator-add-rules-for-mode 'c++-mode
-                                                                            (cons "*" nil)
-                                                                            (cons "&" nil))
-                                      (electric-operator-add-rules-for-mode 'c-mode
-                                                                            (cons "*" nil)))))))
+                                       (electric-operator-add-rules-for-mode 'c++-mode
+                                                                             (cons "*" nil)
+                                                                             (cons "&" nil))
+                                       (electric-operator-add-rules-for-mode 'c-mode
+                                                                             (cons "*" nil)))))))
 
 (defun peter-misc/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
@@ -102,20 +83,6 @@
             highlight-indent-guides-auto-character-face-perc 10
             highlight-indent-guides-auto-top-character-face-perc 20))))
 
-;; (defun peter-misc/init-markdown-preview-mode ()
-;;   (use-package markdown-preview-mode
-;;     ;; install markdown using msys2
-;;     :defer t
-;;     :hook ((markdown-preiew-mode . (lambda ()
-;;                                              (add-to-list 'markdown-preview-javascript '("https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" . async))
-;;     :config
-;;     (setq markdown-preview-stylesheets (list "http://thomasf.github.io/solarized-css/solarized-light.min.css"))
-;;                                              )))))
-
-(defun peter-misc/init-prettify-greek ()
-  (use-package prettify-greek
-    :ensure t))
-
 (defun peter-misc/init-smart-semicolon ()
   (use-package smart-semicolon
     :defer t
@@ -134,11 +101,5 @@
       (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
       (define-key symbol-overlay-map (kbd "<") 'spacemacs//symbol-overlay-switch-first)
       (define-key symbol-overlay-map (kbd ">") 'spacemacs//symbol-overlay-switch-last))))
-
-(defun peter-misc/init-treemacs-icons-dired ()
-  (use-package treemacs-icons-dired
-    :if (display-graphic-p)
-    :defer t
-    :hook ((dired-mode . treemacs-icons-dired-mode))))
 
 ;;; packages.el ends here
