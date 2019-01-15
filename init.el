@@ -55,17 +55,18 @@ This function should only modify configuration layer settings."
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t)
      (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-backend 'lsp-ccls
-            c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
-            c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
-            c-c++-enable-clang-format-on-save t)
+           c-c++-default-mode-for-headers 'c++-mode
+           c-c++-backend 'lsp-ccls
+           c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
+           c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
+           c-c++-enable-clang-format-on-save t)
      (java :variables java-backend 'lsp)
      dap                                ;; required by java layer
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      (shell :variables
-            shell-default-shell 'shell
+            ;; shell-default-shell 'shell
+            shell-default-shell 'eshell
             shell-default-position 'right
             shell-default-width 50)
      (treemacs :variables
@@ -74,10 +75,11 @@ This function should only modify configuration layer settings."
      (spacemacs-layouts :variables
                         layouts-enable-autosave nil
                         layouts-autosave-delay 300)
-     ivy
+     (ivy :variables
+          ivy-extra-directories nil)
      ranger
      multiple-cursors
-     semantic
+     ;; semantic
      imenu-list
      evil-commentary
      (auto-completion :variables
@@ -108,7 +110,12 @@ This function should only modify configuration layer settings."
                       syntax-checking-enable-tooltips nil)
      (spell-checking :variables spell-checking-enable-by-default nil)
      theming
-     peter-misc
+     ;; custom layers
+     (peter-display :variables
+                    dired-icons-backend 'all-the-icons
+                    enable-font-ligature t)
+     (peter-misc :variables
+                 enable-electric-operator nil)
      )
 
    ;; List of additional packages that will be installed without being
@@ -557,10 +564,9 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (require 'font-lock+)
   (require 'init-fix)
   (require 'init-function)
-  (require 'init-msys2-shell)
-  (require 'fira-code-symbol)
 
   ;; sever started by spacemacs function seems to fail from time to time
   (server-start)
