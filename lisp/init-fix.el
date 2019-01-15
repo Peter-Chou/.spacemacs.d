@@ -2,18 +2,6 @@
 ;; ------ global --------------------------------------------------------------
 
 
-;; ------ semantic mode -----------------------------------------------------
-;; fix the problem of parsing tons of .el files when typing
-;; https://emacs-china.org/t/topic/5728/7?u=et2010
-(semantic-mode 1)
-(semantic-default-elisp-setup)
-;; enable /semantic/ with minimal features for /stickyfunc/ and /*-semantic-or-imenu/
-;; stop semantic parsing (huge,slow) elisp sys libraries
-(setq-mode-local emacs-lisp-mode
-                 semanticdb-find-default-throttle
-                 (default-value 'semanticdb-find-default-throttle))
-
-
 ;; ------ ranger mode ---------------------------------------------------------
 ;; enable ranger function with disable the golden ratio mode
 ;; set quit funtion to key q in normal mode

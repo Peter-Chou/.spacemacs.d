@@ -79,7 +79,6 @@ This function should only modify configuration layer settings."
           ivy-extra-directories nil)
      ranger
      multiple-cursors
-     ;; semantic
      imenu-list
      evil-commentary
      (auto-completion :variables
