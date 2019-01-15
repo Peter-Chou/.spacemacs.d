@@ -15,7 +15,7 @@
       '(
         all-the-icons
         all-the-icons-ivy
-        all-the-icons-dired
+        (all-the-icons-dired :requires font-lock+)
         company-box
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
@@ -52,6 +52,8 @@
   (use-package all-the-icons-dired
     :if (eq dired-icons-backend 'all-the-icons)
     :defer t
+    :init
+    (require 'font-lock+)
     :hook (dired-mode . all-the-icons-dired-mode)))
 
 (defun peter-display/init-company-box ()
