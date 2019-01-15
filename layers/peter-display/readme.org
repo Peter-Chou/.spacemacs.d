@@ -1,0 +1,1 @@
+inspired from[[https://github.com/ekaschalk/.spacemacs.d/tree/master/layers/display][ ekaschalk's display layer]] 
