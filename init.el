@@ -112,6 +112,7 @@ This function should only modify configuration layer settings."
      ;; custom layers
      (peter-display :variables
                     dired-icons-backend 'all-the-icons
+                    enable-pretty-magit nil
                     enable-font-ligature t)
      (peter-misc :variables
                  enable-electric-operator nil)

@@ -17,3 +17,6 @@ and `treemacs'.")
 
 (defvar enable-font-ligature nil
   "if not nil, enable font ligature in prog and org mode")
+
+(defvar enable-pretty-magit nil
+  "if not nil, enable pretty magit")

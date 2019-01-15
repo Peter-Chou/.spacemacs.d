@@ -159,6 +159,7 @@
 
 (defun peter-display/init-pretty-magit ()
   (use-package pretty-magit
+    :if enable-pretty-magit
     :config
     (progn
       (pretty-magit-add-leaders
