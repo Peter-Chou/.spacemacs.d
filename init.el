@@ -95,8 +95,10 @@ This function should only modify configuration layer settings."
      (vinegar :variables
               vinegar-reuse-dired-buffer t)
      (git :variables
-          git-magit-status-fullscreen t
-          )
+          git-magit-status-fullscreen t)
+     (version-control :variables
+                      version-control-global-margin t
+                      version-control-diff-tool 'git-gutter+)
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
      (org :variables
