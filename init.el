@@ -65,7 +65,6 @@ This function should only modify configuration layer settings."
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      (shell :variables
-            ;; shell-default-shell 'shell
             shell-default-shell 'eshell
             shell-default-position 'right
             shell-default-width 50)
@@ -112,7 +111,6 @@ This function should only modify configuration layer settings."
      ;; custom layers
      (peter-display :variables
                     dired-icons-backend 'all-the-icons
-                    enable-pretty-magit nil
                     enable-font-ligature t)
      (peter-misc :variables
                  enable-electric-operator nil)
@@ -587,4 +585,4 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
- )
+  )
