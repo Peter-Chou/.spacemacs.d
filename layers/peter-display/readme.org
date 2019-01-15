@@ -1,5 +1,5 @@
 inspired from[[https://github.com/ekaschalk/.spacemacs.d/tree/master/layers/display][ ekaschalk's display layer]] 
 
 ** Pretty Font
-instll[[https://github.com/tonsky/FiraCode][ Fira Code]] 
-install[[https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip][ Fira Code Symbol]] made by [[https://github.com/siegebell][@siegebell]] 
+- install[[https://github.com/tonsky/FiraCode][ Fira Code]] 
+- install[[https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip][ Fira Code Symbol]] made by [[https://github.com/siegebell][@siegebell]] 
