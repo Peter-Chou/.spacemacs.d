@@ -23,6 +23,7 @@
         ;; Elsehwere-owned packages
         which-key
 
+        (pretty-code     :location local)
         (pretty-eshell   :location local)
         (pretty-fonts    :location local)
         (pretty-magit    :location local)
@@ -74,6 +75,18 @@
   (when (and (configuration-layer/package-used-p 'pretty-fonts) enable-font-ligature)
     (setq which-key-separator " ")
     (setq which-key-prefix-prefix " ")))
+
+;;;; Pretty-code
+
+(defun peter-display/init-pretty-code ()
+  (use-package pretty-code
+    :if enable-pretty-code
+    :config
+    (progn
+      (pretty-code-add-hook 'emacs-lisp-mode-hook '((:def "defun")
+                                                    (:lambda "lambda")))
+      (pretty-code-add-hook 'python-mode-hook     '((:def "def")
+                                                    (:lambda "lambda"))))))
 
 ;;;; Pretty-eshell
 
