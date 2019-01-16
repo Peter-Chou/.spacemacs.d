@@ -61,7 +61,7 @@ This function should only modify configuration layer settings."
            c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
            c-c++-enable-clang-format-on-save t)
      (java :variables java-backend 'lsp)
-     dap                                ;; required by java layer
+     dap    ;; lsp debug
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      (shell :variables
@@ -92,8 +92,8 @@ This function should only modify configuration layer settings."
                       :disabled-for org markdown)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
-     (vinegar :variables
-              vinegar-reuse-dired-buffer t)
+     ;; (vinegar :variables
+     ;;          vinegar-reuse-dired-buffer t)
      (git :variables
           git-magit-status-fullscreen t)
      (version-control :variables
@@ -113,6 +113,7 @@ This function should only modify configuration layer settings."
      ;; custom layers
      (peter-display :variables
                     dired-icons-backend 'all-the-icons
+                    enable-pretty-code t
                     enable-font-ligature t)
      (peter-misc :variables
                  enable-electric-operator nil)
@@ -265,9 +266,6 @@ It should only modify the values of Spacemacs settings."
                          ;; spacemacs-dark
                          )
 
-
-
-
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
    ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
@@ -276,6 +274,7 @@ It should only modify the values of Spacemacs settings."
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
    dotspacemacs-mode-line-theme '(doom :separator wave :separator-scale 1.0)
+   ;; dotspacemacs-mode-line-theme '(vim-powerline :separator-scale 1.0)
    ;; dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
@@ -430,7 +429,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers 'relative
-   
+
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -525,9 +524,9 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq configuration-layer-elpa-archives
-    '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-      ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-      ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
 
   (add-to-list 'load-path "~/.spacemacs.d/lisp/")
 
@@ -538,14 +537,13 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
            ;; Font locking
            (font-lock-function-name-face :foreground "#F7C508")
            )
-          )
-        )
+          ))
 
   ;; disable background for comment lines in spacemacs theme
   (setq spacemacs-theme-comment-bg nil)
 
   (set-language-environment 'UTF-8)
-  
+
   )
 
 
