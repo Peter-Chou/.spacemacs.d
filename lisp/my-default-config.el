@@ -4,7 +4,7 @@
 (setq create-lockfiles nil)
 
 ;; show file size (Emacs 22+)
-(size-indication-mode t)
+;; (size-indication-mode t)
 
 ;; update version control info in modeline
 ;; (setq auto-revert-check-vc-info t)
@@ -17,11 +17,13 @@
       ((eq (car dotspacemacs-mode-line-theme) 'doom)
        ;; doom specific configuration
        (setq
+        doom-modeline-height 21
         doom-modeline-lsp nil
         doom-modeline-persp-name nil
         doom-modeline-github nil
         doom-modeline-buffer-file-name-style 'relative-from-project
-        doom-modeline-icon t)
+        ;; doom-modeline-buffer-file-name-style 'truncate-except-project
+        doom-modeline-major-mode-color-icon t)
 
        ;; set major mode face color
        (set-face-attribute 'doom-modeline-buffer-major-mode nil :weight 'bold :foreground "#fd780f")
@@ -41,9 +43,10 @@
                   (format " (%s)" base-dir-name)))
               'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
 
+       ;; add my-python-venv segment and remove major-mode segment from modeline
        (doom-modeline-def-modeline 'main
-         '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches " " buffer-info remote-host buffer-position parrot " " selection-info)
-         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding major-mode my-python-venv process vcs checker))
+         '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
+         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding my-python-venv process vcs checker))
        )
       )
 
@@ -87,8 +90,8 @@
 (setq
  display-time-24hr-format t
  display-time-day-and-date t
- display-time-format "%m.%d %a %H:%M"
- ;; (setq display-time-format "%m.%d %a %H:%M:%S")
+ ;; display-time-format "%m.%d %a %H:%M"
+ display-time-format "%H:%M"
  ;; update every second
  display-time-interval 1
  ;; don't show load average
@@ -189,6 +192,8 @@
 ;; show dotfiles at ranger startup
 (setq
  ranger-show-hidden t
+ ;; let deer show details
+ ranger-deer-show-details t
  ;; ignore certain files when moving over them
  ranger-ignored-extensions '("mkv" "iso" "mp4")
  ;; set the max files size (in MB)
@@ -213,24 +218,34 @@
  whitespace-line-column 160)
 
 
-;; ------ prettify mode -------------------------------------------------------
-(font-lock-add-keywords 'emacs-lisp-mode
-                        '(("(\\(lambda\\)\\>" (0 (prog1 ()
-                                                   (compose-region (match-beginning 1)
-                                                                   (match-end 1)
-                                                                   ?λ))))))
-
-
-;; ------ fira code symbol mode -----------------------------------------------
-;; activate global fira code symbol mode if fira-code-symbol is required in init.el
-;; (add-hook 'prog-mode-hook 'fira-code-symbol-hook)
-
-
 ;; ------ dired mode ----------------------------------------------------------
 ;; always take recursive action without further permission
 (setq
+ dired-listing-switches "-alh"  ;; show human readable file size
  dired-recursive-copies 'always
  dired-recursive-deletes 'top) ;; “top” means ask once
+
+;; show diectory first
+(defun mydired-sort ()
+  "Sort dired listings with directories first."
+  (save-excursion
+    (let (buffer-read-only)
+      (forward-line 2) ;; beyond dir. header
+      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+    (set-buffer-modified-p nil)))
+
+(defadvice dired-readin
+    (after dired-after-updating-hook first () activate)
+  "Sort dired listings with directories first before adding marks."
+  (mydired-sort))
+
+;; ignore . in dired buffer
+(add-hook 'dired-mode-hook 'dired-omit-mode)
+;; just show .. in dired-omit-mode
+(setq dired-omit-files
+      (rx (or (seq bol (? ".") "#")
+              ;; (seq bol ".." eol)
+              (seq bol "." eol))))
 
 
 ;; ------ fci mode ------------------------------------------------------------
