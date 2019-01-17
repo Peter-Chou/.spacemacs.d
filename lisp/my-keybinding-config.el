@@ -1,4 +1,4 @@
-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; ------ global -------------------------------------------------------------
 ;; <SPC>-d go back where jumps
 (spacemacs/set-leader-keys "d" 'xref-pop-marker-stack)

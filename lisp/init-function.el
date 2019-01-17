@@ -1,4 +1,4 @@
-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; ------ global --------------------------------------------------------------
 (defun spacemacs/save-buffer-and-kill-frame ()
   "kill the current buffer and the current frame"

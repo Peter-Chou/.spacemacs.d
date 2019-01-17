@@ -1,3 +1,4 @@
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 (setq system-uses-terminfo nil)
 
 (when (eq system-type 'windows-nt)

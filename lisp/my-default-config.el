@@ -1,4 +1,4 @@
-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; ------ global -------------------------------------------------------------
 ;; disable lock files  .#file-name
 (setq create-lockfiles nil)
