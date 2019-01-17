@@ -80,6 +80,7 @@ This function should only modify configuration layer settings."
      multiple-cursors
      imenu-list
      evil-commentary
+     vim-empty-lines
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'complete
@@ -92,8 +93,6 @@ This function should only modify configuration layer settings."
                       :disabled-for org markdown)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
-     ;; (vinegar :variables
-     ;;          vinegar-reuse-dired-buffer t)
      (git :variables
           git-magit-status-fullscreen t)
      (version-control :variables
