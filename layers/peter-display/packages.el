@@ -59,7 +59,7 @@
 
 (defun peter-display/init-company-box ()
   (use-package company-box
-    :if (display-graphic-p)
+    :if (and (not (version< emacs-version "26.1")) (display-graphic-p))
     :defer t
     :hook (company-mode . company-box-mode)))
 
