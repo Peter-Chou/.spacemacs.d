@@ -591,6 +591,11 @@ before packages are loaded."
               (add-hook 'with-editor-post-finish-hook
                         #'kill-magit-diff-buffer-in-current-repo
                         nil t))) ; the t is important
+
+  ;; kill magit status buffer when quitting magit status
+  (define-key magit-mode-map 
+    (kbd "q") 
+    (lambda() (interactive) (magit-mode-bury-buffer t)))
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
