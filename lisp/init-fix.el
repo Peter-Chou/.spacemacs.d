@@ -2,16 +2,6 @@
 ;; ------ global --------------------------------------------------------------
 
 
-;; ------ dired mode ----------------------------------------------------------
-;; force dired use current buffer only
-(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
-(define-key dired-mode-map (kbd "f") 'dired-find-alternate-file) ; was dired-advertised-find-file
-(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-director
-
-;; kill current buffer when leaving dired mode
-(define-key dired-mode-map (kbd "q") (lambda () (interactive) (kill-this-buffer)))  ; was dired-up-director
-
-
 ;; ------ ranger mode ---------------------------------------------------------
 ;; enable ranger function with disable the golden ratio mode
 ;; set quit funtion to key q in normal mode

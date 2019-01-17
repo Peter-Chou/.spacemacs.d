@@ -245,6 +245,14 @@
  dired-recursive-copies 'always
  dired-recursive-deletes 'top) ;; “top” means ask once
 
+;; ignore . in dired buffer
+(add-hook 'dired-mode-hook 'dired-omit-mode)
+;; just show .. in dired-omit-mode
+(setq dired-omit-files
+      (rx (or (seq bol (? ".") "#")
+              ;; (seq bol ".." eol)
+              (seq bol "." eol))))
+
 ;; show diectory first
 (defun mydired-sort ()
   "Sort dired listings with directories first."
@@ -259,13 +267,13 @@
   "Sort dired listings with directories first before adding marks."
   (mydired-sort))
 
-;; ignore . in dired buffer
-(add-hook 'dired-mode-hook 'dired-omit-mode)
-;; just show .. in dired-omit-mode
-(setq dired-omit-files
-      (rx (or (seq bol (? ".") "#")
-              ;; (seq bol ".." eol)
-              (seq bol "." eol))))
+;; force dired use current buffer only
+(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
+(define-key dired-mode-map (kbd "f") 'dired-find-alternate-file) ; was dired-advertised-find-file
+(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-director
+
+;; kill current buffer when leaving dired mode
+(define-key dired-mode-map (kbd "q") (lambda () (interactive) (kill-this-buffer)))  ; was dired-up-director
 
 
 ;; ------ fci mode ------------------------------------------------------------
