@@ -17,6 +17,7 @@
         all-the-icons-ivy
         (all-the-icons-dired :requires font-lock+)
         company-box
+        diredfl
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
         treemacs-icons-dired
@@ -61,7 +62,55 @@
   (use-package company-box
     :if (and (not (version< emacs-version "26.1")) (display-graphic-p))
     :defer t
-    :hook (company-mode . company-box-mode)))
+    :hook (company-mode . company-box-mode)
+    :config
+    (with-eval-after-load 'all-the-icons
+      (setq company-box-icons-unknown
+            (all-the-icons-octicon "file-text" :v-adjust -0.05))
+
+      (setq company-box-icons-elisp
+            (list
+             (all-the-icons-faicon "cube" :v-adjust -0.0575)        ; Function
+             (all-the-icons-faicon "tag" :v-adjust -0.0575)         ; Variable
+             (all-the-icons-faicon "cog" :v-adjust -0.0575)         ; Feature
+             (all-the-icons-material "palette" :v-adjust -0.2)      ; Face
+             ))
+
+      (setq company-box-icons-yasnippet
+            (all-the-icons-faicon "code" :v-adjust -0.0575))       ; Snippet
+
+      (setq company-box-icons-lsp
+            `(( 1  . ,(all-the-icons-faicon "file-text-o" :v-adjust -0.0575))     ; Text
+              ( 2  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575))            ; Method
+              ( 3  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575))            ; Function
+              ( 4  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575))            ; Constructor
+              ( 5  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Field
+              ( 6  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Variable
+              ( 7  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575))             ; Class
+              ( 8  . ,(all-the-icons-faicon "cogs" :v-adjust -0.0575))            ; Interface
+              ( 9  . ,(all-the-icons-alltheicon "less"))                          ; Module
+              (10  . ,(all-the-icons-faicon "wrench" :v-adjust -0.0575))          ; Property
+              (11  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Unit
+              (12  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Value
+              (13  . ,(all-the-icons-material "content_copy" :v-adjust -0.2))     ; Enum
+              (14  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Keyword
+              (15  . ,(all-the-icons-material "content_paste" :v-adjust -0.2))    ; Snippet
+              (16  . ,(all-the-icons-material "palette" :v-adjust -0.2))          ; Color
+              (17  . ,(all-the-icons-faicon "file" :v-adjust -0.0575))            ; File
+              (18  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Reference
+              (19  . ,(all-the-icons-faicon "folder" :v-adjust -0.0575))          ; Folder
+              (20  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; EnumMember
+              (21  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Constant
+              (22  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575))             ; Struct
+              (23  . ,(all-the-icons-faicon "bolt" :v-adjust -0.0575))            ; Event
+              (24  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Operator
+              (25  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575))             ; TypeParameter
+              )))))
+
+(defun peter-display/init-diredfl ()
+  (use-package diredfl
+    :init
+    (diredfl-global-mode 1)))
 
 ;;;; Prettify-utils
 
