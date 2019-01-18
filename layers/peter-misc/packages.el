@@ -20,6 +20,7 @@
     evil-vimish-fold
     fontify-face
     highlight-indent-guides
+    modern-cpp-font-lock
     smart-semicolon
     symbol-overlay
     ))
@@ -72,7 +73,6 @@
            (highlight-indent-guides-mode . (lambda ()
                                              (set-face-foreground 'highlight-indent-guides-character-face "#8f9091")
                                              (set-face-foreground 'highlight-indent-guides-top-character-face "#fe5e10"))))
-    
     :config
     (progn
       (setq highlight-indent-guides-method 'character
@@ -82,6 +82,11 @@
             highlight-indent-guides-auto-enabled nil
             highlight-indent-guides-auto-character-face-perc 10
             highlight-indent-guides-auto-top-character-face-perc 20))))
+
+(defun peter-misc/init-modern-cpp-font-lock ()
+  (use-package modern-cpp-font-lock
+    :defer t
+    :hook ((c++-mode . modern-c++-font-lock-mode))))
 
 (defun peter-misc/init-smart-semicolon ()
   (use-package smart-semicolon
