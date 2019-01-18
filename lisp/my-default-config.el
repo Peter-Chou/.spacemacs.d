@@ -272,13 +272,18 @@
   "Sort dired listings with directories first before adding marks."
   (mydired-sort))
 
+(defun my-dired-parent-directory ()
+  "go up a level using same buffer"
+  (interactive)
+  (find-alternate-file ".."))
+
 ;; force dired use current buffer only
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
 (define-key dired-mode-map (kbd "f") 'dired-find-alternate-file) ; was dired-advertised-find-file
-(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-director
+(define-key dired-mode-map (kbd "^") 'my-dired-parent-directory)  ; was dired-up-director
 
 ;; kill current buffer when leaving dired mode
-(define-key dired-mode-map (kbd "q") (lambda () (interactive) (kill-this-buffer)))  ; was dired-up-director
+(define-key dired-mode-map (kbd "q") 'kill-this-buffer)  ; was dired-up-director
 
 
 ;; ------ fci mode ------------------------------------------------------------
