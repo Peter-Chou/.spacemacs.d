@@ -106,6 +106,11 @@
 ;; ------ company mode --------------------------------------------------------
 ;; use M-number to choose the candidates
 (setq
+ company-tooltip-align-annotations t ; aligns annotation to the right
+ company-tooltip-limit 12            ; bigger popup window
+ company-echo-delay 0                ; remove annoying blinking
+ company-dabbrev-ignore-case nil
+ company-dabbrev-downcase nil
  company-show-numbers t)
 
 
