@@ -80,7 +80,6 @@ This function should only modify configuration layer settings."
      multiple-cursors
      imenu-list
      evil-commentary
-     vim-empty-lines
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'complete
