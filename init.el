@@ -260,8 +260,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         srcery
                          spacemacs-light
+                         srcery
                          ;; spacemacs-dark
                          )
 
@@ -575,6 +575,9 @@ before packages are loaded."
 
   ;; load custom-set-variables & custom-set-faces in custom file
   (load-file custom-file)
+
+  ;; disable background for comment lines in spacemacs theme for spc-T-n
+  (setq spacemacs-theme-comment-bg nil)
 
   )
 
