@@ -20,3 +20,6 @@ and `treemacs'.")
 
 (defvar enable-pretty-code nil
   "if not nil, enable pretty code")
+
+(defvar enable-nyan-cat-animation nil
+  "if not nil, enable nyan cat animation")

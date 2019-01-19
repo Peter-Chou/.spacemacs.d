@@ -112,6 +112,7 @@ This function should only modify configuration layer settings."
      (peter-display :variables
                     dired-icons-backend 'all-the-icons
                     enable-pretty-code t
+                    enable-nyan-cat-animation t
                     enable-font-ligature t)
      (peter-misc :variables
                  enable-electric-operator nil)

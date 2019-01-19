@@ -20,6 +20,7 @@
         diredfl
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
+        nyan-mode
         treemacs-icons-dired
         ;; Elsehwere-owned packages
         which-key
@@ -116,6 +117,20 @@
 
 (defun peter-display/init-prettify-utils ()
   (use-package prettify-utils))
+
+
+(defun peter-display/init-nyan-mode ()
+  (use-package nyan-mode
+    :ensure t
+    :init
+    (progn
+      (when enable-nyan-cat-animation
+        (setq nyan-animate-nyancat t
+              nyan-animation-frame-interval 0.1
+              nyan-wavy-trail t))
+      (setq nyan-bar-length 20))
+    :config
+    (nyan-mode 1)))
 
 ;;; Unowned Packages
 ;;;; Which-key
