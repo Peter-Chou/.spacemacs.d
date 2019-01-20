@@ -21,8 +21,8 @@
         doom-modeline-lsp nil
         doom-modeline-persp-name nil
         doom-modeline-github nil
-        doom-modeline-buffer-file-name-style 'relative-from-project
-        ;; doom-modeline-buffer-file-name-style 'truncate-except-project
+        ;; doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-buffer-file-name-style 'file-name
         doom-modeline-major-mode-color-icon t)
 
        ;; set major mode face color
