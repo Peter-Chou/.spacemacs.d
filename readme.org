@@ -11,7 +11,7 @@ git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ** STEP 3: clone .spacemacs.d (this repository)
 clone this repository into your home path as well.(run the following code in your terminal)
 #+BEGIN_SRC sh
-git clone https://github.com/Peter-Chou/spacemacs-repository.git ~/.spacemacs.d
+git clone https://github.com/Peter-Chou/.spacemacs.d.git ~/.spacemacs.d
 #+END_SRC
 ** ALMOST THERE: launch Emacs
 Finally, Lauch the emacs for the initial configuration, it will automatically download all the
