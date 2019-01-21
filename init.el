@@ -86,7 +86,8 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-idle-delay 0.3
+                      auto-completion-idle-delay 0.2
+                      eldoc-idle-delay 0.3
                       auto-completion-enable-sort-by-usage t
                       ;; auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
@@ -115,7 +116,7 @@ This function should only modify configuration layer settings."
                     enable-nyan-cat-animation t
                     enable-font-ligature t)
      (peter-misc :variables
-                 enable-electric-operator nil)
+                 enable-electric-operator t)
      )
 
    ;; List of additional packages that will be installed without being
