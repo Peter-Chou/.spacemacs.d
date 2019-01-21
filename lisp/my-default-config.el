@@ -252,11 +252,6 @@
 
 ;; ignore . in dired buffer
 (add-hook 'dired-mode-hook 'dired-omit-mode)
-;; just show .. in dired-omit-mode
-(setq dired-omit-files
-      (rx (or (seq bol (? ".") "#")
-              ;; (seq bol ".." eol)
-              (seq bol "." eol))))
 
 ;; show diectory first
 (defun mydired-sort ()
