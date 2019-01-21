@@ -149,8 +149,9 @@
     (progn
       (pretty-code-add-hook 'emacs-lisp-mode-hook '((:def "defun")
                                                     (:lambda "lambda")))
-      (pretty-code-add-hook 'python-mode-hook     '((:def "def")
-                                                    (:lambda "lambda"))))))
+      ;; (pretty-code-add-hook 'python-mode-hook     '((:def "def")
+      ;;                                               (:lambda "lambda")))
+      )))
 
 ;;;; Pretty-eshell
 
