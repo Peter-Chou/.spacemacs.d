@@ -50,7 +50,6 @@ This function should only modify configuration layer settings."
      yaml
      (python :variables
              python-backend 'anaconda
-             python-pipenv-activate t
              python-test-runner 'pytest
              python-fill-column 80
              python-enable-yapf-format-on-save t
