@@ -162,6 +162,7 @@
 
 ;; ------ lsp mode ------------------------------------------------------------
 (setq
+ lsp-ui-sideline-ignore-duplicate t
  lsp-ui-sideline-enable nil)
 
 
