@@ -17,7 +17,6 @@
     carbon-now-sh
     default-text-scale
     electric-operator
-    evil-vimish-fold
     fontify-face
     highlight-indent-guides
     modern-cpp-font-lock
@@ -54,12 +53,6 @@
                                                                              (cons "&" nil))
                                        (electric-operator-add-rules-for-mode 'c-mode
                                                                              (cons "*" nil)))))))
-
-(defun peter-misc/init-evil-vimish-fold ()
-  (use-package evil-vimish-fold
-    :ensure t
-    :config
-    (evil-vimish-fold-mode 1)))
 
 (defun peter-misc/init-fontify-face ()
   (use-package fontify-face
