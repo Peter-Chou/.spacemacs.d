@@ -50,6 +50,7 @@ This function should only modify configuration layer settings."
      yaml
      (python :variables
              python-backend 'anaconda
+             python-pipenv-activate t
              python-test-runner 'pytest
              python-fill-column 80
              python-enable-yapf-format-on-save t
@@ -75,6 +76,7 @@ This function should only modify configuration layer settings."
                         layouts-enable-autosave nil
                         layouts-autosave-delay 300)
      (ivy :variables
+          ivy-enable-advanced-buffer-information t
           ivy-extra-directories nil)
      ranger
      multiple-cursors
@@ -87,9 +89,9 @@ This function should only modify configuration layer settings."
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-idle-delay 0.2
-                      eldoc-idle-delay 0.3
+                      eldoc-idle-delay 0.2
                       auto-completion-enable-sort-by-usage t
-                      ;; auto-completion-enable-help-tooltip t
+                      auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
@@ -432,7 +434,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
