@@ -127,6 +127,7 @@
       (when enable-nyan-cat-animation
         (setq nyan-animate-nyancat t
               nyan-animation-frame-interval 0.1
+              nyan-minimum-window-width 112
               nyan-wavy-trail t))
       (setq nyan-bar-length 20))
     :config
