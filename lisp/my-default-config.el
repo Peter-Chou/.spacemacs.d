@@ -21,8 +21,7 @@
         doom-modeline-lsp nil
         doom-modeline-persp-name nil
         doom-modeline-github nil
-        ;; doom-modeline-buffer-file-name-style 'relative-from-project
-        doom-modeline-buffer-file-name-style 'file-name
+        doom-modeline-buffer-file-name-style 'relative-from-project
         doom-modeline-major-mode-color-icon t)
 
        ;; set major mode face color
@@ -162,6 +161,7 @@
 
 ;; ------ lsp mode ------------------------------------------------------------
 (setq
+ lsp-auto-guess-root t
  lsp-ui-sideline-ignore-duplicate t
  lsp-ui-sideline-enable nil)
 
