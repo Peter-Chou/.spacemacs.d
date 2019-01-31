@@ -70,7 +70,7 @@
     (progn
       (setq highlight-indent-guides-method 'character
             
-            highlight-indent-guides-character ?\┋ ;; candidates: , ⋮, ┆, ┊, ┋, ┇
+            highlight-indent-guides-character ?\┆ ;; candidates: , ⋮, ┆, ┊, ┋, ┇
             highlight-indent-guides-responsive 'top
             highlight-indent-guides-auto-enabled nil
             highlight-indent-guides-auto-character-face-perc 10
