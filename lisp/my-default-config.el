@@ -25,9 +25,9 @@
         doom-modeline-major-mode-color-icon t)
 
        ;; set major mode face color
-       (set-face-attribute 'doom-modeline-buffer-major-mode nil :weight 'bold :foreground "#fd780f")
+       ;; (set-face-attribute 'doom-modeline-buffer-major-mode nil :weight 'bold :foreground "#fd780f")
        ;; set dictory name face color
-       (set-face-attribute 'doom-modeline-buffer-path nil :weight 'bold :foreground "#1da1f2")
+       ;; (set-face-attribute 'doom-modeline-buffer-path nil :weight 'bold :foreground "#1da1f2")
 
        ;; add a customized venv segment
        (doom-modeline-def-segment my-python-venv
