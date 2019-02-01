@@ -7,6 +7,14 @@
   (kill-buffer)
   (spacemacs/frame-killer))
 
+(defun my-delete-all-evil-marks ()
+  (interactive)
+  (evil-ex "delm a-zA-Z0-9"))
+
+(defun my-delete-evil-mark ()
+  (interactive)
+  (evil-ex "delm "))
+
 (defun hidden-dos-eol ()
   "Do not show ^M in files containing mixed UNIX and DOS line endings"
   (interactive)
