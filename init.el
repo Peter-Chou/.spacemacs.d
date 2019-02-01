@@ -90,7 +90,7 @@ This function should only modify configuration layer settings."
                       auto-completion-idle-delay 0.2
                       eldoc-idle-delay 0.2
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-help-tooltip t
+                      ;; auto-completion-enable-help-tooltip t
                       :disabled-for org markdown)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
