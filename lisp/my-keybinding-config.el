@@ -34,6 +34,10 @@
 (spacemacs/set-leader-keys "oll" 'peter/load-my-layout)
 (spacemacs/set-leader-keys "ols" 'peter/save-my-layout)
 
+;; SPC-o-m family binding
+(spacemacs/declare-prefix "om" "evil marks")
+(spacemacs/set-leader-keys "omd" 'my-delete-evil-mark)
+(spacemacs/set-leader-keys "omD" 'my-delete-all-evil-marks)
 
 ;; SPC-o-s family binding
 (spacemacs/declare-prefix "os" "shell")
