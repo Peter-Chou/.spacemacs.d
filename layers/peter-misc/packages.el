@@ -23,6 +23,7 @@
     modern-cpp-font-lock
     smart-semicolon
     symbol-overlay
+    vim-empty-lines-mode
     ))
 
 (defun peter-misc/init-beacon ()
@@ -110,5 +111,12 @@
       (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
       (define-key symbol-overlay-map (kbd "<") 'spacemacs//symbol-overlay-switch-first)
       (define-key symbol-overlay-map (kbd ">") 'spacemacs//symbol-overlay-switch-last))))
+
+(defun peter-misc/init-vim-empty-lines-mode ()
+  (use-package vim-empty-lines-mode
+    :ensure t
+    :config
+    (global-vim-empty-lines-mode)))
+
 
 ;;; packages.el ends here
