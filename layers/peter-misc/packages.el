@@ -17,6 +17,7 @@
     carbon-now-sh
     default-text-scale
     electric-operator
+    evil-fringe-mark
     fontify-face
     highlight-indent-guides
     modern-cpp-font-lock
@@ -53,6 +54,16 @@
                                                                              (cons "&" nil))
                                        (electric-operator-add-rules-for-mode 'c-mode
                                                                              (cons "*" nil)))))))
+
+(defun peter-misc/init-evil-fringe-mark ()
+  (use-package evil-fringe-mark
+    :ensure t
+    :config
+    (progn
+      (setq-default left-fringe-width 20)
+      (setq-default evil-fringe-mark-side 'left-fringe)
+      (global-evil-fringe-mark-mode))))
+
 
 (defun peter-misc/init-fontify-face ()
   (use-package fontify-face
