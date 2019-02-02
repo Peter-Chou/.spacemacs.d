@@ -284,6 +284,17 @@
 (evil-define-key 'normal dired-mode-map (kbd "q") 'kill-this-buffer)
 
 
+;; ------ swiper mode ------------------------------------------------------------
+;; remove hightlight after swiper search
+(defun remove-swiper-search-highlight (x)
+  (evil-ex-nohighlight))
+
+(advice-add #'swiper--action :after #'remove-swiper-search-highlight)
+
+;; uncomment below if you want to remove the behavior
+;; (advice-remove #'swiper--action #'remove-swiper-search-highlight)
+
+
 ;; ------ fci mode ------------------------------------------------------------
 ;; set color for fci rule
 (setq
