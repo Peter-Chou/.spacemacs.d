@@ -45,7 +45,7 @@
        ;; add my-python-venv segment and remove major-mode segment from modeline
        (doom-modeline-def-modeline 'main
          '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
-         '(misc-info persp-name lsp github debug minor-modes input-method buffer-encoding my-python-venv process vcs checker))
+         '(misc-info persp-name lsp mu4e github debug minor-modes input-method buffer-encoding my-python-venv process vcs checker))
        )
       )
 
@@ -274,12 +274,14 @@
   (find-alternate-file ".."))
 
 ;; force dired use current buffer only
-(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
-(define-key dired-mode-map (kbd "f") 'dired-find-alternate-file) ; was dired-advertised-find-file
-(define-key dired-mode-map (kbd "^") 'my-dired-parent-directory)  ; was dired-up-director
-
+;; was dired-advertised-find-file
+(evil-define-key 'normal dired-mode-map (kbd "RET") 'dired-find-alternate-file) 
+;; was dired-advertised-find-file
+(evil-define-key 'normal dired-mode-map (kbd "f") 'dired-find-alternate-file) 
+;; was dired-up-director
+(evil-define-key 'normal dired-mode-map (kbd "^") 'my-dired-parent-directory)  
 ;; kill current buffer when leaving dired mode
-(define-key dired-mode-map (kbd "q") 'kill-this-buffer)  ; was dired-up-director
+(evil-define-key 'normal dired-mode-map (kbd "q") 'kill-this-buffer)
 
 
 ;; ------ fci mode ------------------------------------------------------------
