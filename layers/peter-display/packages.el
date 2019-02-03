@@ -25,6 +25,8 @@
         ;; Elsehwere-owned packages
         which-key
 
+        vim-empty-lines-mode
+
         (pretty-code     :location local)
         (pretty-eshell   :location local)
         (pretty-fonts    :location local)
@@ -260,5 +262,12 @@
     :if (eq dired-icons-backend 'treemacs)
     :defer t
     :hook ((dired-mode . treemacs-icons-dired-mode))))
+
+(defun peter-display/init-vim-empty-lines-mode ()
+  (use-package vim-empty-lines-mode
+    :ensure t
+    :hook ((eshell-mode . (lambda () (vim-empty-lines-mode -1))))
+    :config
+    (global-vim-empty-lines-mode)))
 
 ;;; packages.el ends here
