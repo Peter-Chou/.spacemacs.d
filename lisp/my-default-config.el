@@ -115,28 +115,7 @@
 
 ;; ------ eshell mode ---------------------------------------------------------
 ;; add alias to eshell
-(defvar my-eshell-alias-flag nil
-  "if not nil, it will not set alias to alias files")
-(add-hook 'eshell-mode-hook (lambda ()
-                              (when (eq my-eshell-alias-flag nil)
-                                (setq my-eshell-alias-flag t)
-                                (eshell/alias ".." "cd ..")
-                                (eshell/alias "..." "cd ../..")
-                                (eshell/alias "...." "cd ../../..")
-
-                                (eshell/alias "ll" "ls -lsA --color")
-                                (eshell/alias "lh" "ls -lsAd --color .[^.]*")
-
-                                (eshell/alias "d" "dired .")
-
-                                (eshell/alias "g" "git $*")
-                                (eshell/alias "goto" "git checkout $*")
-
-                                (eshell/alias "mkdir" "mkdir -pv $*")
-                                (eshell/alias "mv" "mv -v $*")
-                                (eshell/alias "cp" "cp -v $*")
-                                (eshell/alias "wget" "wget -c $*")
-                                (eshell/alias ":q" "exit"))))
+(setq eshell-aliases-file (expand-file-name "alias" dotspacemacs-directory))
 
 
 ;; ------ flymd mode ----------------------------------------------------------
