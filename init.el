@@ -56,9 +56,11 @@ This function should only modify configuration layer settings."
              python-sort-imports-on-save t)
      (c-c++ :variables
            c-c++-default-mode-for-headers 'c++-mode
+           ;; ccls-initialization-options '(:clang (:extraArgs (vector "-isystem" "C:/msys64/mingw64/include/c++/8.2.1")))
            c-c++-backend 'lsp-ccls
            c-c++-lsp-executable (file-truename "~/ccls/build/ccls")
            c-c++-lsp-cache-dir (file-truename "~/.ccls-cache")
+           c-c++-lsp-sem-highlight-method 'overlay
            c-c++-enable-clang-format-on-save t)
      (java :variables java-backend 'lsp)
      dap    ;; lsp debug
@@ -138,7 +140,6 @@ This function should only modify configuration layer settings."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
-                                    nlinum
                                     vi-tilde-fringe
                                     firebelly-theme
                                     niflheim-theme
