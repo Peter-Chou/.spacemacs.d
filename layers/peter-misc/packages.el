@@ -97,11 +97,17 @@
     :hook ((prog-mode . symbol-overlay-mode))
     :config
     (progn
-      (global-set-key (kbd "M-i") 'symbol-overlay-put)
-      (global-set-key (kbd "M-n") 'symbol-overlay-switch-forward)
-      (global-set-key (kbd "M-p") 'symbol-overlay-switch-backward)
+      (define-key evil-normal-state-map (kbd "M-i") 'symbol-overlay-put)
+      ;; C-' switch backward; C-' switch forward
+      (define-key evil-normal-state-map (kbd "C-'") 'symbol-overlay-switch-forward)
+      (define-key evil-normal-state-map (kbd "C-;") 'symbol-overlay-switch-backward)
       (global-set-key (kbd "<f7>") 'symbol-overlay-mode)
       (global-set-key (kbd "<f8>") 'symbol-overlay-remove-all)
+
+      ;; remap help tooltip keybinding from h to H in symbol-overlay-map
+      (define-key symbol-overlay-map (kbd "h") 'evil-backward-char)
+      (define-key symbol-overlay-map (kbd "H") 'symbol-overlay-map-help)
+      ;; add custom function
       (define-key symbol-overlay-map (kbd "<") 'spacemacs//symbol-overlay-switch-first)
       (define-key symbol-overlay-map (kbd ">") 'spacemacs//symbol-overlay-switch-last))))
 
