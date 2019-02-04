@@ -3,6 +3,9 @@
 ;; <SPC>-d go back where jumps
 (spacemacs/set-leader-keys "d" 'xref-pop-marker-stack)
 
+;; f5 to refresh the buffer
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
 ;; <SPC>-' use shell-here command
 (spacemacs/set-leader-keys "'" 'my-shell-here)
 
