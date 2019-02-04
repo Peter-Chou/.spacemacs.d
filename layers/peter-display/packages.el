@@ -125,15 +125,14 @@
   (use-package nyan-mode
     :ensure t
     :init
-    (progn
-      (when enable-nyan-cat-animation
-        (setq nyan-animate-nyancat t
-              nyan-animation-frame-interval 0.1
-              nyan-minimum-window-width 112
-              nyan-wavy-trail t))
-      (setq nyan-bar-length 20))
+    (setq nyan-animate-nyancat t
+          nyan-animation-frame-interval 0.1
+          nyan-minimum-window-width 112
+          nyan-bar-length 20
+          nyan-wavy-trail t)
     :config
-    (nyan-mode 1)))
+    (when enable-nyan-cat-animation
+      (nyan-mode 1))))
 
 ;;; Unowned Packages
 ;;;; Which-key
