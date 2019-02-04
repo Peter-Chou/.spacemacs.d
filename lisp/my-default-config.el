@@ -286,6 +286,10 @@
                             ))
 
 
+;; ------ hungry delete mode --------------------------------------------------
+(global-hungry-delete-mode)
+
+
 ;; ------ treemacs mode -------------------------------------------------------
 (setq
  treemacs-silent-refresh t
