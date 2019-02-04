@@ -59,8 +59,8 @@
     :ensure t
     :config
     (progn
-      (setq-default left-fringe-width 20)
-      (setq-default evil-fringe-mark-side 'left-fringe)
+      (setq-default right-fringe-width 25)
+      (setq-default evil-fringe-mark-side 'right-fringe)
       (global-evil-fringe-mark-mode))))
 
 
