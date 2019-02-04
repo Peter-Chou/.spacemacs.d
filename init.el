@@ -80,7 +80,7 @@ This function should only modify configuration layer settings."
           ivy-enable-advanced-buffer-information t
           ivy-extra-directories nil)
      ranger
-     multiple-cursors
+     ;; multiple-cursors
      imenu-list
      evil-commentary
      (auto-completion :variables
