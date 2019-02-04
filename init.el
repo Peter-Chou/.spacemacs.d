@@ -99,8 +99,9 @@ This function should only modify configuration layer settings."
      (git :variables
           git-magit-status-fullscreen t)
      (version-control :variables
-                      version-control-global-margin t
-                      version-control-diff-tool 'git-gutter+)
+                      ;; version-control-global-margin t
+                      version-control-diff-side 'left
+                      version-control-diff-tool 'git-gutter)
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
      (org :variables
@@ -141,6 +142,8 @@ This function should only modify configuration layer settings."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
                                     vi-tilde-fringe
+                                    git-gutter-fringe
+                                    git-gutter-fringe+
                                     firebelly-theme
                                     niflheim-theme
                                     pastels-on-dark-theme
