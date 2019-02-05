@@ -7,6 +7,10 @@
   (kill-buffer)
   (spacemacs/frame-killer))
 
+(defun my-revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive) (revert-buffer t t))
+
 (defun my-delete-all-evil-marks ()
   (interactive)
   (evil-ex "delm a-zA-Z0-9"))
