@@ -17,6 +17,7 @@
       ((eq (car dotspacemacs-mode-line-theme) 'doom)
        ;; doom specific configuration
        (setq
+        find-file-visit-truename t  ; display the real names for symlink files
         ;; doom-modeline-height 21
         doom-modeline-lsp nil
         doom-modeline-persp-name nil
