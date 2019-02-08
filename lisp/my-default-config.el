@@ -100,7 +100,7 @@
  display-time-mail-string ""
  )
 ;; show time in mode line on startup
-(display-time-mode 1)
+;; (display-time-mode 1)
 
 
 ;; ------ company mode --------------------------------------------------------
