@@ -4,51 +4,7 @@
 (setq create-lockfiles nil)
 
 ;; show file size (Emacs 22+)
-;; (size-indication-mode t)
-
-;; update version control info in modeline
-;; (setq auto-revert-check-vc-info t)
-
-;; toggle off the minor-mode on modeline as default
-(cond ((eq (car dotspacemacs-mode-line-theme) 'spacemacs)
-       ;; spacemacs specific configuration
-       (spacemacs/toggle-mode-line-minor-modes-off)
-       )
-      ((eq (car dotspacemacs-mode-line-theme) 'doom)
-       ;; doom specific configuration
-       (setq
-        find-file-visit-truename t  ; display the real names for symlink files
-        ;; doom-modeline-height 21
-        doom-modeline-lsp nil
-        doom-modeline-persp-name nil
-        doom-modeline-github nil
-        doom-modeline-buffer-file-name-style 'relative-from-project
-        doom-modeline-major-mode-color-icon t)
-
-       ;; set major mode face color
-       ;; (set-face-attribute 'doom-modeline-buffer-major-mode nil :weight 'bold :foreground "#fd780f")
-       ;; set dictory name face color
-       ;; (set-face-attribute 'doom-modeline-buffer-path nil :weight 'bold :foreground "#1da1f2")
-
-       ;; add a customized venv segment
-       (doom-modeline-def-segment my-python-venv
-         "The current python virtual environment state."
-         (when (eq major-mode 'python-mode)
-           (if (eq python-shell-virtualenv-root nil)
-               ""
-             (propertize
-              (let ((base-dir-name (file-name-nondirectory (substring python-shell-virtualenv-root 0 -1))))
-                (if (< 10 (length base-dir-name))
-                    (format " (%s..)" (substring base-dir-name 0 8))
-                  (format " (%s)" base-dir-name)))
-              'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
-
-       ;; add my-python-venv segment and remove major-mode segment from modeline
-       (doom-modeline-def-modeline 'main
-         '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
-         '(misc-info persp-name lsp mu4e github debug minor-modes input-method buffer-encoding my-python-venv process vcs checker))
-       )
-      )
+(size-indication-mode t)
 
 ;; revert the buffer automatically when the filed is modified outside emcas
 (global-auto-revert-mode t)
