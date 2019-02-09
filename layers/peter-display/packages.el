@@ -22,13 +22,15 @@
                                           :repo "Ilazki/prettify-utils.el"))
         nyan-mode
         treemacs-icons-dired
+
         ;; Elsehwere-owned packages
         which-key
+        eshell-prompt-extras
 
         vim-empty-lines-mode
+        virtualenvwrapper  ;; needed by eshell-prompt-extras
 
         (pretty-code     :location local)
-        (pretty-eshell   :location local)
         (pretty-fonts    :location local)
         (pretty-magit    :location local)
         ))
@@ -64,18 +66,24 @@
 (defun peter-display/init-company-box ()
   (use-package company-box
     :if (and (not (version< emacs-version "26.1")) (display-graphic-p))
-    :defer t
+    :diminish
+    :functions (all-the-icons-faicon
+                all-the-icons-material
+                all-the-icons-octicon
+                all-the-icons-alltheicon)
     :hook (company-mode . company-box-mode)
     :config
+    (setq company-box-backends-colors nil)
+
     (with-eval-after-load 'all-the-icons
       (setq company-box-icons-unknown
             (all-the-icons-octicon "file-text" :v-adjust -0.05))
 
       (setq company-box-icons-elisp
             (list
-             (all-the-icons-faicon "cube" :v-adjust -0.0575)        ; Function
-             (all-the-icons-faicon "tag" :v-adjust -0.0575)         ; Variable
-             (all-the-icons-faicon "cog" :v-adjust -0.0575)         ; Feature
+             (all-the-icons-faicon "cube" :v-adjust -0.0575 :face 'font-lock-constant-face)       ; Function
+             (all-the-icons-faicon "tag" :v-adjust -0.0575 :face 'font-lock-keyword-face)         ; Variable
+             (all-the-icons-faicon "cog" :v-adjust -0.0575 :face 'font-lock-warning-face)         ; Feature
              (all-the-icons-material "palette" :v-adjust -0.2)      ; Face
              ))
 
@@ -84,36 +92,46 @@
 
       (setq company-box-icons-lsp
             `(( 1  . ,(all-the-icons-faicon "file-text-o" :v-adjust -0.0575))     ; Text
-              ( 2  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575))            ; Method
-              ( 3  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575))            ; Function
-              ( 4  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575))            ; Constructor
-              ( 5  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Field
-              ( 6  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Variable
-              ( 7  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575))             ; Class
+              ( 2  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575 :face font-lock-constant-face))            ; Method
+              ( 3  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575 :face font-lock-constant-face))            ; Function
+              ( 4  . ,(all-the-icons-faicon "cube" :v-adjust -0.0575 :face font-lock-constant-face))            ; Constructor
+              ( 5  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575 :face 'font-lock-warning-face))             ; Field
+              ( 6  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575 :face 'font-lock-warning-face))             ; Variable
+              ( 7  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575 :face 'font-lock-warning-face))             ; Class
               ( 8  . ,(all-the-icons-faicon "cogs" :v-adjust -0.0575))            ; Interface
               ( 9  . ,(all-the-icons-alltheicon "less"))                          ; Module
               (10  . ,(all-the-icons-faicon "wrench" :v-adjust -0.0575))          ; Property
               (11  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Unit
-              (12  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Value
-              (13  . ,(all-the-icons-material "content_copy" :v-adjust -0.2))     ; Enum
-              (14  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Keyword
+              (12  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575 :face 'font-lock-keyword-face))             ; Value
+              (13  . ,(all-the-icons-faicon "file-text-o" :v-adjust -0.0575 :face 'font-lock-warning-face))     ; Enum
+              (14  . ,(all-the-icons-material "format_align_center" :v-adjust -0.2))             ; Keyword
               (15  . ,(all-the-icons-material "content_paste" :v-adjust -0.2))    ; Snippet
               (16  . ,(all-the-icons-material "palette" :v-adjust -0.2))          ; Color
               (17  . ,(all-the-icons-faicon "file" :v-adjust -0.0575))            ; File
               (18  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Reference
               (19  . ,(all-the-icons-faicon "folder" :v-adjust -0.0575))          ; Folder
-              (20  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; EnumMember
-              (21  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Constant
-              (22  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575))             ; Struct
-              (23  . ,(all-the-icons-faicon "bolt" :v-adjust -0.0575))            ; Event
+              (20  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575 :face 'font-lock-keyword-face))             ; EnumMember
+              (21  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575 :face 'font-lock-keyword-face))             ; Constant
+              (22  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575 :face 'font-lock-warning-face))             ; Struct
+              (23  . ,(all-the-icons-faicon "bolt" :v-adjust -0.0575 :face 'font-lock-warning-face))            ; Event
               (24  . ,(all-the-icons-faicon "tag" :v-adjust -0.0575))             ; Operator
-              (25  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575))             ; TypeParameter
-              )))))
+              (25  . ,(all-the-icons-faicon "cog" :v-adjust -0.0575 :face 'font-lock-warning-face))             ; TypeParameter
+              ))
+      )))
 
 (defun peter-display/init-diredfl ()
   (use-package diredfl
     :init
     (diredfl-global-mode 1)))
+
+(defun peter-display/post-init-eshell-prompt-extras ()
+  (when (configuration-layer/package-used-p 'eshell-prompt-extras)
+    (with-eval-after-load "esh-opt"
+      (require 'virtualenvwrapper)
+      (venv-initialize-eshell)
+      (autoload 'epe-theme-pipeline "eshell-prompt-extras")
+      (setq eshell-highlight-prompt nil
+            eshell-prompt-function 'epe-theme-pipeline))))
 
 ;;;; Prettify-utils
 
@@ -154,59 +172,6 @@
       ;; (pretty-code-add-hook 'python-mode-hook     '((:def "def")
       ;;                                               (:lambda "lambda")))
       )))
-
-;;;; Pretty-eshell
-
-(defun peter-display/init-pretty-eshell ()
-  (use-package pretty-eshell
-    :init
-    (progn
-      ;; Change default banner message
-      (setq eshell-banner-message (s-concat (s-repeat 20 "---") "\n\n"))
-
-      ;; More prompt styling
-      (setq pretty-eshell-header "\n︳")
-      (setq pretty-eshell-prompt-string " "))
-
-    :config
-    (progn
-      ;; Directory
-      (pretty-eshell-section
-       esh-dir
-       "\xf07c"  ; 
-       (abbreviate-file-name (eshell/pwd))
-       '(:foreground "#268bd2" :bold bold :underline t))
-
-      ;; Git Branch
-      (pretty-eshell-section
-       esh-git
-       "\xe907"  ; 
-       (magit-get-current-branch)
-       '(:foreground "#8D6B94"))
-
-      ;; Python Virtual Environment
-      (pretty-eshell-section
-       esh-python
-       "\xe928"  ; 
-       pyvenv-virtual-env-name)
-
-      ;; Time
-      (pretty-eshell-section
-       esh-clock
-       "\xf017"  ; 
-       (format-time-string "%H:%M" (current-time))
-       '(:foreground "forest green"))
-
-      ;; Prompt Number
-      (pretty-eshell-section
-       esh-num
-       "\xf0c9"  ; 
-       (number-to-string pretty-eshell-prompt-num)
-       '(:foreground "brown"))
-
-      (setq pretty-eshell-funcs
-            (list esh-dir esh-git esh-python esh-clock esh-num)))))
-
 
 ;;;; Pretty-fonts
 
@@ -268,5 +233,10 @@
     :hook ((eshell-mode . (lambda () (vim-empty-lines-mode -1))))
     :config
     (global-vim-empty-lines-mode)))
+
+(defun peter-display/init-virtualenvwrapper ()
+  (use-package virtualenvwrapper
+    :ensure t))
+
 
 ;;; packages.el ends here
