@@ -15,9 +15,14 @@
       '(
         all-the-icons
         all-the-icons-ivy
-        (all-the-icons-dired :requires font-lock+)
+        ;; (all-the-icons-dired :requires font-lock+)
+        all-the-icons-dired
         company-box
         diredfl
+        doom-modeline
+        (font-lock+ :step pre
+                    :location (recipe :fetcher github
+                                      :repo emacsmirror/font-lock-plus))
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
         nyan-mode
@@ -59,9 +64,9 @@
   (use-package all-the-icons-dired
     :if (eq dired-icons-backend 'all-the-icons)
     :defer t
+    :hook (dired-mode . all-the-icons-dired-mode)
     :init
-    (require 'font-lock+)
-    :hook (dired-mode . all-the-icons-dired-mode)))
+    (require 'font-lock+)))
 
 (defun peter-display/init-company-box ()
   (use-package company-box
@@ -123,6 +128,43 @@
   (use-package diredfl
     :init
     (diredfl-global-mode 1)))
+
+(defun peter-display/init-doom-modeline ()
+  (use-package doom-modeline
+    :ensure t
+    :hook ((after-init . doom-modeline-mode)
+           (doom-modeline-mode . setup-custom-doom-modeline))
+    :config
+    (progn
+      (setq
+       find-file-visit-truename t  ; display the real names for symlink files
+       ;; doom-modeline-height 21
+       doom-modeline-lsp nil
+       doom-modeline-persp-name nil
+       doom-modeline-github nil
+       doom-modeline-buffer-file-name-style 'relative-from-project
+       doom-modeline-major-mode-color-icon t)
+
+      (doom-modeline-def-segment my-python-venv
+        "The current python virtual environment state."
+        (when (eq major-mode 'python-mode)
+          (if (eq python-shell-virtualenv-root nil)
+              ""
+            (propertize
+             (let ((base-dir-name (file-name-nondirectory (substring python-shell-virtualenv-root 0 -1))))
+               (if (< 10 (length base-dir-name))
+                   (format " (%s..)" (substring base-dir-name 0 8))
+                 (format " (%s)" base-dir-name)))
+             'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
+
+      (doom-modeline-def-modeline 'my-modeline
+        '(bar matches buffer-info remote-host buffer-position parrot selection-info)
+        '(misc-info minor-modes input-method buffer-encoding my-python-venv process vcs checker))
+
+      (defun setup-custom-doom-modeline ()
+        (doom-modeline-set-modeline 'my-modeline 'default))
+      )))
+(defun peter-display/init-font-lock+ ())
 
 (defun peter-display/post-init-eshell-prompt-extras ()
   (when (configuration-layer/package-used-p 'eshell-prompt-extras)
