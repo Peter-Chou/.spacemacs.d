@@ -9,7 +9,7 @@ This function should only modify configuration layer settings."
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs
+   dotspacemacs-distribution 'spacemacs-base
 
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -39,6 +39,16 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     spacemacs-completion
+     spacemacs-layouts
+     spacemacs-editing
+     spacemacs-editing-visual
+     spacemacs-evil
+     spacemacs-navigation
+     spacemacs-org
+     spacemacs-project
+     spacemacs-purpose
+     spacemacs-visual
      lsp
      csv
      chrome
@@ -116,6 +126,7 @@ This function should only modify configuration layer settings."
      ;; custom layers
      (peter-display :variables
                     dired-icons-backend 'all-the-icons
+                    ;; dired-icons-backend 'treemacs
                     enable-pretty-code t
                     enable-nyan-cat-animation nil
                     enable-font-ligature t)
