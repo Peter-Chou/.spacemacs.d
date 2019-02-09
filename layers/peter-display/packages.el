@@ -131,7 +131,11 @@
       (venv-initialize-eshell)
       (autoload 'epe-theme-pipeline "eshell-prompt-extras")
       (setq eshell-highlight-prompt nil
-            eshell-prompt-function 'epe-theme-pipeline))))
+            ;; add new line adhead of tty
+            eshell-prompt-function (lambda ()
+                                     (concat "\n" (epe-theme-pipeline)))
+            ;; eshell-prompt-function 'epe-theme-lambda
+            ))))
 
 ;;;; Prettify-utils
 
