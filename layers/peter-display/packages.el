@@ -142,7 +142,7 @@
        doom-modeline-lsp nil
        doom-modeline-persp-name nil
        doom-modeline-github nil
-       doom-modeline-buffer-file-name-style 'relative-from-project
+       doom-modeline-buffer-file-name-style 'truncate-with-project
        doom-modeline-major-mode-color-icon t)
 
       (doom-modeline-def-segment my-python-venv
@@ -157,12 +157,12 @@
                  (format " (%s)" base-dir-name)))
              'face (if (doom-modeline--active) 'doom-modeline-buffer-major-mode)))))
 
-      (doom-modeline-def-modeline 'my-modeline
-        '(bar matches buffer-info remote-host buffer-position parrot selection-info)
-        '(misc-info minor-modes input-method buffer-encoding my-python-venv process vcs checker))
+      (doom-modeline-def-modeline 'my-modeline-layout
+        '(bar workspace-number window-number evil-state god-state ryo-modal xah-fly-keys matches buffer-info remote-host buffer-position parrot selection-info)
+        '(misc-info persp-name lsp irc mu4e github debug minor-modes input-method buffer-encoding my-python-venv process vcs checker))
 
       (defun setup-custom-doom-modeline ()
-        (doom-modeline-set-modeline 'my-modeline 'default))
+        (doom-modeline-set-modeline 'my-modeline-layout 'default))
       )))
 (defun peter-display/init-font-lock+ ())
 
