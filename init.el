@@ -88,7 +88,7 @@ This function should only modify configuration layer settings."
                         layouts-enable-autosave nil
                         layouts-autosave-delay 300)
      (ivy :variables
-          ivy-enable-advanced-buffer-information t
+          ;; ivy-enable-advanced-buffer-information t
           ivy-extra-directories nil)
      ranger
      ;; multiple-cursors

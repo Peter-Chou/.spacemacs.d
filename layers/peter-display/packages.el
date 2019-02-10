@@ -58,7 +58,10 @@
       (advice-add 'counsel-projectile-transformer :filter-return
                   'all-the-icons-ivy-file-transformer-stdized)
 
-      (all-the-icons-ivy-setup))))
+      (all-the-icons-ivy-setup)
+      (setq all-the-icons-ivy-file-commands
+            '(counsel-find-file counsel-file-jump counsel-recentf counsel-projectile-find-file counsel-projectile-find-dir))
+      )))
 
 (defun peter-display/init-all-the-icons-dired ()
   (use-package all-the-icons-dired
