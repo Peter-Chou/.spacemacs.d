@@ -49,6 +49,7 @@ This function should only modify configuration layer settings."
      spacemacs-project
      spacemacs-purpose
      spacemacs-visual
+     spacemacs-misc
      lsp
      csv
      chrome
