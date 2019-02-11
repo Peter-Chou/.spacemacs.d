@@ -27,6 +27,7 @@
                                           :repo "Ilazki/prettify-utils.el"))
         nyan-mode
         treemacs-icons-dired
+        treemacs-magit
 
         ;; Elsehwere-owned packages
         which-key
@@ -275,6 +276,11 @@
     :if (eq dired-icons-backend 'treemacs)
     :defer t
     :hook ((dired-mode . treemacs-icons-dired-mode))))
+
+(defun peter-display/init-treemacs-magit ()
+    (use-package treemacs-magit
+      :ensure t
+      ))
 
 (defun peter-display/init-vim-empty-lines-mode ()
   (use-package vim-empty-lines-mode
