@@ -563,6 +563,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq spacemacs-theme-comment-bg nil)
 
   (set-language-environment 'UTF-8)
+  (set-default-coding-systems 'utf-8)
 
   )
 
